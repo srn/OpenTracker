@@ -1,0 +1,163 @@
+﻿@using OpenTracker.Core.Common
+@using OpenTracker.Models.Tracker
+@using OpenTracker.Core.Common.Helpers
+@model UploadModel
+
+@{
+	Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Upload</title>
+
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Site.css")" />
+
+	<script src="@Url.Content("~/Content/js/jquery-1.4.4.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Content/js/jquery.validate.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Content/js/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+			
+			$('#imdb').hide();
+			$('#TorrentName').change(function (event) {
+
+				$.ajax({
+					type: 'POST',
+					url: '@Url.Action("Imdb", "Upload")/?title=' + $('#TorrentName').val(),
+					data: '',
+					success: function (data) {
+						var imdb = jQuery.parseJSON(data);
+
+						if (imdb.Response == "Parse Error")
+							$('#imdb').fadeOut(100);
+						else {
+							$('#imdb').fadeIn();
+							$('#imdb_poster').attr("src", imdb.Poster);
+
+							$('#imdb_title').text(imdb.Title);
+							$('#imdb_year').text(imdb.Year);
+							$('#imdb_genre').text(imdb.Genre);
+
+							$('#imdb_rating').text(imdb.Rating);
+							$('#imdb_votes').text(imdb.Votes);
+							$('#imdb_plot').text(imdb.Plot);
+
+							$('#imdb_director').text(imdb.Director);
+							$('#imdb_writer').text(imdb.Writer);
+						}
+					},
+					error: function (jqxhr, textStatus) {
+						console.log("failed with error: " + textStatus);
+					}
+				});
+			});
+
+				$('#TorrentFile').change(function (event) {
+					var ext = $('#TorrentFile').val().split('.').pop().toLowerCase();
+					if ($.inArray(ext, ['torrent']) == -1) {
+						alert('Please upload a .torrent file!');
+					}
+
+	
+				var torrentName = $('#TorrentFile').val();
+				var regex = torrentName.replace(new RegExp("(.\\d{4}.{1,})", "g"), "").replace(".", " ");
+				$.ajax({
+					type: 'POST',
+					url: '@Url.Action("Imdb", "Upload")/?title=' + regex.replace(".", " "), // extra replace check
+					data: '',
+					success: function (data) {
+						$('#TorrentName').val("");
+						var imdb = jQuery.parseJSON(data);
+						if (imdb.Response == "Parse Error") {
+							$('#imdb').fadeOut(100);
+						}
+						else {
+							$('#imdb').hide();
+							$('#imdb').fadeIn();
+							
+							$('#TorrentName').val(torrentName.replace(".torrent", ""));
+
+							if (imdb.Poster != "N/A")
+								$('#imdb_poster').attr("src", imdb.Poster);
+
+							$('#imdb_title').text(imdb.Title);
+							$('#imdb_year').text(imdb.Year);
+							$('#imdb_genre').text(imdb.Genre);
+
+							$('#imdb_rating').text(imdb.Rating);
+							$('#imdb_votes').text(imdb.Votes);
+							$('#imdb_plot').text(imdb.Plot);
+
+							$('#imdb_director').text(imdb.Director);
+							$('#imdb_writer').text(imdb.Writer);
+						}
+					},
+					error: function (jqxhr, textStatus) {
+						console.log("failed with error: " + textStatus);
+					}
+				});
+			});
+
+
+		});
+
+	</script>
+
+</head>
+<body>
+	<div>
+
+	<div id="dsa"></div>
+		<div id="imdb">
+			<img id="imdb_poster" src="" alt="" />
+			<p id="imdb_title"></p>
+			<p id="imdb_year"></p>
+			<p id="imdb_genre"></p>
+			<p id="imdb_rating"></p>
+			<p id="imdb_votes"></p>
+			<p id="imdb_plot"></p>
+			<p id="imdb_director"></p>
+			<p id="imdb_writer"></p>
+		</div>
+
+		@Html.ValidationSummary(true, "Please review the following error(s):")
+
+		@using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		{
+			@Html.LabelFor(model => model.TorrentFile)
+			@Html.FileFor(model => model.TorrentFile)
+	
+			<br /><br />
+	
+			@Html.LabelFor(model => model.TorrentName)
+			@Html.TextBoxFor(model => model.TorrentName, new { @style = "width:300px;" }) <br /><br />
+	
+			<br /><br />
+	
+			@Html.LabelFor(model => model.NFO)
+			@Html.FileFor(model => model.NFO) <br /><br />
+	
+			@Html.LabelFor(model => model.Description)
+			@Html.TextArea("Description", null, null) <br /><br />
+	
+			@Html.LabelFor(model => model.SmallDescription)
+			@Html.TextBoxFor(model => model.SmallDescription) <br /><br />
+	
+			@Html.LabelFor(model => model.CategoryId)
+			@Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.Categories, "Value", "Text"), "Select category")
+	
+			<br /><br />
+	
+			<input type="submit" value="submit" />
+	  
+		}
+	</div>
+</body>
+</html>

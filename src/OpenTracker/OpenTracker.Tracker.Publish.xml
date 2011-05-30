@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\Users\soeren\Desktop\test" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Views/Account/Register.cshtml" publishTime="05/25/2011 17:14:19" />
+    <file relUrl="Content/js/jquery.validate.unobtrusive.min.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/jquery-ui.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="bin/OpenTracker.Core.pdb" publishTime="05/29/2011 20:34:45" />
+    <file relUrl="bin/System.Data.SQLite.DLL" publishTime="05/27/2009 19:59:16" />
+    <file relUrl="Content/gfx/chrome_throbber_fast_16.gif" publishTime="05/20/2011 15:48:33" />
+    <file relUrl="Global.asax" publishTime="04/29/2011 20:15:29" />
+    <file relUrl="Views/_ViewStart.cshtml" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/themes/base/jquery-ui.css" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/jquery-1.4.4.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/themes/base/images/ui-icons_2e83ff_256x240.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/jquery.unobtrusive-ajax.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/jquery.validate.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/jquery.validate.min.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/jquery-ui.min.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="bin/Elmah.dll" publishTime="05/09/2011 22:34:50" />
+    <file relUrl="Content/js/jquery-1.4.4.min.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/MicrosoftAjax.debug.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/MicrosoftMvcValidation.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Views/Browse/Index.cshtml" publishTime="05/29/2011 21:19:12" />
+    <file relUrl="Content/js/MicrosoftAjax.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/themes/base/images/ui-icons_222222_256x240.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/MicrosoftMvcAjax.debug.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/jquery-1.4.4-vsdoc.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/themes/base/images/ui-icons_454545_256x240.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/MicrosoftMvcAjax.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="bin/OpenTracker.Core.dll" publishTime="05/29/2011 20:34:45" />
+    <file relUrl="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Views/Account/Login.cshtml" publishTime="05/28/2011 13:38:22" />
+    <file relUrl="Views/Shared/Error.cshtml" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Views/Shared/_Layout.cshtml" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="bin/OpenTracker.dll" publishTime="05/29/2011 21:27:16" />
+    <file relUrl="Views/Account/Index.cshtml" publishTime="05/29/2011 20:45:25" />
+    <file relUrl="bin/OpenTracker.pdb" publishTime="05/29/2011 21:27:16" />
+    <file relUrl="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Views/Web.config" publishTime="05/24/2011 22:28:44" />
+    <file relUrl="Content/js/jquery.validate.unobtrusive.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Views/Upload/Index.cshtml" publishTime="05/25/2011 21:36:33" />
+    <file relUrl="bin/MonoTorrent.dll" publishTime="05/13/2011 18:06:19" />
+    <file relUrl="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/themes/base/images/ui-icons_888888_256x240.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/Site.css" publishTime="05/25/2011 21:20:50" />
+    <file relUrl="Content/themes/base/images/ui-icons_cd0a0a_256x240.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/jquery.validate-vsdoc.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="App_Data/error.txt" publishTime="05/29/2011 21:18:12" />
+    <file relUrl="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/jquery.unobtrusive-ajax.min.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Content/js/MicrosoftMvcValidation.debug.js" publishTime="04/29/2011 19:28:23" />
+    <file relUrl="Web.config" publishTime="05/29/2011 21:27:17" />
+  </publishProfile>
+</publishData>

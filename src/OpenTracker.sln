@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTracker.Tracker", "OpenTracker\OpenTracker.Tracker.csproj", "{0B0F6129-8A1E-4AB1-9A90-DB133715CFBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTracker.Core", "OpenTracker.Core\OpenTracker.Core.csproj", "{76EFBC85-946F-4189-9288-75A86F76E2E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Stats|Any CPU = Stats|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B0F6129-8A1E-4AB1-9A90-DB133715CFBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0F6129-8A1E-4AB1-9A90-DB133715CFBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B0F6129-8A1E-4AB1-9A90-DB133715CFBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0F6129-8A1E-4AB1-9A90-DB133715CFBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B0F6129-8A1E-4AB1-9A90-DB133715CFBA}.Stats|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0F6129-8A1E-4AB1-9A90-DB133715CFBA}.Stats|Any CPU.Build.0 = Release|Any CPU
+		{76EFBC85-946F-4189-9288-75A86F76E2E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76EFBC85-946F-4189-9288-75A86F76E2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76EFBC85-946F-4189-9288-75A86F76E2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76EFBC85-946F-4189-9288-75A86F76E2E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76EFBC85-946F-4189-9288-75A86F76E2E4}.Stats|Any CPU.ActiveCfg = Release|Any CPU
+		{76EFBC85-946F-4189-9288-75A86F76E2E4}.Stats|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

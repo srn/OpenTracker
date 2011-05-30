@@ -1,0 +1,103 @@
+﻿@using OpenTracker.Core
+@model OpenTracker.Models.Account.LoginModel
+
+@{
+	Layout = null;
+}
+
+@{
+	var profiler = Context.GetProfiler();  
+	if(profiler != null)
+	{   
+		// developer; show what timings we have
+		profiler.EndAllImpl();
+		<!--
+			@profiler.Render()
+		-->
+	}
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>LogOn</title>
+	
+	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Site.css")" />
+
+	<script src="@Url.Content("~/Content/js/jquery-1.4.4.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Content/js/jquery.validate.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Content/js/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+
+			/*
+			$("#loader").hide();
+			$('#login').attr("disabled", false);
+			$("#login").click(function () {
+				if (!$("#Username").val() == '') {
+					if (!$("#Password").val() == '') {
+						$("#loader").show();
+						$('#login').attr("disabled", true);
+					}
+				}
+				else {
+				}
+			});
+			*/
+
+
+		});
+	</script>
+
+</head>
+<body>
+<h2>Log On</h2>
+<p>
+	Please enter your username and password. @Html.ActionLink("Register", "Register", "Account") if you don't have an account.
+</p>
+
+@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+
+@using (Html.BeginForm()) {
+	<div>
+		<fieldset>
+			<legend>Account Information</legend>
+
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Username)
+			</div>
+			<div class="editor-field">
+				@Html.TextBoxFor(m => m.Username)
+				@Html.ValidationMessageFor(m => m.Username)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Password)
+			</div>
+			<div class="editor-field">
+				@Html.PasswordFor(m => m.Password)
+				@Html.ValidationMessageFor(m => m.Password)
+			</div>
+
+			<div class="editor-label">
+				@Html.CheckBoxFor(m => m.RememberMe)
+				@Html.LabelFor(m => m.RememberMe)
+			</div>
+
+			<p>
+				<div id="loader" style="float:left;">
+					<img src="/Content/gfx/chrome_throbber_fast_16.gif" alt="" style="margin-bottom:-5px;" /> Authenticating.. &nbsp;
+				</div>
+
+				<input type="submit" id="login" value="Log On" />
+			</p>
+		</fieldset>
+	</div>
+}
+</body>
+</html>

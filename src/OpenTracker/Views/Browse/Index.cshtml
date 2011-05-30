@@ -1,0 +1,62 @@
+﻿@model List<OpenTracker.Models.Tracker.TorrentModel>
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Index</title>
+	</head>
+	<body>
+		<div>
+
+
+		
+
+		</div>
+
+		<div>
+		
+<table width="100%" height="100%" style="border: 1px solid #000;">
+	<tr>
+		<td>category</td>
+		<td>torrent name</td>
+		<td>files</td>
+		<td>comments</td>
+		<td>size</td>
+		<td>snatches</td>
+		<td>seeders</td>
+		<td>leechers</td>
+		<td>uploader</td>
+	</tr>
+
+	@{
+		foreach (var torrent in Model)
+		{
+			var size = OpenTracker.Core.Common.Calculation.FormatBytes(torrent.Size);
+			var uploader = string.Empty;
+			<tr>
+				<td>@torrent.CategoryId</td>
+				<td><a href="/download/@torrent.TorrentId/">@torrent.TorrentName</a></td>
+				<td>@torrent.FileCount</td>
+				<td>@torrent.CommentCount</td>
+				<td>@size</td>
+				<td>@torrent.Snatches</td>
+				<td>@torrent.Seeders</td>
+				<td>@torrent.Leechers</td>
+				<td>@torrent.Uploader</td>
+			</tr>
+		}
+	}
+
+
+</table>
+		
+		</div>
+
+
+	</body>
+</html>

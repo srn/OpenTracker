@@ -1,0 +1,58 @@
+﻿@using System.Globalization
+@using OpenTracker.Core
+@{
+    Layout = null;
+}
+
+@{
+    var profiler = Context.GetProfiler();
+    if (profiler != null)
+    {
+        // developer; show what timings we have
+        profiler.EndAllImpl();
+        <!--
+            @profiler.Render()
+            -->
+    }
+
+    
+    using (var db = new OpenTrackerDbContext())
+    {
+        var crntUser = (from t in db.users
+                                 where t.username == User.Identity.Name
+                                 select t).Take(1).FirstOrDefault();
+        if (crntUser == null)
+        { 
+            <div></div>
+        }
+        else
+        {
+
+            var ratio = ((crntUser.downloaded > 0) ? (crntUser.uploaded / crntUser.downloaded) : 1);
+            <div>
+                @ratio.ToString("#.##", CultureInfo.CreateSpecificCulture("en-US"))
+
+                @User.Identity.Name
+
+            </div>
+            
+        }
+
+    }
+    
+    
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        
+    </div>
+</body>
+</html>

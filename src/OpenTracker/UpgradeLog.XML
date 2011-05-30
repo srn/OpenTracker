@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="OpenTracker">
+</Property><Property Name="Solution File" Value="Z:\dev\projects\OpenTracker\src\OpenTracker\OpenTracker.sln">
+</Property><Property Name="Date" Value="1. maj 2011">
+</Property><Property Name="Time" Value="00:33:22">
+</Property></Properties><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\DotNetTorrent.csproj" Description="Project file successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\DotNetTorrent.csproj">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\BEncoding\BDictionary.cs" Description="File successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\BEncoding\BDictionary.cs">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\BEncoding\BInteger.cs" Description="File successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\BEncoding\BInteger.cs">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\BEncoding\BList.cs" Description="File successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\BEncoding\BList.cs">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\BEncoding\BString.cs" Description="File successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\BEncoding\BString.cs">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\BEncoding\IBValue.cs" Description="File successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\BEncoding\IBValue.cs">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\BEncoding\Torrent.cs" Description="File successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\BEncoding\Torrent.cs">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\Exceptions\InvalidCharacterException.cs" Description="File successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\Exceptions\InvalidCharacterException.cs">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\Exceptions\InvalidIntegerException.cs" Description="File successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\Exceptions\InvalidIntegerException.cs">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\Exceptions\InvalidLengthException.cs" Description="File successfully backed up as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\Exceptions\InvalidLengthException.cs">
+</Event><Event ErrorLevel="2" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\Properties\AssemblyInfo.cs" Description="Failed to backup file as Z:\dev\projects\OpenTracker\src\OpenTracker\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\DotNetTorrent.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\DotNetTorrent.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="DotNetTorrent" Source="..\..\..\DotNetTorrent\DotNetTorrent.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
