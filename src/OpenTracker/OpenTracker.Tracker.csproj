@@ -96,7 +96,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\error.txt" />
     <Content Include="Content\gfx\chrome_throbber_fast_16.gif" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

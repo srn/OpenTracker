@@ -38,3 +38,8 @@ Download/
 *.userprefs
 *.docstates
 *.vs10x
+
+src/OpenTracker/App_Data/torrents
+src/OpenTracker/App_Data/torrents_nfo
+
+src/OpenTracker/App_Data/errors.s3db
