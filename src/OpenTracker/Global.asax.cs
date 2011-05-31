@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IO;
 using System.Security.Principal;
-using System.Threading;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
@@ -59,23 +57,6 @@ namespace OpenTracker
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-        }
-
-
-
-
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            try
-            {
-                var exception = Server.GetLastError();
-                using (var tw = new StreamWriter(Server.MapPath("~/App_Data/error.txt")))
-                    tw.Write(exception.Message + "\n\n " + exception.StackTrace);
-            }
-            catch (Exception)
-            {
-                // failed to record exception
-            }
         }
 
 

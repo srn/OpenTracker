@@ -84,22 +84,6 @@ namespace OpenTracker.Core
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<users> users
-        {
-            get
-            {
-                if ((_users == null))
-                {
-                    _users = base.CreateObjectSet<users>("users");
-                }
-                return _users;
-            }
-        }
-        private ObjectSet<users> _users;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<torrents_files> torrents_files
         {
             get
@@ -132,22 +116,6 @@ namespace OpenTracker.Core
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<torrents> torrents
-        {
-            get
-            {
-                if ((_torrents == null))
-                {
-                    _torrents = base.CreateObjectSet<torrents>("torrents");
-                }
-                return _torrents;
-            }
-        }
-        private ObjectSet<torrents> _torrents;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<comments> comments
         {
             get
@@ -160,6 +128,38 @@ namespace OpenTracker.Core
             }
         }
         private ObjectSet<comments> _comments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<users> users
+        {
+            get
+            {
+                if ((_users == null))
+                {
+                    _users = base.CreateObjectSet<users>("users");
+                }
+                return _users;
+            }
+        }
+        private ObjectSet<users> _users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<torrents> torrents
+        {
+            get
+            {
+                if ((_torrents == null))
+                {
+                    _torrents = base.CreateObjectSet<torrents>("torrents");
+                }
+                return _torrents;
+            }
+        }
+        private ObjectSet<torrents> _torrents;
 
         #endregion
         #region AddTo Methods
@@ -170,14 +170,6 @@ namespace OpenTracker.Core
         public void AddTocategories(categories categories)
         {
             base.AddObject("categories", categories);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTousers(users users)
-        {
-            base.AddObject("users", users);
         }
     
         /// <summary>
@@ -197,19 +189,27 @@ namespace OpenTracker.Core
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the torrents EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotorrents(torrents torrents)
-        {
-            base.AddObject("torrents", torrents);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the comments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTocomments(comments comments)
         {
             base.AddObject("comments", comments);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTousers(users users)
+        {
+            base.AddObject("users", users);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the torrents EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotorrents(torrents torrents)
+        {
+            base.AddObject("torrents", torrents);
         }
 
         #endregion
@@ -977,7 +977,9 @@ namespace OpenTracker.Core
         /// <param name="added">Initial value of the added property.</param>
         /// <param name="size">Initial value of the size property.</param>
         /// <param name="numfiles">Initial value of the numfiles property.</param>
-        public static torrents Createtorrents(global::System.Int64 id, global::System.Int64 categoryid, global::System.String info_hash, global::System.String torrentname, global::System.String description, global::System.String description_small, global::System.Int32 added, global::System.Decimal size, global::System.Int64 numfiles)
+        /// <param name="views">Initial value of the views property.</param>
+        /// <param name="snatches">Initial value of the snatches property.</param>
+        public static torrents Createtorrents(global::System.Int64 id, global::System.Int64 categoryid, global::System.String info_hash, global::System.String torrentname, global::System.String description, global::System.String description_small, global::System.Int32 added, global::System.Decimal size, global::System.Int64 numfiles, global::System.Int64 views, global::System.Int64 snatches)
         {
             torrents torrents = new torrents();
             torrents.id = id;
@@ -989,6 +991,8 @@ namespace OpenTracker.Core
             torrents.added = added;
             torrents.size = size;
             torrents.numfiles = numfiles;
+            torrents.views = views;
+            torrents.snatches = snatches;
             return torrents;
         }
 
@@ -1217,33 +1221,9 @@ namespace OpenTracker.Core
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> comments
-        {
-            get
-            {
-                return _comments;
-            }
-            set
-            {
-                OncommentsChanging(value);
-                ReportPropertyChanging("comments");
-                _comments = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("comments");
-                OncommentsChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _comments;
-        partial void OncommentsChanging(Nullable<global::System.Int64> value);
-        partial void OncommentsChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> views
+        public global::System.Int64 views
         {
             get
             {
@@ -1258,105 +1238,33 @@ namespace OpenTracker.Core
                 OnviewsChanged();
             }
         }
-        private Nullable<global::System.Int64> _views;
-        partial void OnviewsChanging(Nullable<global::System.Int64> value);
+        private global::System.Int64 _views;
+        partial void OnviewsChanging(global::System.Int64 value);
         partial void OnviewsChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> hits
+        public global::System.Int64 snatches
         {
             get
             {
-                return _hits;
+                return _snatches;
             }
             set
             {
-                OnhitsChanging(value);
-                ReportPropertyChanging("hits");
-                _hits = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("hits");
-                OnhitsChanged();
+                OnsnatchesChanging(value);
+                ReportPropertyChanging("snatches");
+                _snatches = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("snatches");
+                OnsnatchesChanged();
             }
         }
-        private Nullable<global::System.Int64> _hits;
-        partial void OnhitsChanging(Nullable<global::System.Int64> value);
-        partial void OnhitsChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> times_completed
-        {
-            get
-            {
-                return _times_completed;
-            }
-            set
-            {
-                Ontimes_completedChanging(value);
-                ReportPropertyChanging("times_completed");
-                _times_completed = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("times_completed");
-                Ontimes_completedChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _times_completed;
-        partial void Ontimes_completedChanging(Nullable<global::System.Int64> value);
-        partial void Ontimes_completedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> leechers
-        {
-            get
-            {
-                return _leechers;
-            }
-            set
-            {
-                OnleechersChanging(value);
-                ReportPropertyChanging("leechers");
-                _leechers = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("leechers");
-                OnleechersChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _leechers;
-        partial void OnleechersChanging(Nullable<global::System.Int64> value);
-        partial void OnleechersChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> seeders
-        {
-            get
-            {
-                return _seeders;
-            }
-            set
-            {
-                OnseedersChanging(value);
-                ReportPropertyChanging("seeders");
-                _seeders = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("seeders");
-                OnseedersChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _seeders;
-        partial void OnseedersChanging(Nullable<global::System.Int64> value);
-        partial void OnseedersChanged();
+        private global::System.Int64 _snatches;
+        partial void OnsnatchesChanging(global::System.Int64 value);
+        partial void OnsnatchesChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1453,54 +1361,6 @@ namespace OpenTracker.Core
         private Nullable<global::System.Int64> _owner;
         partial void OnownerChanging(Nullable<global::System.Int64> value);
         partial void OnownerChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> numratings
-        {
-            get
-            {
-                return _numratings;
-            }
-            set
-            {
-                OnnumratingsChanging(value);
-                ReportPropertyChanging("numratings");
-                _numratings = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("numratings");
-                OnnumratingsChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _numratings;
-        partial void OnnumratingsChanging(Nullable<global::System.Int64> value);
-        partial void OnnumratingsChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> ratingsum
-        {
-            get
-            {
-                return _ratingsum;
-            }
-            set
-            {
-                OnratingsumChanging(value);
-                ReportPropertyChanging("ratingsum");
-                _ratingsum = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ratingsum");
-                OnratingsumChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _ratingsum;
-        partial void OnratingsumChanging(Nullable<global::System.Int64> value);
-        partial void OnratingsumChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1683,10 +1543,10 @@ namespace OpenTracker.Core
         /// <param name="email">Initial value of the email property.</param>
         /// <param name="activated">Initial value of the activated property.</param>
         /// <param name="class">Initial value of the class property.</param>
+        /// <param name="banned">Initial value of the banned property.</param>
         /// <param name="uploaded">Initial value of the uploaded property.</param>
         /// <param name="downloaded">Initial value of the downloaded property.</param>
-        /// <param name="banned">Initial value of the banned property.</param>
-        public static users Createusers(global::System.Int64 id, global::System.String passkey, global::System.String username, global::System.String passhash, global::System.String email, global::System.Int64 activated, global::System.Int64 @class, global::System.Decimal uploaded, global::System.Decimal downloaded, global::System.Int64 banned)
+        public static users Createusers(global::System.Int64 id, global::System.String passkey, global::System.String username, global::System.String passhash, global::System.String email, global::System.Int64 activated, global::System.Int64 @class, global::System.Int64 banned, global::System.Decimal uploaded, global::System.Decimal downloaded)
         {
             users users = new users();
             users.id = id;
@@ -1696,9 +1556,9 @@ namespace OpenTracker.Core
             users.email = email;
             users.activated = activated;
             users.@class = @class;
+            users.banned = banned;
             users.uploaded = uploaded;
             users.downloaded = downloaded;
-            users.banned = banned;
             return users;
         }
 
@@ -1881,6 +1741,30 @@ namespace OpenTracker.Core
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Int64 banned
+        {
+            get
+            {
+                return _banned;
+            }
+            set
+            {
+                OnbannedChanging(value);
+                ReportPropertyChanging("banned");
+                _banned = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("banned");
+                OnbannedChanged();
+            }
+        }
+        private global::System.Int64 _banned;
+        partial void OnbannedChanging(global::System.Int64 value);
+        partial void OnbannedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.Decimal uploaded
         {
             get
@@ -1923,30 +1807,6 @@ namespace OpenTracker.Core
         private global::System.Decimal _downloaded;
         partial void OndownloadedChanging(global::System.Decimal value);
         partial void OndownloadedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 banned
-        {
-            get
-            {
-                return _banned;
-            }
-            set
-            {
-                OnbannedChanging(value);
-                ReportPropertyChanging("banned");
-                _banned = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("banned");
-                OnbannedChanged();
-            }
-        }
-        private global::System.Int64 _banned;
-        partial void OnbannedChanging(global::System.Int64 value);
-        partial void OnbannedChanged();
 
         #endregion
     

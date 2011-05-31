@@ -99,11 +99,9 @@ namespace OpenTracker.Core.BEncoding
         /// <returns></returns>
         public static string FormatUrlInfoHash()
         {
-            // a temporary hack for getting the proper info_hash.
-            // when doing a announceModel.info_hash the encoded
-            // string is broken, so this is the temporary solution
-            // untill I figure out the proper encoding from the 
-            // announceModel
+            // a temporary solution for getting the proper info_hash
+            // by requesting raw url queries
+            // see: http://stackoverflow.com/questions/2219647/ [..]
             var infoHashQuery = HttpContext.Current.Request.Url.Query;
             var infoHashArray = infoHashQuery.Split(Convert.ToChar("&"));
             var EncodedInfoHash = InfoHash.UrlDecode(

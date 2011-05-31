@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using OpenTracker.Core;
 using OpenTracker.Core.Account;
@@ -46,6 +44,25 @@ namespace OpenTracker.Controllers.Tracker
                                                Uploader = t5.username
                                            }).ToList();
                 return View(_torrents);
+            }
+        }
+
+
+
+        public ActionResult RetrieveTorrentFiles(int torrentid)
+        {
+            using (var context = new OpenTrackerDbContext())
+            {
+                var _files = (context.torrents_files
+                    .Where(f => f.torrentid == torrentid)
+                    .OrderBy(f => f.filename))
+                    .ToList()
+                    .Select(file => new
+                                        {
+                                            file.filename, 
+                                            file.filesize
+                                        });
+                return Json(new { files = _files }, JsonRequestBehavior.AllowGet);
             }
         }
 

@@ -127,13 +127,7 @@ namespace OpenTracker.Controllers.Tracker
 
 					var torrentExist = (from t in context.torrents
 										where t.info_hash == EncodedInfoHash
-										select t)
-										.Select( t => new
-										{
-											t.id, 
-											t.info_hash,
-											t.added
-										}).Take(1).FirstOrDefault();
+										select t).Take(1).FirstOrDefault();
 					if (torrentExist == null)
 						return new BTErrorResult("Torrent not registered with this tracker.");
 
@@ -226,6 +220,9 @@ namespace OpenTracker.Controllers.Tracker
 							if (thisDownloaded > 0)
 								crntUser.downloaded = (crntUser.downloaded + Convert.ToInt64(thisDownloaded));
 						}
+
+						if (announceModel.Event == "completed")
+							torrentExist.snatches = torrentExist.snatches + 1;
 					}
 					context.SaveChanges();
 
