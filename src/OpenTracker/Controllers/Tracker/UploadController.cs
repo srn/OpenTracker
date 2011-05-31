@@ -76,6 +76,7 @@ namespace OpenTracker.Controllers.Tracker
                 var infoHash = t.InfoHash.ToString().Replace("-", string.Empty);
                 var torrentSize = t.Files.Sum(file => file.Length);
                 var numfiles = t.Files.Count();
+                var client = t.CreatedBy;
 
                 var torrent = new torrents
                 {
@@ -86,7 +87,8 @@ namespace OpenTracker.Controllers.Tracker
                     description_small = uploadModel.SmallDescription,
                     added = (int) Unix.ConvertToUnixTimestamp(DateTime.UtcNow),
                     numfiles = numfiles,
-                    size = torrentSize
+                    size = torrentSize,
+                    client_created_by = client
                 };
                 db.AddTotorrents(torrent);
                 db.SaveChanges();
