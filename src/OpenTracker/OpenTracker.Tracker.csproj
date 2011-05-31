@@ -148,8 +148,6 @@
   <ItemGroup>
     <Folder Include="App_Data\torrents\" />
     <Folder Include="App_Data\torrents_nfo\" />
-    <Folder Include="torrents\" />
-    <Folder Include="torrents_nfo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Browse\Index.cshtml" />
