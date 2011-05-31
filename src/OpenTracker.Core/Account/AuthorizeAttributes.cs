@@ -12,16 +12,7 @@ namespace OpenTracker.Core.Account
             if (HttpContext.Current.User.Identity.IsAuthenticated)
                 return;
 
-            /*
-            var result = new ViewResult
-                             {
-                                 ViewName = "/Views/Account/Login.cshtml" // this can be a property
-                                 // MasterName = "_Layout.cshtml" // this can also be a property
-                             };
-            result.ViewBag.Message = this.Message;
-            filterContext.Result = result;
-            */
-            HttpContext.Current.Response.Redirect("/Account/Login");
+            HttpContext.Current.Response.Redirect("/Account/Login?returnUrl=" + HttpContext.Current.Request.Path);
             return;
         }
     }
