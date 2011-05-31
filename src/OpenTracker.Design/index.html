@@ -1,104 +1,126 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if IE 7 ]>   <html lang="en" class="ie7 lte8"> <![endif]-->
 <!--[if IE 8 ]>   <html lang="en" class="ie8 lte8"> <![endif]-->
 <!--[if IE 9 ]>   <html lang="en" class="ie9"> <![endif]-->
 <!--[if gt IE 9]> <html lang="en"> <![endif]-->
 <!--[if !IE]><!-->
-<!-- HEJ-->
-<html lang="en"><!--<![endif]--><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<!--[if lte IE 9 ]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-
-<!-- iPad Settings -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> 
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, width=device-width">
-<!-- iPad End -->
-
-<title>Open-Tracker.org</title>
-
-<link rel="shortcut icon" href="http://themes.vivantdesigns.com/cleanslate/favicon.ico">
-
-<!-- iOS ICONS -->
-<link rel="apple-touch-icon" href="http://themes.vivantdesigns.com/cleanslate/touch-icon-iphone.png">
-<link rel="apple-touch-icon" sizes="72x72" href="http://themes.vivantdesigns.com/cleanslate/touch-icon-ipad.png">
-<link rel="apple-touch-icon" sizes="114x114" href="http://themes.vivantdesigns.com/cleanslate/touch-icon-iphone4.png">
-<link rel="apple-touch-startup-image" href="http://themes.vivantdesigns.com/cleanslate/touch-startup-image.png">
-<!-- iOS ICONS END -->
-
-<!-- STYLESHEETS -->
-
-<link rel="stylesheet" media="screen" href="css/reset.css">
-<link rel="stylesheet" media="screen" href="css/grids.css">
-<link rel="stylesheet" media="screen" href="css/style.css">
-<link rel="stylesheet" media="screen" href="css/jquery_002.css">
-<link rel="stylesheet" media="screen" href="css/style_002.css">
-
-<!-- jQplot CSS -->
-<link rel="stylesheet" media="screen" href="css/jquery.css">
-<link rel="stylesheet" media="screen" href="css/jquery.autocomplete.css">
-
-<!-- jQplot CSS END -->
-    <!--[if IE]> 
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
-    <![endif]-->
-<style type="text/css">
-    #loading-container {position: absolute; top:50%; left:50%;}
-    #loading-content {width:800px; text-align:center; margin-left: -400px; height:50px; margin-top:-25px; line-height: 50px;}
-    #loading-content {font-family: "Helvetica", "Arial", sans-serif; font-size: 18px; color: black; text-shadow: 0px 1px 0px white; }
-    #loading-graphic {margin-right: 0.2em; margin-bottom:-2px;}
-    #loading {background-color: #eeeeee; height:100%; width:100%; overflow:hidden; position: absolute; left: 0; top: 0; z-index: 99999;}
-</style>
-
-<!-- STYLESHEETS END -->
-
-<!--[if lt IE 9]>
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<!--[if lte IE 9 ]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+	<!-- iPad Settings -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, width=device-width">
+	<!-- iPad End -->
+	<title>Open-Tracker.org</title>
+	<link rel="shortcut icon" href="http://themes.vivantdesigns.com/cleanslate/favicon.ico">
+	<!-- iOS ICONS -->
+	<link rel="apple-touch-icon" href="http://themes.vivantdesigns.com/cleanslate/touch-icon-iphone.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="http://themes.vivantdesigns.com/cleanslate/touch-icon-ipad.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="http://themes.vivantdesigns.com/cleanslate/touch-icon-iphone4.png">
+	<link rel="apple-touch-startup-image" href="http://themes.vivantdesigns.com/cleanslate/touch-startup-image.png">
+	<!-- iOS ICONS END -->
+	<!-- STYLESHEETS -->
+	<link rel="stylesheet" media="screen" href="css/reset.css">
+	<link rel="stylesheet" media="screen" href="css/grids.css">
+	<link rel="stylesheet" media="screen" href="css/style.css">
+	<link rel="stylesheet" media="screen" href="css/jquery_002.css">
+	<link rel="stylesheet" media="screen" href="css/style_002.css">
+	<!-- jQplot CSS -->
+	<link rel="stylesheet" media="screen" href="css/jquery.css">
+	<link rel="stylesheet" media="screen" href="css/jquery.autocomplete.css">
+	<!-- jQplot CSS END -->
+	<!--[if IE]> 
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
+	<![endif]-->
+	<style type="text/css">
+		#loading-container
+		{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+		}
+		#loading-content
+		{
+			width: 800px;
+			text-align: center;
+			margin-left: -400px;
+			height: 50px;
+			margin-top: -25px;
+			line-height: 50px;
+		}
+		#loading-content
+		{
+			font-family: "Helvetica" , "Arial" , sans-serif;
+			font-size: 18px;
+			color: black;
+			text-shadow: 0px 1px 0px white;
+		}
+		#loading-graphic
+		{
+			margin-right: 0.2em;
+			margin-bottom: -2px;
+		}
+		#loading
+		{
+			background-color: #eeeeee;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 99999;
+		}
+	</style>
+	<!-- STYLESHEETS END -->
+	<!--[if lt IE 9]>
 <script src="js/html5.js"></script>
 <script type="text/javascript" src="js/selectivizr.js"></script>
 <![endif]-->
-
 </head>
 <body>
-    <div id="wrapper">
-        <header>
-            <nav>
+	<div id="wrapper">
+		<header>
+			<nav>
 				<ul id="main-navigation" class="clearfix"> 
 					<span style="line-height:50px; color:#535353;font-size:12px; text-shadow: 1px 1px 0 #f5f5f5;">
 						Ratio: 1.272 <img src="images/ratio-arrow-up.png" alt="" style="margin-bottom:-1px;" />3.49 TByte <img src="images/ratio-arrow-down.png" alt="" style="margin-bottom:-1px;" />2.75 TByte
 					</span>
 
-                    <li class="fr dropdown"> 
-                        <a href="#" class="with-profile-image"><span><img src="images/profile-image.png"></span>Administrator</a> 
-                        <ul> 
-                            <li><a href="#">Settings</a></li> 
+					<li class="fr dropdown"> 
+						<a href="#" class="with-profile-image"><span><img src="images/profile-image.png"></span>Administrator</a> 
+						<ul> 
+							<li><a href="#">Settings</a></li> 
 							<li><a href="#">Help</a></li> 
-                            <li><a href="#">Signout</a></li> 
-                        </ul>
+							<li><a href="#">Signout</a></li> 
+						</ul>
 							
-                    </li> 
+					</li> 
 				</ul> 
-            </nav>
-        </header>
-        
-        <section>
-            <!-- Sidebar -->
-            <aside>
-                <nav>
-                    <ul>
-                        <li class="current"><a href="">Dashboard</a></li>
-                        <li><a href="">Torrents</a></li>
-                        <li><a href="">Requests</a></li>
-                        <li><a href="">Forums</a></li>
-                        <li><a href="">Helpdesk</a></li>
+			</nav>
+		</header>
+		<section>
+			<!-- Sidebar -->
+			<aside>
+				<nav>
+					<ul>
+						<li class="current"><a href="">Dashboard</a></li>
+						<li><a href="">Torrents</a></li>
+						<li><a href="">Requests</a></li>
+						<li><a href="">Forums</a></li>
+						<li><a href="">Helpdesk</a></li>
 						<li><a href="">Upload</a></li>
-                    </ul>
-                </nav>
-            </aside>
+					</ul>
+				</nav>
+			</aside>
 
-            <!-- Sidebar End -->
-            <section>
-				<div id="content">				
+			<!-- Sidebar End -->
+			<section>
+				<div id="content">		
 						<input id="search" class="input_medium" type="text" name="name" />
 						<a href="#" class="medium_button"><span>Filter Torrents</span></a>
 						<div class="result"></div>
@@ -108,22 +130,20 @@
 							</div>
 						</div>
 				</div>
-                <footer class="container_12 clearfix">
-                    <div class="grid_12">
-                        Copyright &copy; 2011. 
-                    </div>
-                </footer>
+				<footer class="container_12 clearfix">
+					<div class="grid_12">
+						Copyright &copy; 2011. 
+					</div>
+				</footer>
 			</section>
 
-            <!-- Main Section End -->
-        </section>
-    </div>
-    
-    <!-- MAIN JAVASCRIPTS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-    <script src="js/jquery.autocomplete.js"></script>
-    <script src="js/localdata.js"></script>
-
+			<!-- Main Section End -->
+		</section>
+	</div>
+	<!-- MAIN JAVASCRIPTS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script src="js/jquery.autocomplete.js"></script>
+	<script src="js/localdata.js"></script>
 	<script type="text/javascript">
 		$().ready(function () {
 			$("#search").focus().autocomplete(cities);
@@ -133,5 +153,5 @@
 			});
 		});
 	</script>
-
-</body></html>
+</body>
+</html>
