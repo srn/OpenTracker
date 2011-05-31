@@ -447,6 +447,12 @@ nav ul {
 	width:478px;
 }
 
+#wrapper > section > section > #content > #torrents {
+	width:100%;
+	overflow:auto;
+	margin-top:30px;
+}
+
 /**
  * Footer
  */
@@ -469,8 +475,24 @@ nav ul {
 /**
  * Buttons
  */
+ .small-button {
+	text-decoration:none;   
+	color:#000;
+	text-shadow: 1px 1px 0 #FFFFFF;
+	padding:0 11px 0 11px;
+	display:table;
+	height:18px;
+	font-size:10px;
+	font-family:Arial;
+	font-weight:bold; 
+	background:-moz-linear-gradient(bottom, #eae9e9, #FFF);
+	border:1px solid #c1c1c1;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-moz-border-radius:3px;
+ }
  
-.medium_button {
+.medium-button {
 	text-decoration:none;   
 	color:#999;
 	text-shadow: 1px 1px 0 #FFFFFF;
@@ -488,7 +510,7 @@ nav ul {
 	-moz-border-radius:3px;
 }
 
-.medium_button:hover {
+.medium-button:hover {
 	border:1px solid #407cb0;
 	text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
 	color:#FFF;
@@ -496,19 +518,37 @@ nav ul {
 	cursor:pointer;
 }
 
-.medium_button:active {
+.medium-button:active {
 	background:url(../images/button_press.png) repeat-x;
 }
 
-.medium_button > span {
+.medium-button > span {
 	line-height:33px;
 }
+
+.medium-button-test > span {
+	line-height:33px;
+}
+ 
+ /**
+ * Button Images
+ */
+ 
+ .arrow {
+	background:url(../images/small_arrow.gif) no-repeat;
+	width:3px;
+	height:6px;
+	float: right;
+    position: relative;
+	left:5px;
+	top:6px;
+ }
  
  /**
  * Input
  */
  
- .input_medium {
+ .input-medium {
 	margin-right:10px;
 	float:left;
 	position:relative;
@@ -523,3 +563,18 @@ nav ul {
 	background:-moz-linear-gradient(bottom, #FFF, #F5F5F5);
 }
 
+ /**
+ * Text Formats
+ */
+
+ .small {
+	font-size:10px;
+ }
+ 
+ .dark-grey {
+	color:#6e6c6c;
+ }
+ 
+ .left-padding {
+	padding-left:5px;
+ }
