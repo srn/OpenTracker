@@ -35,7 +35,7 @@
 }
 
 .ac_loading {
-	background: white url('indicator.gif') right center no-repeat;
+	background: white url('/Content/gfx/chrome_throbber_fast_16.gif') right center no-repeat;
 }
 
 .ac_over {
