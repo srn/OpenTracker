@@ -2,43 +2,16 @@
 :focus {outline:none;}
 ::-moz-focus-inner {border:0;}
 
-body
-{
-    font-size: 75%;
-    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
-    color: #232323;
-    background-color: #fff;
-}
-
-/* Styles for basic forms
------------------------------------------------------------*/
-
-fieldset 
-{
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
-}
-
-legend 
-{
-    font-size:1.2em;
-    font-weight: bold;
-}
-
-textarea 
-{
-    min-height: 75px;
-}
+body { font-size: 12px; }
 
 .editor-label 
 {
-    margin: 1em 0 0 0;
+	margin: 1em 0 0 0;
 }
 
 .editor-field 
 {
-    margin:0.5em 0 0 0;
+	margin:0.5em 0 0 0;
 }
 
 
@@ -46,27 +19,70 @@ textarea
 -----------------------------------------------------------*/
 .field-validation-error
 {
-    color: #ff0000;
+	color: #ff0000;
 }
 
 .field-validation-valid
 {
-    display: none;
+	display: none;
 }
 
 .input-validation-error
 {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
+	border: 1px solid #ff0000;
 }
 
 .validation-summary-errors
 {
-    font-weight: bold;
-    color: #ff0000;
+	font-weight: bold;
+	color: #ff0000;
+	padding: 10px;
 }
 
 .validation-summary-valid
 {
-    display: none;
+	display: none;
+}
+
+/* ============================================================================
+jquery 'noitfyBar' plugin style
+============================================================================*/
+.jquery-notify-bar {
+	font-family: Candara,Cochin, Georgia, Times, "Times New Roman", serif;
+	text-shadow: 1px 1px 2px #DDD;
+	-moz-box-shadow: 0px 2px 8px #888; /* FF3.5+ */;
+	-webkit-box-shadow: 0px 2px 8px #888; /* Saf3.0+, Chrome */;
+	box-shadow: 0px 2px 8px #888; /* Opera 10.5, IE 9.0 */;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 32768;
+	color: #555;
+	font-size: 18px;
+	text-align: center;
+	padding: 20px 0px;
+	font-weight: bold;
+	background-color: #EBEBEB; /* FF3.6 */;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#EBEBEB', EndColorStr='#CCCCCC')";
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #EBEBEB),color-stop(1, #CCCCCC));/* Saf4+, Chrome */
+}
+.jquery-notify-bar.error {
+	color: #FFF0F0;
+	text-shadow: 1px 1px 1px #BD3A3A;
+	background-color: #DB4444; /* FF3.6 */;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#DB4444', EndColorStr='#BD3A3A')";
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #DB4444),color-stop(1, #BD3A3A));/* Saf4+, Chrome */
+}
+.jquery-notify-bar.success {
+	color: #fff;
+	text-shadow: #509C4B 1px 1px 1px;
+	background-color: #8DC96F; /* FF3.6 */;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#8DC96F', EndColorStr='#509C4B')";
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #8DC96F),color-stop(1, #509C4B));/* Saf4+, Chrome */
+}
+.notify-bar-close {
+	position: absolute;
+	left: 95%;
+	font-size: 11px;
 }

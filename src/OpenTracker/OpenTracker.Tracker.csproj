@@ -97,6 +97,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\gfx\chrome_throbber_fast_16.gif" />
+    <Content Include="Content\js\jquery.notifyBar.js" />
+    <Content Include="Content\js\notify.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\jquery-ui.css" />
@@ -113,6 +115,31 @@
     <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\css\grids.css" />
+    <Content Include="Content\css\jquery.autocomplete.css" />
+    <Content Include="Content\css\jquery_002.css" />
+    <Content Include="Content\css\reset.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\style_002.css" />
+    <Content Include="Content\images\accept.png" />
+    <Content Include="Content\images\arrow-down.png" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bgv1.jpg" />
+    <Content Include="Content\images\button_grad.png" />
+    <Content Include="Content\images\button_press.png" />
+    <Content Include="Content\images\cancel.png" />
+    <Content Include="Content\images\check.png" />
+    <Content Include="Content\images\cross.png" />
+    <Content Include="Content\images\profile-image-bg.png" />
+    <Content Include="Content\images\profile-image.png" />
+    <Content Include="Content\images\ratio-arrow-down.png" />
+    <Content Include="Content\images\ratio-arrow-up.png" />
+    <Content Include="Content\images\sidebar-shadow.png" />
+    <Content Include="Content\images\small_arrow.gif" />
+    <Content Include="Content\images\torrent-bg.png" />
+    <Content Include="Content\js\jquery.autocomplete.js" />
+    <Content Include="Content\js\jquery.autocomplete.min.js" />
+    <Content Include="Content\js\localdata.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

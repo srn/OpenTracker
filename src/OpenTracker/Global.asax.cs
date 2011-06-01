@@ -35,6 +35,13 @@ namespace OpenTracker
                 new { controller = "Announce", action = "Announce", passkey = UrlParameter.Optional } // Parameter defaults
             );
 
+            routes.MapRoute(
+                "Activate User", // Route name
+                "account/activate/{hash}", // URL with parameters
+                new { controller = "Account", action = "Activate", hash = UrlParameter.Optional } // Parameter defaults
+            );
+
+
 
             routes.MapRoute(
                 "DownloadTorrent", // Route name

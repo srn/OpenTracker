@@ -96,8 +96,7 @@ namespace OpenTracker.Controllers.Tracker
 			if (!announceModel.IsValidRequest())
 				return new BTErrorResult("Invalid request (see specification: http://bit.ly/bcYmSu)");
 
-			var passkeyRegex = Regex.IsMatch(announceModel.Passkey, "[0-9a-fA-F]{32}");
-			if (!passkeyRegex)
+			if (!Regex.IsMatch(announceModel.Passkey, "[0-9a-fA-F]{32}"))
 				return new BTErrorResult("Invalid passkey.");
 
 			if (BLACKLIST_PORTS && IsPortBlackListed(Convert.ToInt32(announceModel.port)))
@@ -249,7 +248,7 @@ namespace OpenTracker.Controllers.Tracker
 
 					var existingPeers = (from t in context.peers
 											where t.torrentid == torrentExist.id
-											select t).ToList(); 
+											select t).ToList();
 
 					foreach (var peer in existingPeers)
 						announceResult.AddPeer(peer.peer_id, peer.ip, peer.port);
