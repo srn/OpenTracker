@@ -89,6 +89,7 @@
           </Key>
           <Property Name="id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="passkey" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="activatesecret" Type="varchar" Nullable="false" MaxLength="32" />
           <Property Name="username" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="passhash" Type="longtext" Nullable="false" />
           <Property Name="email" Type="varchar" Nullable="false" MaxLength="255" />
@@ -102,13 +103,13 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbContext" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="OpenTrackerDbContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OpenTrackerDb" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="categories" EntityType="DbContext.categories" />
           <EntitySet Name="torrents_files" EntityType="DbContext.torrents_files" />
           <EntitySet Name="peers" EntityType="DbContext.peers" />
           <EntitySet Name="comments" EntityType="DbContext.comments" />
-          <EntitySet Name="users" EntityType="DbContext.users" />
           <EntitySet Name="torrents" EntityType="DbContext.torrents" />
+          <EntitySet Name="users" EntityType="DbContext.users" />
         </EntityContainer>
         <EntityType Name="categories">
           <Key>
@@ -159,21 +160,6 @@
           <Property Type="Int64" Name="editedby" Nullable="false" />
           <Property Type="Int32" Name="editedate" Nullable="false" />
         </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="passkey" Nullable="false" />
-          <Property Type="String" Name="username" Nullable="false" />
-          <Property Type="String" Name="passhash" Nullable="false" />
-          <Property Type="String" Name="email" Nullable="false" />
-          <Property Type="Int64" Name="activated" Nullable="false" />
-          <Property Type="Int64" Name="class" Nullable="false" />
-          <Property Type="Int64" Name="banned" Nullable="false" />
-          <Property Type="Decimal" Name="uploaded" Nullable="false" />
-          <Property Type="Decimal" Name="downloaded" Nullable="false" />
-        </EntityType>
         <EntityType Name="torrents">
           <Key>
             <PropertyRef Name="id" />
@@ -195,12 +181,28 @@
           <Property Type="Int64" Name="owner" />
           <Property Type="String" Name="client_created_by" />
         </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="passkey" Nullable="false" />
+          <Property Type="String" Name="activatesecret" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="false" />
+          <Property Type="String" Name="passhash" Nullable="false" />
+          <Property Type="String" Name="email" Nullable="false" />
+          <Property Type="Int64" Name="activated" Nullable="false" />
+          <Property Type="Int64" Name="class" Nullable="false" />
+          <Property Type="Int64" Name="banned" Nullable="false" />
+          <Property Type="Decimal" Name="uploaded" Nullable="false" />
+          <Property Type="Decimal" Name="downloaded" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="woopsStoreContainer" CdmEntityContainer="OpenTrackerDbContext">
+        <EntityContainerMapping StorageEntityContainer="woopsStoreContainer" CdmEntityContainer="OpenTrackerDb">
           <EntitySetMapping Name="categories">
             <EntityTypeMapping TypeName="DbContext.categories">
               <MappingFragment StoreEntitySet="categories">
@@ -254,22 +256,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="DbContext.users">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="downloaded" ColumnName="downloaded" />
-                <ScalarProperty Name="uploaded" ColumnName="uploaded" />
-                <ScalarProperty Name="banned" ColumnName="banned" />
-                <ScalarProperty Name="class" ColumnName="class" />
-                <ScalarProperty Name="activated" ColumnName="activated" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="passhash" ColumnName="passhash" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="passkey" ColumnName="passkey" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="torrents">
             <EntityTypeMapping TypeName="DbContext.torrents">
               <MappingFragment StoreEntitySet="torrents">
@@ -288,6 +274,23 @@
                 <ScalarProperty Name="torrentname" ColumnName="torrentname" />
                 <ScalarProperty Name="info_hash" ColumnName="info_hash" />
                 <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DbContext.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="downloaded" ColumnName="downloaded" />
+                <ScalarProperty Name="uploaded" ColumnName="uploaded" />
+                <ScalarProperty Name="banned" ColumnName="banned" />
+                <ScalarProperty Name="class" ColumnName="class" />
+                <ScalarProperty Name="activated" ColumnName="activated" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="passhash" ColumnName="passhash" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="activatesecret" ColumnName="activatesecret" />
+                <ScalarProperty Name="passkey" ColumnName="passkey" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -313,12 +316,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model1">
-        <EntityTypeShape EntityType="DbContext.categories" Width="1.5" PointX="2.375" PointY="0.5" Height="1.7879850260416657" />
+        <EntityTypeShape EntityType="DbContext.categories" Width="1.5" PointX="2.5" PointY="0.5" Height="1.7879850260416657" />
         <EntityTypeShape EntityType="DbContext.torrents_files" Width="1.5" PointX="5.875" PointY="0.5" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="DbContext.peers" Width="1.5" PointX="7.625" PointY="0.5" Height="3.5186979166666665" />
         <EntityTypeShape EntityType="DbContext.comments" Width="1.5" PointX="0.75" PointY="4.75" Height="2.5571907552083317" />
-        <EntityTypeShape EntityType="DbContext.users" Width="1.5" PointX="0.75" PointY="0.5" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="DbContext.torrents" Width="1.5" PointX="4.125" PointY="0.5" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="DbContext.users" Width="1.5" PointX="0.75" PointY="0.5" Height="3.1340950520833317" />
       </Diagram>
     </Diagrams>
   </Designer>

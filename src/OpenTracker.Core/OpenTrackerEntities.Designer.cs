@@ -24,32 +24,32 @@ namespace OpenTracker.Core
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class OpenTrackerDbContext : ObjectContext
+    public partial class OpenTrackerDb : ObjectContext
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new OpenTrackerDbContext object using the connection string found in the 'OpenTrackerDbContext' section of the application configuration file.
+        /// Initializes a new OpenTrackerDb object using the connection string found in the 'OpenTrackerDb' section of the application configuration file.
         /// </summary>
-        public OpenTrackerDbContext() : base("name=OpenTrackerDbContext", "OpenTrackerDbContext")
+        public OpenTrackerDb() : base("name=OpenTrackerDb", "OpenTrackerDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new OpenTrackerDbContext object.
+        /// Initialize a new OpenTrackerDb object.
         /// </summary>
-        public OpenTrackerDbContext(string connectionString) : base(connectionString, "OpenTrackerDbContext")
+        public OpenTrackerDb(string connectionString) : base(connectionString, "OpenTrackerDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new OpenTrackerDbContext object.
+        /// Initialize a new OpenTrackerDb object.
         /// </summary>
-        public OpenTrackerDbContext(EntityConnection connection) : base(connection, "OpenTrackerDbContext")
+        public OpenTrackerDb(EntityConnection connection) : base(connection, "OpenTrackerDb")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -132,22 +132,6 @@ namespace OpenTracker.Core
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<users> users
-        {
-            get
-            {
-                if ((_users == null))
-                {
-                    _users = base.CreateObjectSet<users>("users");
-                }
-                return _users;
-            }
-        }
-        private ObjectSet<users> _users;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<torrents> torrents
         {
             get
@@ -160,6 +144,22 @@ namespace OpenTracker.Core
             }
         }
         private ObjectSet<torrents> _torrents;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<users> users
+        {
+            get
+            {
+                if ((_users == null))
+                {
+                    _users = base.CreateObjectSet<users>("users");
+                }
+                return _users;
+            }
+        }
+        private ObjectSet<users> _users;
 
         #endregion
         #region AddTo Methods
@@ -197,19 +197,19 @@ namespace OpenTracker.Core
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTousers(users users)
-        {
-            base.AddObject("users", users);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the torrents EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTotorrents(torrents torrents)
         {
             base.AddObject("torrents", torrents);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTousers(users users)
+        {
+            base.AddObject("users", users);
         }
 
         #endregion
@@ -1538,6 +1538,7 @@ namespace OpenTracker.Core
         /// </summary>
         /// <param name="id">Initial value of the id property.</param>
         /// <param name="passkey">Initial value of the passkey property.</param>
+        /// <param name="activatesecret">Initial value of the activatesecret property.</param>
         /// <param name="username">Initial value of the username property.</param>
         /// <param name="passhash">Initial value of the passhash property.</param>
         /// <param name="email">Initial value of the email property.</param>
@@ -1546,11 +1547,12 @@ namespace OpenTracker.Core
         /// <param name="banned">Initial value of the banned property.</param>
         /// <param name="uploaded">Initial value of the uploaded property.</param>
         /// <param name="downloaded">Initial value of the downloaded property.</param>
-        public static users Createusers(global::System.Int64 id, global::System.String passkey, global::System.String username, global::System.String passhash, global::System.String email, global::System.Int64 activated, global::System.Int64 @class, global::System.Int64 banned, global::System.Decimal uploaded, global::System.Decimal downloaded)
+        public static users Createusers(global::System.Int64 id, global::System.String passkey, global::System.String activatesecret, global::System.String username, global::System.String passhash, global::System.String email, global::System.Int64 activated, global::System.Int64 @class, global::System.Int64 banned, global::System.Decimal uploaded, global::System.Decimal downloaded)
         {
             users users = new users();
             users.id = id;
             users.passkey = passkey;
+            users.activatesecret = activatesecret;
             users.username = username;
             users.passhash = passhash;
             users.email = email;
@@ -1615,6 +1617,30 @@ namespace OpenTracker.Core
         private global::System.String _passkey;
         partial void OnpasskeyChanging(global::System.String value);
         partial void OnpasskeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String activatesecret
+        {
+            get
+            {
+                return _activatesecret;
+            }
+            set
+            {
+                OnactivatesecretChanging(value);
+                ReportPropertyChanging("activatesecret");
+                _activatesecret = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("activatesecret");
+                OnactivatesecretChanged();
+            }
+        }
+        private global::System.String _activatesecret;
+        partial void OnactivatesecretChanging(global::System.String value);
+        partial void OnactivatesecretChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
