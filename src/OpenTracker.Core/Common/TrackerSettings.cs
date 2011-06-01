@@ -88,6 +88,13 @@ namespace OpenTracker.Core.Common
             get { return GetSpecificAppSetting("TORRENT_NAME_PREFIX"); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static long DEFAULT_UPLOADED_VALUE
+        {
+            get { return Convert.ToInt64(GetSpecificAppSetting("DEFAULT_UPLOADED_VALUE")); }
+        }
 
 
     }
