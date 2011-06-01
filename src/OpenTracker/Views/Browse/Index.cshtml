@@ -1,72 +1,62 @@
 ﻿@model List<OpenTracker.Models.Tracker.TorrentModel>
 
 @{
-	Layout = null;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+@section jqueryload{
+	<script src="/Content/js/jquery.autocomplete.js"></script>
+	<script src="/Content/js/localdata.js"></script>
+	<script type="text/javascript">
+		$().ready(function () {
+			$("#search").focus().autocomplete("/Browse/AutoSuggest").setOptions({
+				max: 5,
+				delay: 0
+			});
+
+			$("#clear").click(function () {
+				$(":input").unautocomplete();
+				alert($("#search").val());
+			});
+		});
+		
+		function retrievejson(torrentid) {
+			$("#json_files").empty();
+			$.getJSON('@Url.Action("RetrieveTorrentFiles", "Browse")?torrentid=' + torrentid, function (data) {
+				var items = [];
+
+				// items.push('<li>' + data + '</li>');
+				$.each(data.files, function (i, file) {
+					// $("<img>").attr("src", file.filename).appendTo("#images");
+					items.push('<li>' + file.filename + ' ' + file.filesize + '</li>');
+				});
+
+				$('<ul/>', {
+					'class': 'my-new-list',
+					html: items.join('')
+				}).appendTo('#json_files');
+			});
+		}
+
+	</script>
 }
 
-<!DOCTYPE html>
+<input id="search" class="input-medium" type="text" name="name" />
+<a href="#" class="medium-button"><span>Filter Torrents</span></a>
+<div class="result"></div>
+<span class="small dark-grey left-padding">About 110,000 results (0.26 seconds)</span>
+<div id="torrents">
+	<ul class="torrent-list">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
 
-<html>
-	<head>
-		<title>Index</title>
-
-
-	<script src="@Url.Content("~/Content/js/jquery-1.4.4.min.js")" type="text/javascript"></script>
-
-	<script type="text/javascript">
-
-	    $(document).ready(function () {
-
-	        $('#30').click(function (event) {
-	            
-	            $.getJSON('@Url.Action("RetrieveTorrentFiles", "Browse")?torrentid=30', function (data) {
-	                var items = [];
-
-	                // items.push('<li>' + data + '</li>');
-	                $.each(data.files, function (i, file) {
-	                    // $("<img>").attr("src", file.filename).appendTo("#images");
-	                    items.push('<li>' + file.filename + ' ' + file.size + '</li>');
-	                });
-
-	                $('<ul/>', {
-	                    'class': 'my-new-list',
-	                    html: items.join('')
-	                }).appendTo('#json_files');
-	            });
-	            
-	        });
-
-
-	    });
-
-	    function retrievejson(torrentid) {
-	        $("#json_files").empty();
-	        $.getJSON('@Url.Action("RetrieveTorrentFiles", "Browse")?torrentid=' + torrentid, function (data) {
-	            var items = [];
-
-	            // items.push('<li>' + data + '</li>');
-	            $.each(data.files, function (i, file) {
-	                // $("<img>").attr("src", file.filename).appendTo("#images");
-	                items.push('<li>' + file.filename + ' ' + file.filesize + '</li>');
-	            });
-
-	            $('<ul/>', {
-	                'class': 'my-new-list',
-	                html: items.join('')
-	            }).appendTo('#json_files');
-	        });
-	    }
-	    
-	    
-	</script>
-	</head>
-	<body>
-		<div>
-			
-		</div>
-
-<script>
-</script>
 		<div>
 		
 <table width="100%" height="100%" style="border: 1px solid #000;">
@@ -114,7 +104,3 @@
 <div id="json_files"></div>
 
 		</div>
-
-
-	</body>
-</html>

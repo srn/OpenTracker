@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Principal;
+using System.Text;
+using System.Web;
+using OpenTracker.Core.Common;
 
 namespace OpenTracker.Core.Account
 {
@@ -25,7 +30,7 @@ namespace OpenTracker.Core.Account
             using (context)
             {
                 var retrieveTempUser = (from t in context.users
-                                        where t.username == username
+                                        where t.username == username && t.activated == 1
                                         select t).Take(1).FirstOrDefault();
                 return retrieveTempUser != null && BCrypt.CheckPassword(passhash, retrieveTempUser.passhash);
             }
@@ -41,11 +46,11 @@ namespace OpenTracker.Core.Account
         /// <returns></returns>
         public AccountCreateStatus CreateUser(string userName, string password, string email)
         {
-            if (String.IsNullOrEmpty(userName)) 
+            if (String.IsNullOrEmpty(userName))
                 throw new ArgumentException("Value cannot be null or empty.", "userName");
-            if (String.IsNullOrEmpty(password)) 
+            if (String.IsNullOrEmpty(password))
                 throw new ArgumentException("Value cannot be null or empty.", "password");
-            if (String.IsNullOrEmpty(email)) 
+            if (String.IsNullOrEmpty(email))
                 throw new ArgumentException("Value cannot be null or empty.", "email");
 
             var checkUsernameAlreadyExist = (from _accounts in context.users
@@ -54,18 +59,60 @@ namespace OpenTracker.Core.Account
 
             if (checkUsernameAlreadyExist != null)
                 return AccountCreateStatus.DuplicateUserName;
-            else
+
+            var activateSecret = AccountValidation.MD5(string.Format(password));
+            // creates the new user
+            var newUser = new users
+                              {
+                                  username = userName,
+                                  passhash = password,
+                                  email = email,
+                                  passkey = AccountValidation.MD5(password),
+                                  activatesecret = activateSecret
+                              };
+            context.AddTousers(newUser);
+            context.SaveChanges();
+
+            var client = new SmtpClient("smtp.gmail.com", 587)
+                             {
+                                 Credentials = new NetworkCredential("myopentracker@gmail.com", "lol123123"),
+                                 EnableSsl = true
+                             };
+            using (var msg = new MailMessage())
             {
-                // creates the new user
-                var newUser = new users
-                {
-                    username = userName,
-                    passhash = password,
-                    email = email,
-                    passkey = AccountValidation.MD5(password)
-                };
-                context.AddTousers(newUser);
-                context.SaveChanges();
+                var BASE_URL = TrackerSettings.BASE_URL
+                    .Replace("http://", string.Empty)
+                    .Replace("https://", string.Empty);
+                msg.From = new MailAddress("no-reply@open-tracker.org");
+                msg.Subject = string.Format("{0} user registration confirmation‏", BASE_URL);
+
+                var bewlder = new StringBuilder();
+                bewlder.AppendFormat(
+                    @"
+You have requested a new user account on {0} and you have
+specified this address ({1}) as user contact.
+ 
+If you did not do this, please ignore this email. The person who entered your
+email address had the IP address {2}. Please do not reply.
+ 
+To confirm your user registration, you have to follow this link:
+ 
+http://{0}account/activate/{3}/
+ 
+After you do this, you will be able to use your new account. If you fail to
+do this, you account will be deleted within a few days. We urge you to read
+the RULES and FAQ before you start using {0}.
+",
+                    BASE_URL,
+                    email,
+                    HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"],
+                    activateSecret
+                    );
+                msg.Body = bewlder.ToString();
+
+                msg.To.Add(new MailAddress(email));
+                client.Send(msg);
+
 
                 return AccountCreateStatus.Success;
             }
