@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 using OpenTracker.Core;
 using OpenTracker.Core.Account;
@@ -48,7 +50,11 @@ namespace OpenTracker.Controllers.Tracker
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="torrentid"></param>
+        /// <returns></returns>
         public ActionResult RetrieveTorrentFiles(int torrentid)
         {
             using (var context = new OpenTrackerDbContext())
@@ -56,13 +62,41 @@ namespace OpenTracker.Controllers.Tracker
                 var _files = (context.torrents_files
                     .Where(f => f.torrentid == torrentid)
                     .OrderBy(f => f.filename))
-                    .ToList()
                     .Select(file => new
                                         {
                                             file.filename, 
                                             file.filesize
-                                        });
+                                        })
+                    .ToList();
                 return Json(new { files = _files }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="q"></param>
+        /// <param name="limit"></param>
+        /// <param name="timespamp"></param>
+        /// <returns></returns>
+        public string AutoSuggest(string q, int? limit, long? timespamp)
+        {
+            using (var context = new OpenTrackerDbContext())
+            {
+                var _torrents = (context.torrents
+                    .Where(f => f.torrentname.Contains(q))
+                    .OrderBy(f => f.torrentname))
+                    .Select(torrent => new
+                    {
+                        torrent.id,
+                        torrent.torrentname
+                    })
+                    .ToList();
+                // return Json(new { torrents = _torrents }, JsonRequestBehavior.AllowGet);
+                var bewlder = new StringBuilder();
+                foreach (var torrent in _torrents)
+                    bewlder.Append(torrent.torrentname + Environment.NewLine);
+                return bewlder.ToString();
             }
         }
 

@@ -152,11 +152,15 @@
 	<script src="js/localdata.js"></script>
 	<script type="text/javascript">
 		$().ready(function () {
-			$("#search").focus().autocomplete(cities);
+	        $("#search").focus().autocomplete("/Browse/AutoSuggest").setOptions({
+	            max: 5,
+	            delay: 0
+	        });
 
-			$("#clear").click(function () {
-				$(":input").unautocomplete();
-			});
+	        $("#clear").click(function () {
+	            $(":input").unautocomplete();
+	            alert($("#search").val());
+	        });
 		});
 	</script>
 </body>
