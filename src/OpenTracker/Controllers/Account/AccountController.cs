@@ -29,12 +29,25 @@ namespace OpenTracker.Controllers.Account
 		}
 
 		//
-		// GET: /Account/
+        // GET: /Account/Login
 		//
-		public ActionResult Login()
-		{
-			return View();
-		}
+        public ActionResult Login(string message)
+        {
+            switch (message)
+            {
+                case "registersuccess":
+                    ViewBag.Notification = "showSuccess('Please check your inbox for activation link.');";
+                    break;
+                case "activationfail":
+                    ViewBag.Notification = "showError('Invalid activation code.');";
+                    break;
+                case "activationsuccess":
+                    ViewBag.Notification = "showSuccess('Your account has successfully been activated.');";
+                    break;
+            }
+
+            return View();
+        }
 
 		[HttpPost]
 		public ActionResult Login(LoginModel loginModel, string returnUrl)
@@ -108,7 +121,7 @@ namespace OpenTracker.Controllers.Account
 					// AuthenticationService.SignIn(registerModel.Username, false /* createPersistentCookie */);
 					// return RedirectToAction("Login", "Account", new { registered = "true" });
 
-                    return RedirectToAction("Login", "Account", new { register = "success" });
+                    return RedirectToAction("Login", "Account", new { message = "registersuccess" });
                 }
 				else
 				{
@@ -132,14 +145,14 @@ namespace OpenTracker.Controllers.Account
                                         where u.activatesecret == hash
                                         select u).Take(1).FirstOrDefault();
                 if (checkActivation == null)
-                    return RedirectToAction("Login", "Account", new { activation = "fail" });
+                    return RedirectToAction("Login", "Account", new { message = "activationfail" });
 
                 checkActivation.activated = 1;
                 checkActivation.@class = 1;
                 checkActivation.uploaded = TrackerSettings.DEFAULT_UPLOADED_VALUE;
                 context.SaveChanges();
 
-                return RedirectToAction("Login", "Account", new { activation = "success" });
+                return RedirectToAction("Login", "Account", new { message = "activationsuccess" });
             }
         }
 

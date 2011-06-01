@@ -46,3 +46,4 @@ src/OpenTracker/App_Data/torrents_nfo
 *.s3db
 *.Publish.xml
 *.UpgradeLog.XML
+src/OpenTracker/App_Data/errors.s3db

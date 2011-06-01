@@ -2,20 +2,6 @@
 
 @{
 	Layout = null;
-
-    string notification = string.Empty;
-    if (Request.QueryString["register"] == "success")
-    {
-        notification = "showSuccess('Please check your inbox for activation link.');";
-    }
-    if (Request.QueryString["activation"] == "fail")
-    {
-        notification = "showError('Invalid activation code.');";
-    }
-    else if (Request.QueryString["activation"] == "success")
-    {
-        notification = "showSuccess('Your account has successfully been activated.');";
-    }
 }
 
 <!DOCTYPE html>
@@ -68,7 +54,6 @@
 		    });
 
 		    @Html.Raw(ViewBag.Notification)
-		    @Html.Raw(notification)
 	    });
     </script>
 </head>

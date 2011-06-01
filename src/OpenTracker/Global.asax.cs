@@ -41,6 +41,13 @@ namespace OpenTracker
                 new { controller = "Account", action = "Activate", hash = UrlParameter.Optional } // Parameter defaults
             );
 
+            routes.MapRoute(
+                "Login => Register post messages", // Route name
+                "account/login/{message}", // URL with parameters
+                new { controller = "Account", action = "Login", message = UrlParameter.Optional } // Parameter defaults
+            );
+
+
 
 
             routes.MapRoute(
