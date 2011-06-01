@@ -475,6 +475,7 @@ nav ul {
 /**
  * Buttons
  */
+ 
  .small-button {
 	text-decoration:none;   
 	color:#000;
@@ -526,10 +527,18 @@ nav ul {
 	line-height:33px;
 }
 
-.medium-button-test > span {
-	line-height:33px;
-}
+/**
+ * Button Styles
+ */
  
+.accept {
+	color:#FFF;
+	text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+	background:url(../images/accept.png) repeat-x top center;
+	border:1px solid #4a8037;
+}
+
+
  /**
  * Button Images
  */
@@ -542,6 +551,17 @@ nav ul {
     position: relative;
 	left:5px;
 	top:6px;
+ }
+ 
+  .check {
+	background:url(../images/check.png) no-repeat;
+	width:12px;
+	height:10px;
+	float: right;
+    position: relative;
+	padding-left:5px;
+	left:10px;
+	top:12px;
  }
  
  /**
