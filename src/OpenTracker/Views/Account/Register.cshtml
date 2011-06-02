@@ -63,8 +63,10 @@
 	<body>
 
 		<div id="account-wrapper">
-			<h2 style="font-size:14px;">Register</h2><br/>
-			@Html.ActionLink("Login", "Login", "Account").<br/><br/>
+			<div id="header">
+				Register
+			</div>
+			<br />
 
 			@using (Html.BeginForm()) {
 				@Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")

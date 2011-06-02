@@ -499,6 +499,16 @@ nav ul {
 	position: relative;
 	overflow: auto;
  }
+ 
+ #account-wrapper > #header {
+	-moz-border-radius:3px;
+	background: -moz-linear-gradient(center top , #5683a8, #3d5f7b) repeat scroll 0 0 transparent;
+	padding:10px;
+	color:#FFF; 
+	font-weight:bold;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7); 
+	font-size:14px;
+ }
 
 /**
  * Buttons
