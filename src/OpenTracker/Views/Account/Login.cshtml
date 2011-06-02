@@ -36,39 +36,41 @@
 
 	<script type="text/javascript">
 
-	    $(document).ready(function () {
+		$(document).ready(function () {
 
-		    // auto-focus on the the username textbox
-		    $("#Username").focus();
-		    $("#loader").hide();
-		    $('#login').attr("disabled", false);
-		    $("#login").click(function () {
-			    if (!$("#Username").val() == '') {
-				    if (!$("#Password").val() == '') {
-					    $("#loader").show();
-					    $('#login').attr("disabled", true);
-				    }
-			    }
-			    else {
-			    }
-		    });
+			// auto-focus on the the username textbox
+			$("#Username").focus();
+			$("#loader").hide();
+			$('#login').attr("disabled", false);
+			$("#login").click(function () {
+				if (!$("#Username").val() == '') {
+					if (!$("#Password").val() == '') {
+						$("#loader").show();
+						$('#login').attr("disabled", true);
+					}
+				}
+				else {
+				}
+			});
 
-		    @Html.Raw(ViewBag.Notification)
-	    });
-    </script>
+			@Html.Raw(ViewBag.Notification)
+		});
+	</script>
 </head>
 <body>
 
 
 
-		<div style="margin: 0 auto;background:#f5f5f5; width:500px;border:1px solid #ccc;-moz-border-radius:3px;padding:15px;box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);top: 20%;position: relative;overflow: auto;">
-			<h2 style="font-size:14px;">Log On</h2><br/>
-			@Html.ActionLink("Register", "Register", "Account").<br/><br/>
+		<div id="account-wrapper">
+			<div id="header">
+				Login
+			</div>
+			<br/>
 
 			@*@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")*@
 
 			@using (Html.BeginForm())
-            {
+			{
 				<div>
 
 					@Html.LabelFor(m => m.Username)
@@ -90,7 +92,7 @@
 					<div style="margin:15px;"></div>
 
 					<button class="medium-button" id="login" type="submit" style="float:left;">
-						<span>Log On</span>
+						<span>Log In</span>
 					</button>
 					<div id="loader" style="float:left;margin-top:7px;margin-left:5px;">
 						<img src="/Content/gfx/chrome_throbber_fast_16.gif" alt="" style="margin-bottom:-5px;" /> Authenticating.. &nbsp;

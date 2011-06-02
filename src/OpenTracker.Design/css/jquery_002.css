@@ -1,0 +1,286 @@
+/* Global Declaration */
+
+div.selector,
+div.uploader span.action,
+div.uploader span.filename {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.selector, 
+.radio, 
+.checker, 
+.uploader, 
+.selector *, 
+.radio *, 
+.checker *, 
+.uploader *{
+	margin: 0;
+	padding: 0;
+}
+
+.selector, 
+.radio, 
+.checker, 
+.uploader {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    zoom: 1;
+}
+
+/* SPRITES */
+
+/* Select */
+
+div.selector {
+}
+
+div.selector span {
+    height: 24px;
+	line-height: 24px;
+}
+
+div.selector select {
+    /* change these to adjust positioning of select element */
+    top: 0;
+	right: 0;
+}
+
+/* Checkbox */
+
+div.checker {
+    width: 14px;
+    height: 14px;
+    margin-right: 3px;
+}
+
+div.checker input {
+    cursor: pointer;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 16px;
+    height: 16px;
+}
+
+div.checker span {
+    height: 14px;
+    width: 14px;
+}
+
+/* radio */
+
+div.radio {
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    width: 14px;
+    height: 14px;
+    margin-right: 3px;
+}
+
+div.radio input {
+    cursor: pointer;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 16px;
+    height: 16px;
+}
+
+div.radio span {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin: 4px;
+    height: 6px;
+    width: 6px;
+}
+
+/* uploader */
+
+div.uploader {
+    height: 26px;
+}
+
+div.uploader span.action {
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+div.uploader span.filename {
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-width: 0;
+}
+
+/* PRESENTATION */
+
+/* Select */
+div.selector {
+}
+
+div.selector select {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	border: solid 1px #fff;
+    height: 24px;
+    line-height: 24px;
+    width: 100%;
+}
+
+div.selector span {
+    background: url(../images/arrow-down.png) no-repeat center right;
+    cursor: pointer;
+    padding: 0 30px 0 6px;
+}
+
+div.selector.disabled span {
+	color: #bbb;
+}
+
+/* checker */
+div.checker {
+}
+
+/* radio */
+div.radio {
+}
+
+/* uploader */
+div.uploader {
+    width: 200px;
+    cursor: pointer;
+}
+
+div.uploader span.action {
+    width: 100px;
+    text-align: center;
+    line-height: 16px;
+}
+
+div.uploader span.filename {
+    color: #777;
+    font-size: 90%;
+    font-size: 11px;
+    line-height: 16px;
+}
+
+div.uploader input {
+    width: 100%;
+    z-index: 1;
+}
+
+div.uploader.disabled span.action {
+    color: #aaa;
+}
+
+div.uploader.disabled span.filename {
+    color: #aaa;
+}
+/*
+
+CORE FUNCTIONALITY 
+
+Not advised to edit stuff below this line
+-----------------------------------------------------
+*/
+
+.selector select:focus, .radio input:focus, .checker input:focus, uploader input:focus {
+    outline: 0;
+}
+
+/* Select */
+
+div.selector {
+	position: relative;
+}
+
+div.selector span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+div.selector select {
+	opacity: 0;
+	position: absolute;
+}
+
+/* checker */
+
+div.checker {
+	position: relative;
+}
+
+div.checker span {
+	display: block;
+	float: left;
+	text-align: center;
+}
+
+div.checker input {
+    opacity: 0;
+    display: inline-block;
+}
+
+/* radio */
+
+div.radio {
+	position: relative;
+}
+
+div.radio span {
+	display: block;
+	float: left;
+	text-align: center;
+}
+
+div.radio input {
+    opacity: 0;
+    text-align: center;
+    display: inline-block;
+}
+
+/* uploader */
+
+div.uploader {
+    position: relative;
+}
+
+div.uploader span.action {
+    position: absolute;
+    right: 0;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+div.uploader span.filename {
+    position: absolute;
+    left: 0;
+    right: 100px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+div.uploader input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    float: right;
+}
