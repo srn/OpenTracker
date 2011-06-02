@@ -44,6 +44,9 @@ namespace OpenTracker.Controllers.Account
                 case "activationsuccess":
                     ViewBag.Notification = "showSuccess('Your account has successfully been activated.');";
                     break;
+                case "activateexist":
+                    ViewBag.Notification = "showError('Your account has already been activated.');";
+                    break;
             }
 
             return View();
@@ -146,6 +149,8 @@ namespace OpenTracker.Controllers.Account
                                         select u).Take(1).FirstOrDefault();
                 if (checkActivation == null)
                     return RedirectToAction("Login", "Account", new { message = "activationfail" });
+                if (checkActivation.activated == 1)
+                    return RedirectToAction("Login", "Account", new { message = "activateexist" });
 
                 checkActivation.activated = 1;
                 checkActivation.@class = 1;

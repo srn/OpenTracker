@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Security.Principal;
 using System.Text;
 using System.Web;
 using OpenTracker.Core.Common;
@@ -107,7 +106,7 @@ the RULES and FAQ before you start using {0}.
                     email,
                     HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"],
                     activateSecret
-                    );
+                );
                 msg.Body = bewlder.ToString();
 
                 msg.To.Add(new MailAddress(email));
