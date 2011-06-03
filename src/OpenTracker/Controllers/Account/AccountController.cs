@@ -33,6 +33,9 @@ namespace OpenTracker.Controllers.Account
 		//
         public ActionResult Login(string message)
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index");
+
             switch (message)
             {
                 case "registersuccess":
@@ -95,7 +98,9 @@ namespace OpenTracker.Controllers.Account
 		// 
 		public ActionResult Register()
 		{
-			ViewBag.PasswordLength = 6;
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index");
+
 			return View();
 		}
 
