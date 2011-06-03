@@ -1,15 +1,14 @@
-﻿using System.Threading;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using OpenTracker.Core;
 using OpenTracker.Core.Account;
 using OpenTracker.Core.Common;
 using OpenTracker.Models.Account;
-using System.Linq;
 
 namespace OpenTracker.Controllers.Account
 {
-	public class AccountController : BaseController
+	public class AccountController : Controller
 	{
 		public IFormsAuthenticationService AuthenticationService { get; set; }
 		public AccountService AccountService { get; set; }
@@ -110,32 +109,25 @@ namespace OpenTracker.Controllers.Account
 			if (!ModelState.IsValid)
 				return View();
 
-			var profiler = GetProfiler();
+		    var bcryptHashed = BCrypt.HashPassword(registerModel.Password, BCrypt.GenerateSalt(10));
 
-			string bcryptHashed;
-			using (profiler.Step("bcrypt password"))
-				bcryptHashed = BCrypt.HashPassword(registerModel.Password, BCrypt.GenerateSalt(10));
+			var createStatus = AccountService.CreateUser(
+				registerModel.Username,
+				bcryptHashed,
+				registerModel.Email
+			);
 
-			using (profiler.Step("register user"))
+			if (createStatus == AccountService.AccountCreateStatus.Success)
 			{
-				var createStatus = AccountService.CreateUser(
-					registerModel.Username,
-					bcryptHashed,
-					registerModel.Email
-				);
+				// AuthenticationService.SignIn(registerModel.Username, false /* createPersistentCookie */);
+				// return RedirectToAction("Login", "Account", new { registered = "true" });
 
-				if (createStatus == AccountService.AccountCreateStatus.Success)
-				{
-					// AuthenticationService.SignIn(registerModel.Username, false /* createPersistentCookie */);
-					// return RedirectToAction("Login", "Account", new { registered = "true" });
-
-                    return RedirectToAction("Login", "Account", new { message = "registersuccess" });
-                }
-				else
-				{
-                    ViewBag.Notification = string.Format("showError('{0}');", AccountValidation.ErrorCodeToString(createStatus));
-					ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
-				}
+                return RedirectToAction("Login", "Account", new { message = "registersuccess" });
+            }
+			else
+			{
+                ViewBag.Notification = string.Format("showError('{0}');", AccountValidation.ErrorCodeToString(createStatus));
+				ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
 			}
 			return View(registerModel);
 		}
@@ -170,34 +162,6 @@ namespace OpenTracker.Controllers.Account
 	}
 
 
-	public abstract class BaseController : Controller
-	{
-		public MiniProfiler GetProfiler()
-		{
-			// does a profiler already exist for this request?
-			var profiler = HttpContext.GetProfiler();
-			if (profiler != null) return profiler;
-
-			// might want to decide here (or maybe inside the action) whether you want
-			// to profile this request - for example, using an "IsSystemAdmin" flag against
-			// the user, or similar; this could also all be done in action filters, but this
-			// is simple and practical; just return null for most users. For our test, we'll
-			// profiler only for local requests (seems reasonable)
-			if (Request.IsLocal)
-			{
-				profiler = new MiniProfiler(Request.Url.OriginalString);
-				HttpContext.SetProfiler(profiler);
-			}
-			return profiler;
-		}
-
-		protected override void OnResultExecuting(ResultExecutingContext filterContext)
-		{
-			// note  that the capturing will usually be terminated by the view anyway
-			filterContext.HttpContext.GetProfiler().Step("OnResultExecuting");
-			base.OnResultExecuting(filterContext);
-		}
-	}
 
 
 }
