@@ -36,25 +36,29 @@
 
 	<script type="text/javascript">
 
-		$(document).ready(function () {
+        $(document).ready(function () {
 
-			// auto-focus on the the username textbox
-			$("#Username").focus();
-			$("#loader").hide();
-			$('#login').attr("disabled", false);
-			$("#login").click(function () {
-				if (!$("#Username").val() == '') {
-					if (!$("#Password").val() == '') {
-						$("#loader").show();
-						$('#login').attr("disabled", true);
-					}
-				}
-				else {
-				}
-			});
+            // auto-focus
+            if ($("#Username").val() != '')
+	            $("#Password").focus();
+            else
+	            $("#Username").focus();
+		    
+            $("#loader").hide();
+            $('#login').attr("disabled", false);
+            $("#login").click(function () {
+	            if (!$("#Username").val() == '') {
+		            if (!$("#Password").val() == '') {
+			            $("#loader").show();
+			            $('#login').attr("disabled", true);
+		            }
+	            }
+	            else {
+	            }
+            });
 
-			@Html.Raw(ViewBag.Notification)
-		});
+            @Html.Raw(ViewBag.Notification)
+        });
 	</script>
 </head>
 <body>
