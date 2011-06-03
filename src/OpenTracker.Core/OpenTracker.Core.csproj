@@ -64,7 +64,6 @@
     <Compile Include="Common\Unix.cs" />
     <Compile Include="Common\Validation\EmailValidation.cs" />
     <Compile Include="Common\Validation\FileValidation.cs" />
-    <Compile Include="MiniProfiler.cs" />
     <Compile Include="OpenTrackerEntities.Designer.cs">
       <DependentUpon>OpenTrackerEntities.edmx</DependentUpon>
       <AutoGen>True</AutoGen>

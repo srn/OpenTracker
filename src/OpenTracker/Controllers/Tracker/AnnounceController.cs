@@ -68,23 +68,22 @@ namespace OpenTracker.Controllers.Tracker
 		/// <returns></returns>
 		private Boolean IsConnectable(string ip, int port)
 		{
-			using (var sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
-			{
-				try
-				{
-					sock.SendTimeout = 2;
+            using (var tcpClient = new TcpClient())
+		    {
+		        try
+		        {
 #if DEBUG
-					sock.Connect("127.0.0.1", port);
+                    ip = "127.0.0.1";
 #endif
-					sock.Connect(ip, port);
-					return sock.Connected;
-				}
-				catch (SocketException ex)
-				{
-					return ex.ErrorCode == 10061 && sock.Connected;
-				}
-
-			}
+                    tcpClient.SendTimeout = 3;
+                    tcpClient.Connect(ip, port);
+                    return tcpClient.Connected;
+                }
+		        catch (Exception)
+		        {
+                    return tcpClient.Connected;
+		        }
+            }
 		}
 
 
