@@ -5,16 +5,6 @@
 }
 
 @{
-    var profiler = Context.GetProfiler();
-    if (profiler != null)
-    {
-        // developer; show what timings we have
-        profiler.EndAllImpl();
-        <!--
-            @profiler.Render()
-            -->
-    }
-
     
     using (var db = new OpenTrackerDbContext())
     {

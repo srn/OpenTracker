@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Account\AccountController.cs" />
+    <Compile Include="Controllers\Forum\ForumController.cs" />
     <Compile Include="Controllers\Tracker\AnnounceController.cs" />
     <Compile Include="Controllers\Tracker\BrowseController.cs" />
     <Compile Include="Controllers\Tracker\TrackerController.cs" />

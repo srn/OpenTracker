@@ -1,9 +1,10 @@
-﻿@model List<OpenTracker.Models.Tracker.TorrentModel>
+﻿@using OpenTracker.Core.Account
+@model List<OpenTracker.Models.Tracker.TorrentModel>
 
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 
-
+    Response.Write(Account.UserId);
 }
 @section jqueryload{
 	<script src="/Content/js/jquery.autocomplete.js"></script>
