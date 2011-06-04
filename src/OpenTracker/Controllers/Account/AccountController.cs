@@ -38,16 +38,16 @@ namespace OpenTracker.Controllers.Account
             switch (message)
             {
                 case "registersuccess":
-                    ViewBag.Notification = "showSuccess('Please check your inbox for activation link.');";
+                    ViewBag.Notification = "window.history.pushState('', '', '/account/login');\nshowSuccess('Please check your inbox for activation link.');";
                     break;
                 case "activationfail":
-                    ViewBag.Notification = "showError('Invalid activation code.');";
+                    ViewBag.Notification = "window.history.pushState('', '', '/account/login');\nshowError('Invalid activation code.');";
                     break;
                 case "activationsuccess":
-                    ViewBag.Notification = "showSuccess('Your account has successfully been activated.');";
+                    ViewBag.Notification = "window.history.pushState('', '', '/account/login');\nshowSuccess('Your account has successfully been activated.');";
                     break;
                 case "activateexist":
-                    ViewBag.Notification = "showError('Your account has already been activated.');";
+                    ViewBag.Notification = "window.history.pushState('', '', '/account/login');\n showError('Your account has already been activated.');";
                     break;
             }
 
