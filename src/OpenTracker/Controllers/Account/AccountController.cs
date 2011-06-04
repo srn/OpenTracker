@@ -65,9 +65,10 @@ namespace OpenTracker.Controllers.Account
 				{
 				}
 				*/
-				if (AccountService.ValidateUser(loginModel.Username, loginModel.Password))
+			    var validateUser = AccountService.ValidateUser(loginModel.Username, loginModel.Password);
+                if (validateUser > 0)
 				{
-					AuthenticationService.SignIn(loginModel.Username, loginModel.RememberMe);
+                    AuthenticationService.SignIn(loginModel.Username, loginModel.RememberMe, validateUser);
 
 					if (Url.IsLocalUrl(returnUrl))
 						return Redirect(returnUrl);
@@ -90,6 +91,14 @@ namespace OpenTracker.Controllers.Account
 
 			return RedirectToAction("Index", "Account");
 		}
+
+        // 
+        // URL: /Account/LogOut
+        // 
+        public ActionResult LogOut()
+        {
+            return RedirectToAction("LogOff", "Account");
+        }
 
 
 		// 

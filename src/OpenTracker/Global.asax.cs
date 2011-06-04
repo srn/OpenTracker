@@ -91,9 +91,9 @@ namespace OpenTracker
             }
 
             // retrieve roles from UserData
-            var roles = authTicket.UserData.Split(';');
+            var role = authTicket.UserData.Split(';');
             if (Context.User != null)
-                Context.User = new GenericPrincipal(Context.User.Identity, roles);
+                Context.User = new GenericPrincipal(Context.User.Identity, new[] { role[0] });
         }
 
     }

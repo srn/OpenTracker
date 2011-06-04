@@ -56,7 +56,7 @@ namespace OpenTracker.Controllers.Tracker
         /// </summary>
         /// <param name="torrentid"></param>
         /// <returns></returns>
-        public ActionResult RetrieveTorrentFiles(int torrentid)
+        public JsonResult RetrieveTorrentFiles(int torrentid)
         {
             using (var context = new OpenTrackerDbContext())
             {

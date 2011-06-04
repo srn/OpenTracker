@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Principal;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 using OpenTracker.Core.Common;
 
 namespace OpenTracker.Core.Account
@@ -24,16 +26,19 @@ namespace OpenTracker.Core.Account
         /// <param name="username"></param>
         /// <param name="passhash"></param>
         /// <returns></returns>
-        public Boolean ValidateUser(string username, string passhash)
+        public int ValidateUser(string username, string passhash)
         {
             using (context)
             {
                 var retrieveTempUser = (from t in context.users
                                         where t.username == username && t.activated == 1
                                         select t).Take(1).FirstOrDefault();
-                return retrieveTempUser != null && BCrypt.CheckPassword(passhash, retrieveTempUser.passhash);
+                if (retrieveTempUser == null)
+                    return 0;
+                if (BCrypt.CheckPassword(passhash, retrieveTempUser.passhash))
+                    return (int) retrieveTempUser.id;
             }
-
+            return 0;
         }
 
         /// <summary>
@@ -133,5 +138,25 @@ the RULES and FAQ before you start using {0}.
             ServerError,
             UserRejected,
         };
+    }
+
+
+    public class Account
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public static int UserId
+        {
+            get
+            {
+                var id = (FormsIdentity)HttpContext.Current.User.Identity;
+                var ticket = id.Ticket;
+                var userData = ticket.UserData.Split(';');
+
+                return Convert.ToInt32(userData[1]);
+            }
+        }
+
     }
 }
