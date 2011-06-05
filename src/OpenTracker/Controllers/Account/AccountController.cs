@@ -28,31 +28,31 @@ namespace OpenTracker.Controllers.Account
 		}
 
 		//
-        // GET: /Account/Login
+		// GET: /Account/Login
 		//
-        public ActionResult Login(string message)
-        {
-            if (User.Identity.IsAuthenticated)
-                return RedirectToAction("Index");
+		public ActionResult Login(string message)
+		{
+			if (User.Identity.IsAuthenticated)
+				return RedirectToAction("Index");
 
-            switch (message)
-            {
-                case "registersuccess":
-                    ViewBag.Notification = "window.history.pushState('', '', '/account/login');\nshowSuccess('Please check your inbox for activation link.');";
-                    break;
-                case "activationfail":
-                    ViewBag.Notification = "window.history.pushState('', '', '/account/login');\nshowError('Invalid activation code.');";
-                    break;
-                case "activationsuccess":
-                    ViewBag.Notification = "window.history.pushState('', '', '/account/login');\nshowSuccess('Your account has successfully been activated.');";
-                    break;
-                case "activateexist":
-                    ViewBag.Notification = "window.history.pushState('', '', '/account/login');\n showError('Your account has already been activated.');";
-                    break;
-            }
+			switch (message)
+			{
+				case "registersuccess":
+					ViewBag.Notification = "window.history.pushState('', '', '/account/login');\nshowSuccess('Please check your inbox for activation link.');";
+					break;
+				case "activationfail":
+					ViewBag.Notification = "window.history.pushState('', '', '/account/login');\nshowError('Invalid activation code.');";
+					break;
+				case "activationsuccess":
+					ViewBag.Notification = "window.history.pushState('', '', '/account/login');\nshowSuccess('Your account has successfully been activated.');";
+					break;
+				case "activateexist":
+					ViewBag.Notification = "window.history.pushState('', '', '/account/login');\n showError('Your account has already been activated.');";
+					break;
+			}
 
-            return View();
-        }
+			return View();
+		}
 
 		[HttpPost]
 		public ActionResult Login(LoginModel loginModel, string returnUrl)
@@ -65,10 +65,10 @@ namespace OpenTracker.Controllers.Account
 				{
 				}
 				*/
-			    var validateUser = AccountService.ValidateUser(loginModel.Username, loginModel.Password);
-                if (validateUser > 0)
+				var validateUser = AccountService.ValidateUser(loginModel.Username, loginModel.Password);
+				if (validateUser > 0)
 				{
-                    AuthenticationService.SignIn(loginModel.Username, loginModel.RememberMe, validateUser);
+					AuthenticationService.SignIn(loginModel.Username, loginModel.RememberMe, validateUser);
 
 					if (Url.IsLocalUrl(returnUrl))
 						return Redirect(returnUrl);
@@ -92,13 +92,13 @@ namespace OpenTracker.Controllers.Account
 			return RedirectToAction("Index", "Account");
 		}
 
-        // 
-        // URL: /Account/LogOut
-        // 
-        public ActionResult LogOut()
-        {
-            return RedirectToAction("LogOff", "Account");
-        }
+		// 
+		// URL: /Account/LogOut
+		// 
+		public ActionResult LogOut()
+		{
+			return RedirectToAction("LogOff", "Account");
+		}
 
 
 		// 
@@ -106,8 +106,8 @@ namespace OpenTracker.Controllers.Account
 		// 
 		public ActionResult Register()
 		{
-            if (User.Identity.IsAuthenticated)
-                return RedirectToAction("Index");
+			if (User.Identity.IsAuthenticated)
+				return RedirectToAction("Index");
 
 			return View();
 		}
@@ -118,7 +118,7 @@ namespace OpenTracker.Controllers.Account
 			if (!ModelState.IsValid)
 				return View();
 
-		    var bcryptHashed = BCrypt.HashPassword(registerModel.Password, BCrypt.GenerateSalt(10));
+			var bcryptHashed = BCrypt.HashPassword(registerModel.Password, BCrypt.GenerateSalt(10));
 
 			var createStatus = AccountService.CreateUser(
 				registerModel.Username,
@@ -131,41 +131,41 @@ namespace OpenTracker.Controllers.Account
 				// AuthenticationService.SignIn(registerModel.Username, false /* createPersistentCookie */);
 				// return RedirectToAction("Login", "Account", new { registered = "true" });
 
-                return RedirectToAction("Login", "Account", new { message = "registersuccess" });
-            }
+				return RedirectToAction("Login", "Account", new { message = "registersuccess" });
+			}
 			else
 			{
-                ViewBag.Notification = string.Format("showError('{0}');", AccountValidation.ErrorCodeToString(createStatus));
+				ViewBag.Notification = string.Format("showError('{0}');", AccountValidation.ErrorCodeToString(createStatus));
 				ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
 			}
 			return View(registerModel);
 		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="hash"></param>
-        /// <returns></returns>
-        public ActionResult Activate(string hash)
-        {
-            using (var context = new OpenTrackerDbContext())
-            {
-                var checkActivation = (from u in context.users
-                                        where u.activatesecret == hash
-                                        select u).Take(1).FirstOrDefault();
-                if (checkActivation == null)
-                    return RedirectToAction("Login", "Account", new { message = "activationfail" });
-                if (checkActivation.activated == 1)
-                    return RedirectToAction("Login", "Account", new { message = "activateexist" });
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="hash"></param>
+		/// <returns></returns>
+		public ActionResult Activate(string hash)
+		{
+			using (var context = new OpenTrackerDbContext())
+			{
+				var checkActivation = (from u in context.users
+										where u.activatesecret == hash
+										select u).Take(1).FirstOrDefault();
+				if (checkActivation == null)
+					return RedirectToAction("Login", "Account", new { message = "activationfail" });
+				if (checkActivation.activated == 1)
+					return RedirectToAction("Login", "Account", new { message = "activateexist" });
 
-                checkActivation.activated = 1;
-                checkActivation.@class = 1;
-                checkActivation.uploaded = TrackerSettings.DEFAULT_UPLOADED_VALUE;
-                context.SaveChanges();
+				checkActivation.activated = 1;
+				checkActivation.@class = 1;
+				checkActivation.uploaded = TrackerSettings.DEFAULT_UPLOADED_VALUE;
+				context.SaveChanges();
 
-                return RedirectToAction("Login", "Account", new { message = "activationsuccess" });
-            }
-        }
+				return RedirectToAction("Login", "Account", new { message = "activationsuccess" });
+			}
+		}
 
 
 	}

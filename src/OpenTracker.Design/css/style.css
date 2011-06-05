@@ -470,7 +470,7 @@ nav ul {
 
 #torrents > ul.torrent-list > li > .container {
    padding:5px 6px 0 3px;
-   overflow:auto;
+   overflow:hidden;
    line-height:1.48;
 }
 
@@ -485,7 +485,7 @@ nav ul {
 }
 
 #torrents > ul.torrent-list > li > .container > ul > li.torrent-name {
-	width:500px;
+	width:530px;
 }
 
 #torrents > ul.torrent-list > li > .container > ul > li.torrent-size {
@@ -496,7 +496,7 @@ nav ul {
 
 #torrents > ul.torrent-list > li > .container > ul > li.torrent-snatched, #torrents > ul.torrent-list > li > .container > ul > li.torrent-seeders, #torrents > ul.torrent-list > li > .container > ul > li.torrent-leechers {
 	padding:9px 0 0 0;
-	width:30px;
+	width:40px;
 	text-align:center;
 }
 
@@ -535,6 +535,8 @@ nav ul {
  */
  
  .small-button {
+	width:61px;
+	text-align:center;
 	text-decoration:none;   
 	color:#000;
 	text-shadow: 1px 1px 0 #FFFFFF;
