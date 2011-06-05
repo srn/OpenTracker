@@ -4,7 +4,6 @@
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 
-    Response.Write(Account.UserId);
 }
 @section jqueryload{
 	<script src="/Content/js/jquery.autocomplete.js"></script>
@@ -49,12 +48,35 @@
 <span class="small dark-grey left-padding">About 110,000 results (0.26 seconds)</span>
 <div id="torrents">
 	<ul class="torrent-list">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
+	@{
+		if (Model.Count == 0)
+		{
+		<p>Sry, no torrents yet. LOLS.</p>
+		}
+		else
+		{
+			foreach (var torrent in Model)
+			{
+				var size = OpenTracker.Core.Common.Calculation.FormatBytes(torrent.Size);
+		<li>
+			<div class="container">
+				<ul>
+					<li class="torrent-icon"><img style="margin:0 6px 0 2px;" src="../Content/images/picture.png" alt="Placeholder" /></li>
+					<li class="torrent-name">
+						<a title="View Torrent" href="/torrent/view/">@torrent.TorrentName</a>
+						<div style="display:block" class=""><a class="small-download" href="/download/@torrent.TorrentId/">DL</a><span class="small light-grey">Uploaded 35 minutes ago</span></div>
+					</li>
+					<li class="torrent-size">@size</li>
+					<li class="torrent-snatched">@torrent.Snatches</li>
+					<li class="torrent-leechers">@torrent.Leechers</li>
+					<li class="torrent-seeders">@torrent.Seeders</li>
+					<li class="torrent-uploader"><a href="#" class="small-button"><span>@torrent.Uploader</span><span class="arrow"></span></a></li>
+				</ul>
+			</div>
+		</li>
+			}
+		}
+	}
 	</ul>
 </div>
 
@@ -73,17 +95,18 @@
 		<td>uploader</td>
 	</tr>
 
-@{
-	if (Model.Count == 0)
-	{
+
+		
+			@{
+				if (Model.Count == 0)
+				{
 		<p>Sry, no torrents yet. LOLS.</p>
-	}
-	else
-	{
-		foreach (var torrent in Model)
-		{
-			var size = OpenTracker.Core.Common.Calculation.FormatBytes(torrent.Size);
-			
+				}
+				else
+				{
+					foreach (var torrent in Model)
+					{
+						var size = OpenTracker.Core.Common.Calculation.FormatBytes(torrent.Size);
 			<tr onclick="retrievejson(@torrent.TorrentId)">
 				<td>@torrent.CategoryId</td>
 				<td><a href="/download/@torrent.TorrentId/">@torrent.TorrentName</a></td>
@@ -95,11 +118,11 @@
 				<td>@torrent.Leechers</td>
 				<td>@torrent.Uploader</td>
 			</tr>
-		}
-		
-		
-		
-	}
+					}
+
+
+
+				}
 }
 </table>
 <div id="json_files"></div>
