@@ -477,6 +477,71 @@ nav ul {
 	}
 }
 
+
+/**
+ * Content Torrents
+ */
+
+#torrents {
+	width:100%;
+	overflow:auto;
+	margin-top:10px;
+}
+
+#torrents > ul.torrent-list {
+	list-style:none;
+	padding:0;
+}
+
+#torrents > ul.torrent-list > li {
+	background:url(../images/torrent-bg.png) no-repeat center;
+	width:910px;
+	height:46px;
+}
+
+#torrents > ul.torrent-list > li > .container {
+   padding:5px 6px 0 3px;
+   overflow:hidden;
+   line-height:1.48;
+}
+
+#torrents > ul.torrent-list > li > .container > ul {
+   list-style:none;
+   padding:0;
+   margin:0; 
+}
+
+#torrents > ul.torrent-list > li > .container > ul > li {
+   float:left;
+}
+
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-name {
+	width:530px;
+}
+
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-size {
+	padding:9px 0 0 0;
+	width:100px;
+	text-align:center;
+}
+
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-snatched, #torrents > ul.torrent-list > li > .container > ul > li.torrent-seeders, #torrents > ul.torrent-list > li > .container > ul > li.torrent-leechers {
+	padding:9px 0 0 0;
+	width:40px;
+	text-align:center;
+}
+
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-uploader {
+	padding:8px 0 0 0;
+	float:right;
+	margin:0 0 0 10px;
+}
+
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-name > a {
+   color:#646464;
+   font-size:12px;
+}
+
 /**
  * Account
  */
@@ -524,6 +589,8 @@ nav ul {
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	-moz-border-radius:3px;
+	line-height:17.3px;
+	text-align:center;
  }
  
 .medium-button {
@@ -558,6 +625,19 @@ nav ul {
 
 .medium-button > span {
 	line-height:32px;
+}
+
+.small-download {
+	margin:2px 5px 0 0;
+	float:left;
+	display:block;
+	background:url(../images/download.png) top left no-repeat;
+	width:12px;
+	height:11px;
+	text-indent:-9999px;
+}
+.small-download:hover{   
+	background:url(../images/download.png) bottom left no-repeat;
 }
 
 /**
@@ -649,4 +729,8 @@ nav ul {
  
  .left-padding {
 	padding-left:5px;
+ }
+ 
+ .light-grey {
+	color:#8f9092;
  }
