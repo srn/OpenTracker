@@ -8,6 +8,10 @@
         <EntityContainer Name="woopsStoreContainer">
           <EntitySet Name="categories" EntityType="woops.Store.categories" store:Type="Tables" Schema="opentracker" />
           <EntitySet Name="comments" EntityType="woops.Store.comments" store:Type="Tables" Schema="opentracker" />
+          <EntitySet Name="forum" EntityType="woops.Store.forum" store:Type="Tables" Schema="opentracker" />
+          <EntitySet Name="forum_category" EntityType="woops.Store.forum_category" store:Type="Tables" Schema="opentracker" />
+          <EntitySet Name="forum_posts" EntityType="woops.Store.forum_posts" store:Type="Tables" Schema="opentracker" />
+          <EntitySet Name="forum_topic" EntityType="woops.Store.forum_topic" store:Type="Tables" Schema="opentracker" />
           <EntitySet Name="peers" EntityType="woops.Store.peers" store:Type="Tables" Schema="opentracker" />
           <EntitySet Name="torrents" EntityType="woops.Store.torrents" store:Type="Tables" Schema="opentracker" />
           <EntitySet Name="torrents_files" EntityType="woops.Store.torrents_files" store:Type="Tables" Schema="opentracker" />
@@ -34,6 +38,46 @@
           <Property Name="original_text" Type="text" Nullable="false" />
           <Property Name="editedby" Type="uint" Nullable="false" />
           <Property Name="editedate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forum">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="categoryid" Type="uint" Nullable="false" />
+          <Property Name="title" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="forum_category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="forum_posts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="topicid" Type="uint" Nullable="false" />
+          <Property Name="userid" Type="uint" Nullable="false" />
+          <Property Name="content" Type="longtext" Nullable="false" />
+          <Property Name="added" Type="uint" Nullable="false" />
+          <Property Name="edited_by" Type="uint" Nullable="false" />
+          <Property Name="edited_time" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forum_topic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="forumid" Type="uint" Nullable="false" />
+          <Property Name="userid" Type="uint" Nullable="false" />
+          <Property Name="sticky" Type="uint" Nullable="false" />
+          <Property Name="announcement" Type="uint" Nullable="false" />
+          <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="added" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="peers">
           <Key>
@@ -110,6 +154,10 @@
           <EntitySet Name="comments" EntityType="DbContext.comments" />
           <EntitySet Name="torrents" EntityType="DbContext.torrents" />
           <EntitySet Name="users" EntityType="DbContext.users" />
+          <EntitySet Name="forum" EntityType="DbContext.forum" />
+          <EntitySet Name="forum_category" EntityType="DbContext.forum_category" />
+          <EntitySet Name="forum_posts" EntityType="DbContext.forum_posts" />
+          <EntitySet Name="forum_topic" EntityType="DbContext.forum_topic" />
         </EntityContainer>
         <EntityType Name="categories">
           <Key>
@@ -196,6 +244,46 @@
           <Property Type="Int64" Name="banned" Nullable="false" />
           <Property Type="Decimal" Name="uploaded" Nullable="false" />
           <Property Type="Decimal" Name="downloaded" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forum">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="categoryid" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="false" />
+          <Property Type="String" Name="description" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forum_category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="title" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forum_posts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="topicid" Nullable="false" />
+          <Property Type="Int64" Name="userid" Nullable="false" />
+          <Property Type="String" Name="content" Nullable="false" />
+          <Property Type="Int64" Name="added" Nullable="false" />
+          <Property Type="Int64" Name="edited_by" Nullable="false" />
+          <Property Type="Int64" Name="edited_time" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forum_topic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="forumid" Nullable="false" />
+          <Property Type="Int64" Name="userid" Nullable="false" />
+          <Property Type="Int64" Name="sticky" Nullable="false" />
+          <Property Type="Int64" Name="announcement" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="false" />
+          <Property Type="Int32" Name="added" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -295,6 +383,50 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="forum">
+            <EntityTypeMapping TypeName="DbContext.forum">
+              <MappingFragment StoreEntitySet="forum">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forum_category">
+            <EntityTypeMapping TypeName="DbContext.forum_category">
+              <MappingFragment StoreEntitySet="forum_category">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forum_posts">
+            <EntityTypeMapping TypeName="DbContext.forum_posts">
+              <MappingFragment StoreEntitySet="forum_posts">
+                <ScalarProperty Name="edited_time" ColumnName="edited_time" />
+                <ScalarProperty Name="edited_by" ColumnName="edited_by" />
+                <ScalarProperty Name="added" ColumnName="added" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="topicid" ColumnName="topicid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forum_topic">
+            <EntityTypeMapping TypeName="DbContext.forum_topic">
+              <MappingFragment StoreEntitySet="forum_topic">
+                <ScalarProperty Name="added" ColumnName="added" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="announcement" ColumnName="announcement" />
+                <ScalarProperty Name="sticky" ColumnName="sticky" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="forumid" ColumnName="forumid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -322,6 +454,10 @@
         <EntityTypeShape EntityType="DbContext.comments" Width="1.5" PointX="0.75" PointY="4.75" Height="2.5571907552083317" />
         <EntityTypeShape EntityType="DbContext.torrents" Width="1.5" PointX="4.125" PointY="0.5" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="DbContext.users" Width="1.5" PointX="0.75" PointY="0.5" Height="3.1340950520833317" />
+        <EntityTypeShape EntityType="DbContext.forum" Width="1.5" PointX="2.375" PointY="4.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="DbContext.forum_category" Width="1.5" PointX="4" PointY="4.75" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="DbContext.forum_posts" Width="1.5" PointX="5.625" PointY="4.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="DbContext.forum_topic" Width="1.5" PointX="7.375" PointY="4.75" Height="2.3648893229166674" />
       </Diagram>
     </Diagrams>
   </Designer>

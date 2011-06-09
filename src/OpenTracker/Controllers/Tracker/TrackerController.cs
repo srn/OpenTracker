@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using MonoTorrent;
@@ -60,12 +61,12 @@ namespace OpenTracker.Controllers.Tracker
 
                 var response = ControllerContext.HttpContext.Response;
                 response.ClearHeaders();
-                response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}-{1}.torrent",
+                response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}-{1}",
                                                                         TrackerSettings.TORRENT_NAME_PREFIX,
                                                                         Url.Encode(torrentExist.torrentname)));
                 response.AddHeader("Content-Type", "application/x-bittorrent");
-
                 response.BinaryWrite(privateTorrent);
+                response.End();
             }
         }
 

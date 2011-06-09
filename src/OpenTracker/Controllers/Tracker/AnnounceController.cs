@@ -220,7 +220,7 @@ namespace OpenTracker.Controllers.Tracker
 						}
 
 						if (announceModel.Event == "completed")
-							torrentExist.snatches = torrentExist.snatches + 1;
+                            torrentExist.snatches = torrentExist.snatches + 1; // torrentExist.snatches++;
 					}
 					context.SaveChanges();
 

@@ -160,6 +160,70 @@ namespace OpenTracker.Core
             }
         }
         private ObjectSet<users> _users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<forum> forum
+        {
+            get
+            {
+                if ((_forum == null))
+                {
+                    _forum = base.CreateObjectSet<forum>("forum");
+                }
+                return _forum;
+            }
+        }
+        private ObjectSet<forum> _forum;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<forum_category> forum_category
+        {
+            get
+            {
+                if ((_forum_category == null))
+                {
+                    _forum_category = base.CreateObjectSet<forum_category>("forum_category");
+                }
+                return _forum_category;
+            }
+        }
+        private ObjectSet<forum_category> _forum_category;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<forum_posts> forum_posts
+        {
+            get
+            {
+                if ((_forum_posts == null))
+                {
+                    _forum_posts = base.CreateObjectSet<forum_posts>("forum_posts");
+                }
+                return _forum_posts;
+            }
+        }
+        private ObjectSet<forum_posts> _forum_posts;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<forum_topic> forum_topic
+        {
+            get
+            {
+                if ((_forum_topic == null))
+                {
+                    _forum_topic = base.CreateObjectSet<forum_topic>("forum_topic");
+                }
+                return _forum_topic;
+            }
+        }
+        private ObjectSet<forum_topic> _forum_topic;
 
         #endregion
         #region AddTo Methods
@@ -210,6 +274,38 @@ namespace OpenTracker.Core
         public void AddTousers(users users)
         {
             base.AddObject("users", users);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the forum EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToforum(forum forum)
+        {
+            base.AddObject("forum", forum);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the forum_category EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToforum_category(forum_category forum_category)
+        {
+            base.AddObject("forum_category", forum_category);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the forum_posts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToforum_posts(forum_posts forum_posts)
+        {
+            base.AddObject("forum_posts", forum_posts);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the forum_topic EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToforum_topic(forum_topic forum_topic)
+        {
+            base.AddObject("forum_topic", forum_topic);
         }
 
         #endregion
@@ -585,6 +681,642 @@ namespace OpenTracker.Core
         private global::System.Int32 _editedate;
         partial void OneditedateChanging(global::System.Int32 value);
         partial void OneditedateChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DbContext", Name="forum")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class forum : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new forum object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="categoryid">Initial value of the categoryid property.</param>
+        /// <param name="title">Initial value of the title property.</param>
+        /// <param name="description">Initial value of the description property.</param>
+        public static forum Createforum(global::System.Int64 id, global::System.Int64 categoryid, global::System.String title, global::System.String description)
+        {
+            forum forum = new forum();
+            forum.id = id;
+            forum.categoryid = categoryid;
+            forum.title = title;
+            forum.description = description;
+            return forum;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 categoryid
+        {
+            get
+            {
+                return _categoryid;
+            }
+            set
+            {
+                OncategoryidChanging(value);
+                ReportPropertyChanging("categoryid");
+                _categoryid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("categoryid");
+                OncategoryidChanged();
+            }
+        }
+        private global::System.Int64 _categoryid;
+        partial void OncategoryidChanging(global::System.Int64 value);
+        partial void OncategoryidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                OntitleChanging(value);
+                ReportPropertyChanging("title");
+                _title = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("title");
+                OntitleChanged();
+            }
+        }
+        private global::System.String _title;
+        partial void OntitleChanging(global::System.String value);
+        partial void OntitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                OndescriptionChanging(value);
+                ReportPropertyChanging("description");
+                _description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("description");
+                OndescriptionChanged();
+            }
+        }
+        private global::System.String _description;
+        partial void OndescriptionChanging(global::System.String value);
+        partial void OndescriptionChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DbContext", Name="forum_category")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class forum_category : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new forum_category object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="title">Initial value of the title property.</param>
+        public static forum_category Createforum_category(global::System.Int64 id, global::System.String title)
+        {
+            forum_category forum_category = new forum_category();
+            forum_category.id = id;
+            forum_category.title = title;
+            return forum_category;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                OntitleChanging(value);
+                ReportPropertyChanging("title");
+                _title = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("title");
+                OntitleChanged();
+            }
+        }
+        private global::System.String _title;
+        partial void OntitleChanging(global::System.String value);
+        partial void OntitleChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DbContext", Name="forum_posts")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class forum_posts : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new forum_posts object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="topicid">Initial value of the topicid property.</param>
+        /// <param name="userid">Initial value of the userid property.</param>
+        /// <param name="content">Initial value of the content property.</param>
+        /// <param name="added">Initial value of the added property.</param>
+        /// <param name="edited_by">Initial value of the edited_by property.</param>
+        /// <param name="edited_time">Initial value of the edited_time property.</param>
+        public static forum_posts Createforum_posts(global::System.Int64 id, global::System.Int64 topicid, global::System.Int64 userid, global::System.String content, global::System.Int64 added, global::System.Int64 edited_by, global::System.Int64 edited_time)
+        {
+            forum_posts forum_posts = new forum_posts();
+            forum_posts.id = id;
+            forum_posts.topicid = topicid;
+            forum_posts.userid = userid;
+            forum_posts.content = content;
+            forum_posts.added = added;
+            forum_posts.edited_by = edited_by;
+            forum_posts.edited_time = edited_time;
+            return forum_posts;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 topicid
+        {
+            get
+            {
+                return _topicid;
+            }
+            set
+            {
+                OntopicidChanging(value);
+                ReportPropertyChanging("topicid");
+                _topicid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("topicid");
+                OntopicidChanged();
+            }
+        }
+        private global::System.Int64 _topicid;
+        partial void OntopicidChanging(global::System.Int64 value);
+        partial void OntopicidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 userid
+        {
+            get
+            {
+                return _userid;
+            }
+            set
+            {
+                OnuseridChanging(value);
+                ReportPropertyChanging("userid");
+                _userid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("userid");
+                OnuseridChanged();
+            }
+        }
+        private global::System.Int64 _userid;
+        partial void OnuseridChanging(global::System.Int64 value);
+        partial void OnuseridChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String content
+        {
+            get
+            {
+                return _content;
+            }
+            set
+            {
+                OncontentChanging(value);
+                ReportPropertyChanging("content");
+                _content = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("content");
+                OncontentChanged();
+            }
+        }
+        private global::System.String _content;
+        partial void OncontentChanging(global::System.String value);
+        partial void OncontentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 added
+        {
+            get
+            {
+                return _added;
+            }
+            set
+            {
+                OnaddedChanging(value);
+                ReportPropertyChanging("added");
+                _added = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("added");
+                OnaddedChanged();
+            }
+        }
+        private global::System.Int64 _added;
+        partial void OnaddedChanging(global::System.Int64 value);
+        partial void OnaddedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 edited_by
+        {
+            get
+            {
+                return _edited_by;
+            }
+            set
+            {
+                Onedited_byChanging(value);
+                ReportPropertyChanging("edited_by");
+                _edited_by = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("edited_by");
+                Onedited_byChanged();
+            }
+        }
+        private global::System.Int64 _edited_by;
+        partial void Onedited_byChanging(global::System.Int64 value);
+        partial void Onedited_byChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 edited_time
+        {
+            get
+            {
+                return _edited_time;
+            }
+            set
+            {
+                Onedited_timeChanging(value);
+                ReportPropertyChanging("edited_time");
+                _edited_time = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("edited_time");
+                Onedited_timeChanged();
+            }
+        }
+        private global::System.Int64 _edited_time;
+        partial void Onedited_timeChanging(global::System.Int64 value);
+        partial void Onedited_timeChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DbContext", Name="forum_topic")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class forum_topic : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new forum_topic object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="forumid">Initial value of the forumid property.</param>
+        /// <param name="userid">Initial value of the userid property.</param>
+        /// <param name="sticky">Initial value of the sticky property.</param>
+        /// <param name="announcement">Initial value of the announcement property.</param>
+        /// <param name="title">Initial value of the title property.</param>
+        /// <param name="added">Initial value of the added property.</param>
+        public static forum_topic Createforum_topic(global::System.Int64 id, global::System.Int64 forumid, global::System.Int64 userid, global::System.Int64 sticky, global::System.Int64 announcement, global::System.String title, global::System.Int32 added)
+        {
+            forum_topic forum_topic = new forum_topic();
+            forum_topic.id = id;
+            forum_topic.forumid = forumid;
+            forum_topic.userid = userid;
+            forum_topic.sticky = sticky;
+            forum_topic.announcement = announcement;
+            forum_topic.title = title;
+            forum_topic.added = added;
+            return forum_topic;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 forumid
+        {
+            get
+            {
+                return _forumid;
+            }
+            set
+            {
+                OnforumidChanging(value);
+                ReportPropertyChanging("forumid");
+                _forumid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("forumid");
+                OnforumidChanged();
+            }
+        }
+        private global::System.Int64 _forumid;
+        partial void OnforumidChanging(global::System.Int64 value);
+        partial void OnforumidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 userid
+        {
+            get
+            {
+                return _userid;
+            }
+            set
+            {
+                OnuseridChanging(value);
+                ReportPropertyChanging("userid");
+                _userid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("userid");
+                OnuseridChanged();
+            }
+        }
+        private global::System.Int64 _userid;
+        partial void OnuseridChanging(global::System.Int64 value);
+        partial void OnuseridChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 sticky
+        {
+            get
+            {
+                return _sticky;
+            }
+            set
+            {
+                OnstickyChanging(value);
+                ReportPropertyChanging("sticky");
+                _sticky = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("sticky");
+                OnstickyChanged();
+            }
+        }
+        private global::System.Int64 _sticky;
+        partial void OnstickyChanging(global::System.Int64 value);
+        partial void OnstickyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 announcement
+        {
+            get
+            {
+                return _announcement;
+            }
+            set
+            {
+                OnannouncementChanging(value);
+                ReportPropertyChanging("announcement");
+                _announcement = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("announcement");
+                OnannouncementChanged();
+            }
+        }
+        private global::System.Int64 _announcement;
+        partial void OnannouncementChanging(global::System.Int64 value);
+        partial void OnannouncementChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                OntitleChanging(value);
+                ReportPropertyChanging("title");
+                _title = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("title");
+                OntitleChanged();
+            }
+        }
+        private global::System.String _title;
+        partial void OntitleChanging(global::System.String value);
+        partial void OntitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 added
+        {
+            get
+            {
+                return _added;
+            }
+            set
+            {
+                OnaddedChanging(value);
+                ReportPropertyChanging("added");
+                _added = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("added");
+                OnaddedChanged();
+            }
+        }
+        private global::System.Int32 _added;
+        partial void OnaddedChanging(global::System.Int32 value);
+        partial void OnaddedChanged();
 
         #endregion
     
