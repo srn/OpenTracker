@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) 2011 Søren Rasmussen <soeren@soerenn.com>
+
+using System;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
