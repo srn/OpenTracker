@@ -1,0 +1,56 @@
+﻿@using OpenTracker.Controllers.Forum
+@using OpenTracker.Core
+@model OpenTracker.Models.Forum.ForumTestModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+@{
+    using (var context = new OpenTrackerDbContext())
+    {
+        var categoriez = (from c in context.forum_category
+                            select c).ToList();
+
+        foreach (var category in categoriez)
+        {
+            <p>@category.id => @category.title</p>
+
+            var _category = category;
+            var _forumz = (from f in context.forum
+                           //join t in context.forum_topic on f.id equals t.forumid into gqjler
+                           //join tc in context.forum_topic on f.id equals tc.forumid into tcount
+                           //join p in context.forum_posts on t.id equals p.topicid
+                           //join pc in context.forum_posts on t.id equals pc.topicid into pcount
+                           //join u in context.users on p.userid equals u.id
+                           where f.categoryid == _category.id
+                           select f).ToList();
+            foreach (var forum in _forumz)
+            {
+                var _forum = forum;
+                var latestTopic = (from t in context.forum_topic
+                                   where t.forumid == _forum.id
+                                   select t).Take(1).FirstOrDefault();
+
+                if (latestTopic != null)
+                {
+                    Response.Write(latestTopic.id);
+                }
+                <div>
+                    @forum.id
+                    
+                </div>
+            }
+            <hr />
+        }
+        
+        
+    }
+    
+    
+    
+}

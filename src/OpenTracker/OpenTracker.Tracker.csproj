@@ -89,6 +89,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\AccountModel.cs" />
+    <Compile Include="Models\Forum\ForumModel.cs" />
     <Compile Include="Models\Tracker\AnnounceModel.cs" />
     <Compile Include="Models\Tracker\AnnounceResult.cs" />
     <Compile Include="Models\Tracker\AnnounceErrorResult.cs" />
@@ -197,6 +198,9 @@
       <Project>{76EFBC85-946F-4189-9288-75A86F76E2E4}</Project>
       <Name>OpenTracker.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Forum\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
