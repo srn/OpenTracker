@@ -5,6 +5,9 @@ Open source BitTorrent tracker written in .NET MVC 3 Razor view-engine and Entit
 ### To-do:
 	- Snatch list (completed torrents)
 	- Forums
+	- Top ten
+	- Helpdesk
+	- Requests
 	- Administrator panel
 
 License
