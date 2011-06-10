@@ -48,7 +48,16 @@ namespace OpenTracker.Controllers.Tracker
                 return View(uploadModel);
             }
 
-            var t = Torrent.Load(uploadModel.TorrentFile.InputStream);
+            Torrent t;
+            try
+            {
+                t = Torrent.Load(uploadModel.TorrentFile.InputStream);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Invalid .torrent file.");
+                return View(uploadModel);
+            }
             if (!t.IsPrivate)
             {
                 ModelState.AddModelError("", "The torrent file needs to be marked as \"Private\" when you create the torrent.");
@@ -88,7 +97,9 @@ namespace OpenTracker.Controllers.Tracker
                     added = (int) Unix.ConvertToUnixTimestamp(DateTime.UtcNow),
                     numfiles = numfiles,
                     size = torrentSize,
-                    client_created_by = client
+                    client_created_by = client,
+
+                    owner = Core.Account.Account.UserId
                 };
                 db.AddTotorrents(torrent);
                 db.SaveChanges();
