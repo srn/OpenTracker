@@ -71,12 +71,12 @@
 			<aside>
 				<nav>
 					<ul>
-						<li class="current"><a href="">Dashboard</a></li>
-						<li><a href="">Torrents</a></li>
-						<li><a href="">Requests</a></li>
-						<li><a href="">Forums</a></li>
-						<li><a href="">Helpdesk</a></li>
-						<li><a href="">Upload</a></li>
+						<li class="current"><a href="/">Dashboard</a></li>
+						<li><a href="@Url.Action("index", "browse")">Torrents</a></li>
+						<li><a href="@Url.Action("", "")">Requests</a></li>
+						<li><a href="@Url.Action("index", "forum")">Forums</a></li>
+						<li><a href="@Url.Action("", "")">Helpdesk</a></li>
+						<li><a href="@Url.Action("index", "upload")">Upload</a></li>
 					</ul>
 				</nav>
 			</aside>
@@ -85,9 +85,6 @@
 			<section>
 				<div id="content">		
 					@RenderBody()
-
-
-
 				</div>
 				<footer class="container_12 clearfix">
 					<div class="grid_12">

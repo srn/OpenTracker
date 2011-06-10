@@ -58,6 +58,7 @@
     <Compile Include="BEncoding\BEncoder.cs" />
     <Compile Include="Account\AuthorizeAttributes.cs" />
     <Compile Include="Common\Calculation.cs" />
+    <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="OpenTrackerEntities.cs" />
     <Compile Include="Common\TrackerSettings.cs" />
     <Compile Include="Common\Helpers\FileUploadHelper.cs" />

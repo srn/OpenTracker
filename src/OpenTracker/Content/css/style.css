@@ -525,7 +525,7 @@ nav ul {
 	text-align:center;
 }
 
-#torrents > ul.torrent-list > li > .container > ul > li.torrent-snatched, #torrents > ul.torrent-list > li > .container > ul > li.torrent-seeders, #torrents > ul.torrent-list > li > .container > ul > li.torrent-leechers {
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-snatched, #torrents > ul.torrent-list > li > .container > ul > li.torrent-seeders, #torrents > ul.torrent-list > li > .container > ul > li.torrent-leechers, #torrents > ul.torrent-list > li > .container > ul > li.torrent-comments {
 	padding:9px 0 0 0;
 	width:40px;
 	text-align:center;
