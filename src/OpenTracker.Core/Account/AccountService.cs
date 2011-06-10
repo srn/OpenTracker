@@ -143,6 +143,20 @@ the RULES and FAQ before you start using {0}.
 
     public class Account
     {
+        public static int @Class
+        {
+            get
+            {
+                using (var context = new OpenTrackerDbContext())
+                {
+                    var retrieveTempUser = (from u in context.users
+                                            select new { Class = u.@class }).Take(1).FirstOrDefault();
+                    return retrieveTempUser != null ? Convert.ToInt32(retrieveTempUser.Class) : 0;
+                }
+            }
+        }
+
+        
         /// <summary>
         /// 
         /// </summary>

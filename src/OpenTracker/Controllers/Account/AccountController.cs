@@ -70,10 +70,10 @@ namespace OpenTracker.Controllers.Account
 				{
 					AuthenticationService.SignIn(loginModel.Username, loginModel.RememberMe, validateUser);
 
-					if (Url.IsLocalUrl(returnUrl))
+					if (Url.IsLocalUrl(returnUrl) && !string.IsNullOrEmpty(returnUrl))
 						return Redirect(returnUrl);
 
-					return RedirectToAction("Index", "Account");
+					return RedirectToAction("Index", "Home");
 				}
 				ModelState.AddModelError("", "The user name or password provided is incorrect.");
 				ViewBag.Notification = "showError('The username or password provided is incorrect..');";
@@ -89,7 +89,7 @@ namespace OpenTracker.Controllers.Account
 		{
 			AuthenticationService.SignOut();
 
-			return RedirectToAction("Index", "Account");
+			return RedirectToAction("index", "home");
 		}
 
 		// 
@@ -97,7 +97,7 @@ namespace OpenTracker.Controllers.Account
 		// 
 		public ActionResult LogOut()
 		{
-			return RedirectToAction("LogOff", "Account");
+			return RedirectToAction("logOff", "account");
 		}
 
 
@@ -131,7 +131,7 @@ namespace OpenTracker.Controllers.Account
 				// AuthenticationService.SignIn(registerModel.Username, false /* createPersistentCookie */);
 				// return RedirectToAction("Login", "Account", new { registered = "true" });
 
-				return RedirectToAction("Login", "Account", new { message = "registersuccess" });
+				return RedirectToAction("login", "account", new { message = "registersuccess" });
 			}
 			else
 			{
@@ -154,16 +154,16 @@ namespace OpenTracker.Controllers.Account
 										where u.activatesecret == hash
 										select u).Take(1).FirstOrDefault();
 				if (checkActivation == null)
-					return RedirectToAction("Login", "Account", new { message = "activationfail" });
+					return RedirectToAction("login", "account", new { message = "activationfail" });
 				if (checkActivation.activated == 1)
-					return RedirectToAction("Login", "Account", new { message = "activateexist" });
+					return RedirectToAction("login", "account", new { message = "activateexist" });
 
 				checkActivation.activated = 1;
 				checkActivation.@class = 1;
 				checkActivation.uploaded = TrackerSettings.DEFAULT_UPLOADED_VALUE;
 				context.SaveChanges();
 
-				return RedirectToAction("Login", "Account", new { message = "activationsuccess" });
+				return RedirectToAction("login", "account", new { message = "activationsuccess" });
 			}
 		}
 

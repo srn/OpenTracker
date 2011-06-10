@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace OpenTracker.Core.Account
@@ -12,7 +13,7 @@ namespace OpenTracker.Core.Account
             if (HttpContext.Current.User.Identity.IsAuthenticated)
                 return;
 
-            HttpContext.Current.Response.Redirect("/Account/Login?returnUrl=" + HttpContext.Current.Request.Path);
+            HttpContext.Current.Response.Redirect("/account/login?returnUrl=" + HttpContext.Current.Request.Path);
             return;
         }
     }
@@ -25,21 +26,44 @@ namespace OpenTracker.Core.Account
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated)
-                return;
+            {
+                using (var context = new OpenTrackerDbContext())
+                {
+                    var retrieveTempUser = (from u in context.users
+                                            where Account.Class >= (decimal)AccountValidation.Class.PowerUser
+                                            && u.id == Account.UserId
+                                            select u).Take(1).FirstOrDefault();
+                    if (retrieveTempUser != null)
+                        return;
+                }
+            }
 
-            /*
-            var result = new ViewResult
-                             {
-                                 ViewName = "/Views/Account/Login.cshtml" // this can be a property
-                                 // MasterName = "_Layout.cshtml" // this can also be a property
-                             };
-            result.ViewBag.Message = this.Message;
-            filterContext.Result = result;
-            */
-            HttpContext.Current.Response.Redirect("/Account/Login");
+            HttpContext.Current.Response.Redirect("/account/login?returnUrl=" + HttpContext.Current.Request.Path);
             return;
         }
     }
 
+    public class AuthorizeUploaderAttribute : AuthorizeAttribute
+    {
+        public string Message { get; set; }
 
+        public override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                using (var context = new OpenTrackerDbContext())
+                {
+                    var retrieveTempUser = (from u in context.users
+                                            where Account.Class >= (decimal) AccountValidation.Class.Uploader
+                                            && u.id == Account.UserId
+                                            select u).Take(1).FirstOrDefault();
+                    if (retrieveTempUser != null)
+                        return;
+                }
+            }
+            
+            HttpContext.Current.Response.Redirect("/account/login?returnUrl=" + HttpContext.Current.Request.Path);
+            return;
+        }
+    }
 }
