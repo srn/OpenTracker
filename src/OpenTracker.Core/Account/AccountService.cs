@@ -141,74 +141,60 @@ the RULES and FAQ before you start using {0}.
     }
 
 
-    public class Account
+    public class AccountInformation
     {
         /// <summary>
         /// 
         /// </summary>
-        public static int UserId
-        {
-            get
-            {
-                var id = (FormsIdentity)HttpContext.Current.User.Identity;
-                var ticket = id.Ticket;
-                var userData = ticket.UserData.Split(';');
-
-                return Convert.ToInt32(userData[1]);
-            }
-        }
+        public int UserId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public static int @Class
-        {
-            get
-            {
-                using (var context = new OpenTrackerDbContext())
-                {
-                    var retrieveTempUser = (from u in context.users
-                                            where u.id == UserId 
-                                            select new { Class = u.@class }).Take(1).FirstOrDefault();
-                    return retrieveTempUser != null ? Convert.ToInt32(retrieveTempUser.Class) : 0;
-                }
-            }
-        }
+        public int Class { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public long Uploaded { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public long Downloaded { get; set; }
         
         /// <summary>
         /// 
         /// </summary>
-        public static long Uploaded
+        public AccountInformation()
         {
-            get
+            var id = ((FormsIdentity)HttpContext.Current.User.Identity).Ticket;
+            this.UserId = Convert.ToInt32(id.UserData.Split(';')[1]);
+
+            using (var context = new OpenTrackerDbContext())
             {
-                using (var context = new OpenTrackerDbContext())
+                var retrieveUser = (from u in context.users
+                                        where u.id == UserId
+                                        select new
+                                        {
+                                            Class = u.@class,
+                                            Uploaded = u.uploaded,
+                                            Downloaded = u.downloaded
+                                        }).Take(1).FirstOrDefault();
+                if (retrieveUser == null)
                 {
-                    var retrieveTempUser = (from u in context.users
-                                            where u.id == UserId
-                                            select new { Uploaded = u.uploaded }).Take(1).FirstOrDefault();
-                    return retrieveTempUser != null ? Convert.ToInt64(retrieveTempUser.Uploaded) : 0;
+                    HttpContext.Current.Response.Redirect("/");
+                }
+                else
+                {
+                    Class = (int) retrieveUser.Class;
+                    Uploaded = (long) retrieveUser.Uploaded;
+                    Downloaded = (long) retrieveUser.Downloaded;
                 }
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static long Downloaded
-        {
-            get
-            {
-                using (var context = new OpenTrackerDbContext())
-                {
-                    var retrieveTempUser = (from u in context.users
-                                            where u.id == UserId
-                                            select new { Downloaded = u.downloaded }).Take(1).FirstOrDefault();
-                    return retrieveTempUser != null ? Convert.ToInt64(retrieveTempUser.Downloaded) : 0;
-                }
-            }
-        }
-
+        
 
 
     }

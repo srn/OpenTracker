@@ -100,7 +100,7 @@ namespace OpenTracker.Controllers.Tracker
                     numfiles = numfiles,
                     size = torrentSize,
                     client_created_by = client,
-                    owner = Core.Account.Account.UserId
+                    owner = new Core.Account.AccountInformation().UserId
                 };
                 db.AddTotorrents(torrent);
                 db.SaveChanges();

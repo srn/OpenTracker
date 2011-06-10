@@ -1,4 +1,5 @@
-﻿@using System.ServiceModel.Syndication
+﻿@using System.Diagnostics
+@using System.ServiceModel.Syndication
 @using System.Xml
 @using OpenTracker.Core.Account
 @using OpenTracker.Core.Common
@@ -56,10 +57,12 @@
                 <ul id="main-navigation" class="clearfix"> 
                     <span style="line-height:50px; color:#535353;font-size:12px; text-shadow: 1px 1px 0 #f5f5f5;">
                     @{
-                        decimal ratio = 0;
-                        var uploaded = Account.Uploaded;
-                        var downloaded = Account.Downloaded;
-                        if (Account.Downloaded == 0)
+                        decimal ratio;
+                        var crntUser = new Account();
+
+                        var uploaded = crntUser.Uploaded;
+                        var downloaded = crntUser.Downloaded;
+                        if (crntUser.Downloaded == 0)
                         {
                             ratio = 1;
                         }

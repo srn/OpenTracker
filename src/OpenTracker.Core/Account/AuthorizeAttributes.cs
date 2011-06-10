@@ -29,9 +29,10 @@ namespace OpenTracker.Core.Account
             {
                 using (var context = new OpenTrackerDbContext())
                 {
+                    var crntUser = new AccountInformation();
                     var retrieveTempUser = (from u in context.users
-                                            where Account.Class >= (decimal)AccountValidation.Class.PowerUser
-                                            && u.id == Account.UserId
+                                            where crntUser.Class >= (decimal)AccountValidation.Class.PowerUser
+                                            && u.id == crntUser.UserId
                                             select u).Take(1).FirstOrDefault();
                     if (retrieveTempUser != null)
                         return;
@@ -53,9 +54,10 @@ namespace OpenTracker.Core.Account
             {
                 using (var context = new OpenTrackerDbContext())
                 {
+                    var crntUser = new AccountInformation();
                     var retrieveTempUser = (from u in context.users
-                                            where Account.Class >= (decimal) AccountValidation.Class.Uploader
-                                            && u.id == Account.UserId
+                                            where crntUser.Class >= (decimal)AccountValidation.Class.Uploader
+                                            && u.id == crntUser.UserId
                                             select u).Take(1).FirstOrDefault();
                     if (retrieveTempUser != null)
                         return;

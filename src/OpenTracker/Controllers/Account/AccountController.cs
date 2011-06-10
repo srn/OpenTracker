@@ -159,7 +159,7 @@ namespace OpenTracker.Controllers.Account
 					return RedirectToAction("login", "account", new { message = "activateexist" });
 
 				checkActivation.activated = 1;
-				checkActivation.@class = 1;
+				checkActivation.@class = 4;
 				checkActivation.uploaded = TrackerSettings.DEFAULT_UPLOADED_VALUE;
 				context.SaveChanges();
 
