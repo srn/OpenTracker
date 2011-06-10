@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using MonoTorrent.Common;
 using OpenTracker.Core;
-using OpenTracker.Core.BEncoding;
+using OpenTracker.Core.Account;
 using OpenTracker.Core.Common;
 using OpenTracker.Models.Tracker;
 
@@ -18,6 +18,7 @@ namespace OpenTracker.Controllers.Tracker
         //
         // GET: /Upload/
         //
+        [AuthorizeUploader]
         public ActionResult Index()
         {
             return View(new UploadModel());
@@ -33,6 +34,7 @@ namespace OpenTracker.Controllers.Tracker
         }
 
         [HttpPost]
+        [AuthorizeUploader]
         public ActionResult Index(UploadModel uploadModel)
         {
             if (!ModelState.IsValid)
@@ -74,7 +76,7 @@ namespace OpenTracker.Controllers.Tracker
                 if (!string.IsNullOrEmpty(uploadModel.TorrentName))
                     _torrentFilename = uploadModel.TorrentName;
 
-                var cleanTorentFilename = Regex.Replace(_torrentFilename.Replace(".torrent", string.Empty), "[^A-Za-z0-9]", string.Empty);
+                var cleanTorentFilename = Regex.Replace(_torrentFilename, "[^A-Za-z0-9]", string.Empty);
                 var finalTorrentFilename = string.Format("TEMP-{0}-{1}", DateTime.Now.Ticks, cleanTorentFilename);
 
                 var _torrentPath = Path.Combine(TORRENT_DIR, string.Format("{0}.torrent",finalTorrentFilename));
@@ -91,14 +93,13 @@ namespace OpenTracker.Controllers.Tracker
                 {
                     categoryid = uploadModel.CategoryId,
                     info_hash = infoHash,
-                    torrentname = _torrentFilename,
+                    torrentname = _torrentFilename.Replace(".torrent", string.Empty),
                     description = uploadModel.Description,
                     description_small = uploadModel.SmallDescription,
                     added = (int) Unix.ConvertToUnixTimestamp(DateTime.UtcNow),
                     numfiles = numfiles,
                     size = torrentSize,
                     client_created_by = client,
-
                     owner = Core.Account.Account.UserId
                 };
                 db.AddTotorrents(torrent);
@@ -125,7 +126,7 @@ namespace OpenTracker.Controllers.Tracker
                             torrentid = torrent.id,
                             filename = torrentFile.FullPath,
                             filesize = torrentFile.Length
-                        }))
+                        }).OrderBy(torrentFile => torrentFile.filename))
                     {
                         db.AddTotorrents_files(tFile);
                     }
@@ -136,8 +137,8 @@ namespace OpenTracker.Controllers.Tracker
             }
         }
 
-
         [HttpPost]
+        [AuthorizeUploader]
         public string Imdb(string title)
         {
             using (var client = new WebClient().OpenRead(string.Format("http://www.imdbapi.com/?i=&t={0}", title)))
