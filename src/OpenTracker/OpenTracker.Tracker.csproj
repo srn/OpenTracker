@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Controllers\Account\AccountController.cs" />
     <Compile Include="Controllers\Forum\ForumController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Tracker\AnnounceController.cs" />
     <Compile Include="Controllers\Tracker\BrowseController.cs" />
     <Compile Include="Controllers\Tracker\TrackerController.cs" />
@@ -151,24 +152,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\js\jquery-1.4.4.js" />
-    <Content Include="Content\js\jquery-1.4.4.min.js" />
-    <Content Include="Content\js\jquery-1.4.4-vsdoc.js" />
-    <Content Include="Content\js\jquery.unobtrusive-ajax.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Content\js\jquery.validate.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
-    <Content Include="Content\js\jquery.validate.unobtrusive.js" />
     <Content Include="Content\js\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Content\js\jquery.validate-vsdoc.js" />
-    <Content Include="Content\js\jquery-ui.js" />
-    <Content Include="Content\js\jquery-ui.min.js" />
-    <Content Include="Content\js\MicrosoftAjax.js" />
-    <Content Include="Content\js\MicrosoftAjax.debug.js" />
-    <Content Include="Content\js\MicrosoftMvcAjax.js" />
-    <Content Include="Content\js\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Content\js\MicrosoftMvcValidation.js" />
-    <Content Include="Content\js\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -201,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Forum\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
