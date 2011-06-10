@@ -34,7 +34,7 @@ namespace OpenTracker.Controllers.Tracker
 
                 if (torrentExist == null)
                 {
-                    Response.Write("Torrent not found."); 
+                    Response.Write("Torrent not found.");
                     return;
                 }
 
@@ -51,7 +51,7 @@ namespace OpenTracker.Controllers.Tracker
                     Response.Write("This shouldn't happen.");
                     return;
                 }
-                var announceUrl = string.Format("{0}announce/{1}", TrackerSettings.BASE_URL, userInformation.passkey);
+                var announceUrl = string.Format("{0}/announce/{1}", TrackerSettings.BASE_URL, userInformation.passkey);
                 var editor = new TorrentEditor(dictionary)
                                  {
                                      Announce = announceUrl,

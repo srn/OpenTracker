@@ -54,6 +54,13 @@ namespace OpenTracker.Controllers.Forum
             */
             return View();
         }
+
+        public ActionResult Topics()
+        {
+
+            return View();
+        }
+
     }
 
     public static class Test

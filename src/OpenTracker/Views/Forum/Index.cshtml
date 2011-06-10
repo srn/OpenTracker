@@ -1,5 +1,4 @@
-﻿@using OpenTracker.Controllers.Forum
-@using OpenTracker.Core
+﻿@using OpenTracker.Core
 @model OpenTracker.Models.Forum.ForumTestModel
 
 @{
@@ -7,50 +6,86 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Forum</h2>
 
 
 @{
     using (var context = new OpenTrackerDbContext())
     {
         var categoriez = (from c in context.forum_category
-                            select c).ToList();
+                          select c).ToList();
 
         foreach (var category in categoriez)
         {
-            <p>@category.id => @category.title</p>
-
+            <table border="0" cellpadding="5" width="100%" cellspacing="2" style="color:#000; border:1px solid #ccc; font-size:12px; font-family:Verdana; margin:0 0 10px 0;">
+            <thead>
+                <tr>
+                    <th style="border:1px solid #ccc; width:9%;">&nbsp;</th>
+                    <th style="border:1px solid #ccc; width:50%; text-align:left;">Forum</th>
+                    <th style="border:1px solid #ccc;  width:10%;">Topics</th>
+                    <th style="border:1px solid #ccc;  width:10%;">Posts</th>
+                    <th style="border:1px solid #ccc;  width:30%;">Last Post</th>
+                </tr>
+                <tr>
+                    <th colspan="5" style="border:none; text-align:left; text-decoration:underline; background:#f4f6f4;"><a href="/forum/@category.id/">@category.title</a></th>
+                </tr>
+            </thead>
+            @{
             var _category = category;
             var _forumz = (from f in context.forum
-                           //join t in context.forum_topic on f.id equals t.forumid into gqjler
-                           //join tc in context.forum_topic on f.id equals tc.forumid into tcount
-                           //join p in context.forum_posts on t.id equals p.topicid
-                           //join pc in context.forum_posts on t.id equals pc.topicid into pcount
-                           //join u in context.users on p.userid equals u.id
                            where f.categoryid == _category.id
                            select f).ToList();
+                
+            }
+            <tbody>
+
+            @{ 
             foreach (var forum in _forumz)
             {
                 var _forum = forum;
-                var latestTopic = (from t in context.forum_topic
-                                   where t.forumid == _forum.id
-                                   select t).Take(1).FirstOrDefault();
+                var latestForumInformation = (from t in context.forum_topic
+                                              join tc in context.forum_topic on t.id equals tc.forumid into tcount
+                                              join p in context.forum_posts on t.id equals p.topicid
+                                              join pc in context.forum_posts on t.id equals pc.topicid into pcount
+                                              join u in context.users on p.userid equals u.id
+                                              orderby p.added descending
+                                              where t.forumid == _forum.id
+                                              select new
+                                              {
+                                                  LatestTopicId = t == null ? 0 : t.id,
 
-                if (latestTopic != null)
-                {
-                    Response.Write(latestTopic.id);
+                                                  LatestPostId = p == null ? 0 : p.id,
+                                                  LatestPostAdded = p == null ? 0 : p.added,
+
+                                                  LatestUsername = u == null ? string.Empty : u.username,
+
+                                                  TopicCount = t == null ? 0 : tcount.Count(),
+                                                  PostCount = p == null ? 0 : pcount.Count()
+
+                                              }).Take(1).FirstOrDefault();
+                    <tr>
+                    @{
+                        <td><img src="" /></td>
+			            <td><a href="@Url.Action("Topics", "Forum")/@forum.id/">@forum.title</a></td>
+
+                        if (latestForumInformation != null)
+                        {
+			                <td align="center">@latestForumInformation.TopicCount</td>
+			                <td align="center">@latestForumInformation.PostCount</td>
+					        <td style="font-size:10px; background-color:#d1e5fc;">@latestForumInformation.LatestPostAdded<br /><br />by:  @latestForumInformation.LatestUsername</td>
+                        }
+                        else
+                        {
+			                <td align="center">0</td>
+			                <td align="center">0</td>
+					        <td style="font-size:10px; background-color:#d1e5fc;">No posts was found.</td>
+                        }
+                    }
+                    </tr>
                 }
-                <div>
-                    @forum.id
-                    
-                </div>
-            }
-            <hr />
+                }
+            </tbody>
+        </table>
         }
-        
-        
     }
-    
-    
-    
 }
