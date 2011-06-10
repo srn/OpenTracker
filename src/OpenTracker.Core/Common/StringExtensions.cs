@@ -15,7 +15,7 @@ namespace OpenTracker.Core.Common
             if (text.Length <= length)
                 return text;
 
-            return string.Format("{0}...", text.Substring(0, length));
+            return text.Substring(0, length);
         }
 
     }
