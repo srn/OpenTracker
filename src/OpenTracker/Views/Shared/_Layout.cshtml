@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using System.ServiceModel.Syndication
+@using System.Xml
+@using OpenTracker.Core.Account
+@using OpenTracker.Core.Common
+<!DOCTYPE html>
 <!--[if IE 7 ]>   <html lang="en" class="ie7 lte8"> <![endif]-->
 <!--[if IE 8 ]>   <html lang="en" class="ie8 lte8"> <![endif]-->
 <!--[if IE 9 ]>   <html lang="en" class="ie9"> <![endif]-->
@@ -7,94 +11,156 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	<!--[if lte IE 9 ]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-	<!-- iPad Settings -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, width=device-width">
-	<!-- iPad End -->
-	<title>Open-Tracker.org</title>
-	<link rel="shortcut icon" href="">
-	<!-- iOS ICONS -->
-	<link rel="apple-touch-icon" href="">
-	<link rel="apple-touch-icon" sizes="72x72" href="">
-	<link rel="apple-touch-icon" sizes="114x114" href="">
-	<link rel="apple-touch-startup-image" href="">
-	<!-- iOS ICONS END -->
-	<!-- STYLESHEETS -->
-	<link rel="stylesheet" media="screen" href="/Content/css/reset.css" />
-	<link rel="stylesheet" media="screen" href="/Content/css/grids.css" />
-	<link rel="stylesheet" media="screen" href="/Content/css/style.css" />
-	<link rel="stylesheet" media="screen" href="/Content/css/jquery_002.css" />
-	<link rel="stylesheet" media="screen" href="/Content/css/style_002.css" />
-	<link rel="stylesheet" media="screen" href="/Content/css/jquery.autocomplete.css" />
-	<!-- MAIN JAVASCRIPTS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <!--[if lte IE 9 ]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+    <!-- iPad Settings -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, width=device-width">
+    <!-- iPad End -->
+    <title>Open-Tracker.org</title>
+    <link rel="shortcut icon" href="">
+    <!-- iOS ICONS -->
+    <link rel="apple-touch-icon" href="">
+    <link rel="apple-touch-icon" sizes="72x72" href="">
+    <link rel="apple-touch-icon" sizes="114x114" href="">
+    <link rel="apple-touch-startup-image" href="">
+    <!-- iOS ICONS END -->
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" media="screen" href="/Content/css/reset.css" />
+    <link rel="stylesheet" media="screen" href="/Content/css/grids.css" />
+    <link rel="stylesheet" media="screen" href="/Content/css/style.css" />
+    <link rel="stylesheet" media="screen" href="/Content/css/jquery_002.css" />
+    <link rel="stylesheet" media="screen" href="/Content/css/style_002.css" />
+    <link rel="stylesheet" media="screen" href="/Content/css/jquery.autocomplete.css" />
+    <!-- MAIN JAVASCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 
-	<!-- jQplot CSS END -->
-	<!--[if IE]> 
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
-	<![endif]-->
-	<!-- STYLESHEETS END -->
-	<!--[if lt IE 9]>
-	<script src="/Content/js/html5.js"></script>
-	<script type="text/javascript" src="/Content/js/selectivizr.js"></script>
-	<![endif]-->
-	@RenderSection("jqueryload", false)
+    <!-- jQplot CSS END -->
+    <!--[if IE]> 
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
+    <![endif]-->
+    <!-- STYLESHEETS END -->
+    <!--[if lt IE 9]>
+        <script src="/Content/js/html5.js"></script>
+        <script type="text/javascript" src="/Content/js/selectivizr.js"></script>
+    <![endif]-->
+    @RenderSection("jqueryload", false)
 
 </head>
 <body>
-	<div id="wrapper">
-		<header>
-			<nav>
-				<ul id="main-navigation" class="clearfix"> 
-					<span style="line-height:50px; color:#535353;font-size:12px; text-shadow: 1px 1px 0 #f5f5f5;">
-						Ratio: 1.272 <img src="/Content/images/ratio-arrow-up.png" alt="" style="margin-bottom:-1px;" />3.49 TByte <img src="/Content/images/ratio-arrow-down.png" alt="" style="margin-bottom:-1px;" />2.75 TByte
-					</span>
+    <div id="wrapper">
+        <header>
+            <nav>
+                <ul id="main-navigation" class="clearfix"> 
+                    <span style="line-height:50px; color:#535353;font-size:12px; text-shadow: 1px 1px 0 #f5f5f5;">
+                    @{
+                        decimal ratio = 0;
+                        var uploaded = Account.Uploaded;
+                        var downloaded = Account.Downloaded;
+                        if (Account.Downloaded == 0)
+                        {
+                            ratio = 1;
+                        }
+                        else
+                        {
+                            ratio = (decimal)uploaded/downloaded;
+                        }
+                    }
+                        Ratio: @ratio.ToString().AbbreviateString(6).Replace(",", ".") &nbsp;
+                        <img src="/Content/images/ratio-arrow-up.png" alt="" style="margin-bottom:-1px;" /> @Calculation.FormatBytes(uploaded) &nbsp;
+                        <img src="/Content/images/ratio-arrow-down.png" alt="" style="margin-bottom:-1px;" /> @Calculation.FormatBytes(downloaded)
+                    </span>
 
-					<li class="fr dropdown"> 
-						<a href="#" class="with-profile-image"><span><img src="/Content/images/profile-image.png"></span>Administrator</a> 
-						<ul> 
-							<li><a href="#">Settings</a></li> 
-							<li><a href="#">Help</a></li> 
-							<li><a href="#">Signout</a></li> 
-						</ul>
+                    <li class="fr dropdown"> 
+                        <a href="#" class="with-profile-image"><span><img src="/Content/images/profile-image.png"></span>@User.Identity.Name</a>
+                        <ul> 
+                            <li><a href="#">Settings</a></li> 
+                            <li><a href="#">Help</a></li> 
+                            <li><a href="@Url.Action("logout", "account")">Logout</a></li> 
+                        </ul>
 							
-					</li> 
-				</ul> 
-			</nav>
-		</header>
-		<section>
-			<!-- Sidebar -->
-			<aside>
-				<nav>
-					<ul>
-						<li class="current"><a href="/">Dashboard</a></li>
-						<li><a href="@Url.Action("index", "browse")">Torrents</a></li>
-						<li><a href="@Url.Action("", "")">Requests</a></li>
-						<li><a href="@Url.Action("index", "forum")">Forums</a></li>
-						<li><a href="@Url.Action("", "")">Helpdesk</a></li>
-						<li><a href="@Url.Action("index", "upload")">Upload</a></li>
-					</ul>
-				</nav>
-			</aside>
+                    </li> 
+                </ul> 
+            </nav>
+        </header>
 
-			<!-- Sidebar End -->
-			<section>
-				<div id="content">		
-					@RenderBody()
-				</div>
-				<footer class="container_12 clearfix">
-					<div class="grid_12">
-						Copyright &copy; 2011. 
-					</div>
-				</footer>
-			</section>
+        <div style="margin-top:20px;margin-bottom:-30px;border:1px solid #ccc;padding:10px;background:#f5f5f5;">
+            <h1 style="font-size:14px;"><a href="https://github.com/soerenn/OpenTracker/commits" target="_blank">Recent Github changelog:</a></h1><br/>
+            
+            @{
+                var reader = XmlReader.Create("https://github.com/soerenn/OpenTracker/commits/master.atom");
+                var feed = SyndicationFeed.Load(reader);
+                var github = (from item in feed.Items
+                                select new
+                                {
+                                    Title = item.Title.Text,
+                                    Date = item.LastUpdatedTime
+                                }).ToList();
+                var githubLimit = 0;
+                foreach (var commit in github)
+                {
+                    <p><b>@commit.Date.ToLocalTime().ToString().Replace("+02:00", string.Empty)</b> <br /> - @commit.Title</p> <br />
+                    githubLimit++;
 
-			<!-- Main Section End -->
-		</section>
-	</div>
+                    if (githubLimit >= 3)
+                    {
+                        break;
+                    }
+                }
+                                        
+            }
+
+        </div>
+
+        <section>
+            <!-- Sidebar -->
+            <aside>
+                <nav>
+                    <ul>
+                        <li class="current"><a href="/">Dashboard</a></li>
+                        <li><a href="@Url.Action("index", "browse")">Torrents</a></li>
+                        <li><a href="@Url.Action("", "")">Requests</a></li>
+                        <li><a href="@Url.Action("index", "forum")">Forums</a></li>
+                        <li><a href="@Url.Action("", "")">Helpdesk</a></li>
+                        <li><a href="@Url.Action("index", "upload")">Upload</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Sidebar End -->
+            <section>
+                <div id="content">		
+                    @RenderBody()
+                </div>
+                <footer class="container_12 clearfix">
+                    <div class="grid_12">
+                        Copyright &copy; 2011. 
+                    </div>
+                </footer>
+            </section>
+
+            <!-- Main Section End -->
+        </section>
+    </div>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-23302399-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+<script type="text/javascript">
+    (function () {
+        var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+        uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/5XdNSt55CXSC7npGZ35Hjg.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+    })();
+</script>
 </body>
 </html>

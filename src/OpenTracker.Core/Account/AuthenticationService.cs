@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using OpenTracker.Core.Common;
 
 namespace OpenTracker.Core.Account
 {
@@ -34,12 +35,12 @@ namespace OpenTracker.Core.Account
 
             var userData = string.Format(" ;{0}", userId);
             var authTicket = new FormsAuthenticationTicket(
-                1,                              // version
-                userName,                       // user name
-                DateTime.Now,                   // created
-                DateTime.Now.AddMinutes(15),    // expires
-                createPersistentCookie,         // persistent?
-                userData                        // can be used to store roles etc.
+                1, // version
+                userName, // user name
+                DateTime.Now, // created
+                DateTime.Now.AddMinutes(TrackerSettings.LOGIN_TIMEOUT), // expires
+                createPersistentCookie, // persistent?
+                userData // can be used to store roles etc.
             );
 
             var encryptedTicket = FormsAuthentication.Encrypt(authTicket);

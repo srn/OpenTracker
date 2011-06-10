@@ -561,7 +561,15 @@ nav ul {
  
  #account-wrapper > #header {
 	-moz-border-radius:3px;
-	background: -moz-linear-gradient(center top , #5683a8, #3d5f7b) repeat scroll 0 0 transparent;
+    background: #3d5f7b;
+
+    background:-moz-linear-gradient(bottom, #3d5f7b, #5683a8);
+	background: -ms-linear-gradient(bottom, #3d5f7b, #5683a8); /* IE10 */
+	background: -o-linear-gradient(bottom, #3d5f7b, #5683a8); /* Opera 11.10+ */
+	background: linear-gradient(bottom, #3d5f7b, #5683a8);
+	background: -webkit-gradient(linear, left bottom, left top, from(#3d5f7b), to(#5683a8));
+	background: -webkit-linear-gradient(bottom, #3d5f7b, #5683a8); /* Chrome 10+, Saf5.1+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d5f7b', endColorstr='#5683a8');
 	padding:10px;
 	color:#FFF; 
 	margin:0 0 10px 0;
@@ -584,7 +592,16 @@ nav ul {
 	font-size:10px;
 	font-family:Arial;
 	font-weight:bold; 
+    background: #eae9e9;
+
 	background:-moz-linear-gradient(bottom, #eae9e9, #FFF);
+	background: -ms-linear-gradient(bottom, #eae9e9, #FFF); /* IE10 */
+	background: -o-linear-gradient(bottom, #eae9e9, #FFF); /* Opera 11.10+ */
+	background: linear-gradient(bottom, #eae9e9, #FFF);
+	background: -webkit-gradient(linear, left bottom, left top, from(#eae9e9), to(#FFF));
+	background: -webkit-linear-gradient(bottom, #eae9e9, #FFF); /* Chrome 10+, Saf5.1+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eae9e9', endColorstr='#FFF');
+
 	border:1px solid #c1c1c1;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -603,7 +620,16 @@ nav ul {
 	font-size:12px;
 	font-family:Arial;
 	font-weight:bold; 
+    background: #FFF;
+
 	background:-moz-linear-gradient(bottom, #FFF, #F5F5F5);
+	background: -ms-linear-gradient(bottom, #FFF, #F5F5F5); /* IE10 */
+	background: -o-linear-gradient(bottom, #FFF, #F5F5F5); /* Opera 11.10+ */
+	background: linear-gradient(bottom, #FFF, #F5F5F5);
+	background: -webkit-gradient(linear, left bottom, left top, from(#FFF), to(#F5F5F5));
+	background: -webkit-linear-gradient(bottom, #FFF, #FFF); /* Chrome 10+, Saf5.1+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF', endColorstr='#F5F5F5');
+
 	background:url(../images/button_grad.png) repeat-x top center;
 	border:1px solid #d3d3d3;
 	-webkit-border-radius:3px;

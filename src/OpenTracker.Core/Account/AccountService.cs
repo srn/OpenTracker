@@ -101,7 +101,7 @@ email address had the IP address {2}. Please do not reply.
  
 To confirm your user registration, you have to follow this link:
  
-http://{0}account/activate/{3}/
+http://{0}/account/activate/{3}/
  
 After you do this, you will be able to use your new account. If you fail to
 do this, you account will be deleted within a few days. We urge you to read
@@ -143,20 +143,6 @@ the RULES and FAQ before you start using {0}.
 
     public class Account
     {
-        public static int @Class
-        {
-            get
-            {
-                using (var context = new OpenTrackerDbContext())
-                {
-                    var retrieveTempUser = (from u in context.users
-                                            select new { Class = u.@class }).Take(1).FirstOrDefault();
-                    return retrieveTempUser != null ? Convert.ToInt32(retrieveTempUser.Class) : 0;
-                }
-            }
-        }
-
-        
         /// <summary>
         /// 
         /// </summary>
@@ -171,6 +157,59 @@ the RULES and FAQ before you start using {0}.
                 return Convert.ToInt32(userData[1]);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static int @Class
+        {
+            get
+            {
+                using (var context = new OpenTrackerDbContext())
+                {
+                    var retrieveTempUser = (from u in context.users
+                                            where u.id == UserId 
+                                            select new { Class = u.@class }).Take(1).FirstOrDefault();
+                    return retrieveTempUser != null ? Convert.ToInt32(retrieveTempUser.Class) : 0;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static long Uploaded
+        {
+            get
+            {
+                using (var context = new OpenTrackerDbContext())
+                {
+                    var retrieveTempUser = (from u in context.users
+                                            where u.id == UserId
+                                            select new { Uploaded = u.uploaded }).Take(1).FirstOrDefault();
+                    return retrieveTempUser != null ? Convert.ToInt64(retrieveTempUser.Uploaded) : 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static long Downloaded
+        {
+            get
+            {
+                using (var context = new OpenTrackerDbContext())
+                {
+                    var retrieveTempUser = (from u in context.users
+                                            where u.id == UserId
+                                            select new { Downloaded = u.downloaded }).Take(1).FirstOrDefault();
+                    return retrieveTempUser != null ? Convert.ToInt64(retrieveTempUser.Downloaded) : 0;
+                }
+            }
+        }
+
+
 
     }
 }

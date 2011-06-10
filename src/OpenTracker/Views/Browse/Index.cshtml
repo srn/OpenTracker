@@ -45,7 +45,7 @@
 <input id="search" class="input-medium" type="text" name="name" />
 <a href="#" class="medium-button"><span>Filter Torrents</span></a>
 <div class="result"></div>
-<span class="small dark-grey left-padding">About 110,000 results (0.26 seconds)</span>
+<span class="small dark-grey left-padding"></span>
 <div id="torrents">
 	<ul class="torrent-list">
 	@{
@@ -56,14 +56,19 @@
 		else
 		{
 			foreach (var torrent in Model)
-			{
+            {
+                var torrentName = torrent.TorrentName.AbbreviateString(63);
+                if (torrentName.Length >= 63)
+                {
+                    torrentName += "...";
+                }
 				var size = Calculation.FormatBytes(torrent.Size);
 		        <li>
 			        <div class="container">
 				        <ul>
 					        <li class="torrent-icon"><img style="margin:0 6px 0 2px;" src="/Content/images/picture.png" alt="Placeholder" /></li>
 					        <li class="torrent-name">
-						        <a title="View Torrent" href="@Url.Action("details", "browse")/@torrent.TorrentId">@torrent.TorrentName.AbbreviateString(63)</a>
+						        <a title="View Torrent" href="@Url.Action("details", "browse")/@torrent.TorrentId">@torrentName</a>
 						        <div style="display:block" class=""><a class="small-download" href="/download/@torrent.TorrentId/">DL</a><span class="small light-grey">35 minutes ago</span></div>
 					        </li>
 					        <li class="torrent-comments">@torrent.CommentCount</li>

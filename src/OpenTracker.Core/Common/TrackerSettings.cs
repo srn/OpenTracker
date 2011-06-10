@@ -96,6 +96,13 @@ namespace OpenTracker.Core.Common
             get { return Convert.ToInt64(GetSpecificAppSetting("DEFAULT_UPLOADED_VALUE")); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static long LOGIN_TIMEOUT
+        {
+            get { return Convert.ToInt16(GetSpecificAppSetting("LOGIN_TIMEOUT")); }
+        }
 
     }
 }
