@@ -542,6 +542,10 @@ nav ul {
    font-size:12px;
 }
 
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-name > a:hover {
+   color:#4466CC;
+}
+
 /**
  * Account
  */
@@ -652,11 +656,11 @@ nav ul {
 }
 
 .medium-button > span {
-	line-height:32px;
+	line-height:33px;
 }
 
 .small-download {
-	margin:2px 5px 0 0;
+	margin:3px 5px 0 0;
 	float:left;
 	display:block;
 	background:url(../images/download.png) top left no-repeat;
