@@ -1,9 +1,7 @@
-﻿using System.Data;
-using System.Data.Objects;
+﻿using System.Data.Objects;
 using System.Linq;
 using System.Web.Mvc;
-using OpenTracker.Core;
-using OpenTracker.Models.Forum;
+using OpenTracker.Core.Account;
 
 namespace OpenTracker.Controllers.Forum
 {
@@ -12,6 +10,7 @@ namespace OpenTracker.Controllers.Forum
         //
         // GET: /Forum/
         //
+        [AuthorizeUser]
         public ActionResult Index()
         {
             /*

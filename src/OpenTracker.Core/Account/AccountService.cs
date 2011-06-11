@@ -140,7 +140,7 @@ the RULES and FAQ before you start using {0}.
         };
     }
 
-
+    [AuthorizeUser]
     public class AccountInformation
     {
         /// <summary>
