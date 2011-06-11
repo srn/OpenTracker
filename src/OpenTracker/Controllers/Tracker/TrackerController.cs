@@ -61,7 +61,7 @@ namespace OpenTracker.Controllers.Tracker
 
                 var response = ControllerContext.HttpContext.Response;
                 response.ClearHeaders();
-                response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}-{1}",
+                response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}-{1}.torrent",
                                                                         TrackerSettings.TORRENT_NAME_PREFIX,
                                                                         Url.Encode(torrentExist.torrentname)));
                 response.AddHeader("Content-Type", "application/x-bittorrent");
