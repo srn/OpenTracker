@@ -23,6 +23,7 @@
 
         public long CategoryId { get; set; }
         public string CategoryImage { get; set; }
+        public string CategoryName { get; set; }
 
         public int Seeders { get; set; }
         public int Leechers { get; set; }

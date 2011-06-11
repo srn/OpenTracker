@@ -25,6 +25,12 @@ namespace OpenTracker
             );
 
 
+            routes.MapRoute(
+                "Browse/Details/1", // Route name
+                "{controller}/{action}/{torrentId}", // URL with parameters
+                new { controller = "Browse", action = "Details", id = UrlParameter.Optional } // Parameter defaults
+            );
+
             // 
             // EXAMPLE: /announce
             // EXAMPLE: /announce/252af0c913275t7d4711654b2293895f

@@ -50,9 +50,31 @@ namespace OpenTracker.Controllers.Tracker
             }
         }
 
-        public ActionResult Details()
+        public ActionResult Details(int torrentId)
         {
-            return View();
+            using (var context = new OpenTrackerDbContext())
+            {
+                var _torrent = (from t in context.torrents
+                                    join t2 in context.categories on t.categoryid equals t2.id
+                                    join t3 in context.users on t.owner equals t3.id
+                                    where t.id == torrentId
+                                    select new TorrentModel
+                                        {
+                                            TorrentId = t.id,
+                                               InfoHash = t.info_hash,
+                                               TorrentName = t.torrentname,
+                                               Description = t.description,
+                                               DescriptionSmall = t.description_small,
+                                               Added = t.added,
+                                               Size = (long) t.size,
+                                               FileCount = t.numfiles,
+
+                                               CategoryName = t2.name,
+
+                                               Uploader = t3.username
+                                        }).Take(1).FirstOrDefault();
+                return View(_torrent);
+            }
         }
 
         /// <summary>
