@@ -50,6 +50,10 @@ namespace OpenTracker.Controllers.Tracker
             }
         }
 
+        public ActionResult Details()
+        {
+            return View();
+        }
 
         /// <summary>
         /// 

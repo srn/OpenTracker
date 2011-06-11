@@ -70,22 +70,22 @@ namespace OpenTracker.Controllers.Tracker
 		/// <returns></returns>
 		private Boolean IsConnectable(string ip, int port)
 		{
-            using (var tcpClient = new TcpClient())
-		    {
-		        try
-		        {
+			using (var tcpClient = new TcpClient())
+			{
+				try
+				{
 #if DEBUG
-                    ip = "127.0.0.1";
+					ip = "127.0.0.1";
 #endif
-                    tcpClient.SendTimeout = 3;
-                    tcpClient.Connect(ip, port);
-                    return tcpClient.Connected;
-                }
-		        catch (Exception)
-		        {
-                    return tcpClient.Connected;
-		        }
-            }
+					tcpClient.SendTimeout = 3;
+					tcpClient.Connect(ip, port);
+					return tcpClient.Connected;
+				}
+				catch (Exception)
+				{
+					return tcpClient.Connected;
+				}
+			}
 		}
 
 
@@ -222,7 +222,7 @@ namespace OpenTracker.Controllers.Tracker
 						}
 
 						if (announceModel.Event == "completed")
-                            torrentExist.snatches = torrentExist.snatches + 1; // torrentExist.snatches++;
+							torrentExist.snatches = torrentExist.snatches + 1; // torrentExist.snatches++;
 					}
 					context.SaveChanges();
 

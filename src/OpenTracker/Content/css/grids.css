@@ -689,6 +689,24 @@
 	left:-93.75%;
 }
 
+/* NEW PREFIXES
+
+*/
+
+.pull-top 
+{
+	margin-top:10px;
+}
+
+.float-left 
+{
+	float:left;
+}
+
+.float-right 
+{
+	float:right;
+}
 
 
 

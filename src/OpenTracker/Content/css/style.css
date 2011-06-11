@@ -431,6 +431,106 @@ nav ul {
 	border: none;
 }
 
+#content > h1 
+{
+	font-size:24px;
+	font-weight:bold;
+	color:#767676;
+}
+
+#details-wrapper
+{
+	overflow:auto;
+	padding:15px 0 0 0;
+	width:100%;
+}
+
+#content > .detail-buttons 
+{
+	overflow:auto;
+}
+
+#content > .detail-buttons > ul
+{
+	list-style:none;
+	padding:0;
+}
+
+#content > .detail-buttons > ul li
+{
+	padding:0 10px 0 0;
+	float:left;
+}
+
+#details-wrapper > .content-left 
+{
+	float:left;
+	width:670px;
+	clear:both;
+}
+
+#details-wrapper > .content-right 
+{
+	width:220px;
+	float:right;
+} 
+
+#details-wrapper .header 
+{
+	background:-moz-linear-gradient(bottom, #F5F5F5, #FFF);
+	background: -ms-linear-gradient(bottom, #F5F5F5, #FFF); /* IE10 */
+	background: -o-linear-gradient(bottom, #F5F5F5, #FFF); /* Opera 11.10+ */
+	background: linear-gradient(bottom, #F5F5F5, #FFF);
+	background: -webkit-gradient(linear, left bottom, left top, from(#F5F5F5), to(#FFF));
+	background: -webkit-linear-gradient(bottom, #F5F5F5, #FFF); /* Chrome 10+, Saf5.1+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F5F5F5', endColorstr='#FFF');
+	padding:5px;
+	border:1px solid #efefef;
+}
+
+#details-wrapper .content 
+{
+    overflow:auto;
+	font-size:12px;
+	padding:8px 10px 8px 10px;
+	border-bottom-right-radius:3px;
+	border-bottom-left-radius:3px;
+	border:1px solid #fff;
+	box-shadow:inset 0 0 4px rgba(0, 0, 0, 0.2);
+	background:#FDFDFD;
+}
+
+#details-wrapper .content ul 
+{
+    color:#595959;
+    font-size:11px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#details-wrapper .content ul li
+{
+    padding-bottom:1px;
+    overflow:auto;
+    border-bottom:1px dotted #cdcdcd;
+}
+
+#details-wrapper .content > p
+{
+	color:#404040;
+	padding:5px 0 0 5px;
+}
+
+#details-wrapper .header > span
+{
+	text-shadow: 1px 1px 0 #FFFFFF;
+	font-size:13px;
+	font-weight:bold;
+	color:#999;
+}
+
+
 #wrapper > section > section > #content > .result {
 	position:relative; 
 	background:#ccc; /* FOR ERROR PURPOSES */
@@ -626,20 +726,44 @@ nav ul {
 	font-family:Arial;
 	font-weight:bold; 
 	background: #FFF;
-
-	background:-moz-linear-gradient(bottom, #FFF, #F5F5F5);
-	background: -ms-linear-gradient(bottom, #FFF, #F5F5F5); /* IE10 */
-	background: -o-linear-gradient(bottom, #FFF, #F5F5F5); /* Opera 11.10+ */
-	background: linear-gradient(bottom, #FFF, #F5F5F5);
-	background: -webkit-gradient(linear, left bottom, left top, from(#FFF), to(#F5F5F5));
-	background: -webkit-linear-gradient(bottom, #FFF, #FFF); /* Chrome 10+, Saf5.1+ */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF', endColorstr='#F5F5F5');
-
 	background:url(../images/button_grad.png) repeat-x top center;
 	border:1px solid #d3d3d3;
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	-moz-border-radius:3px;
+}
+
+.large-button 
+{
+	width:196px;
+	background:url(../images/large-button-grad.png) repeat-x top center;
+	text-decoration:none;   
+	color:#999;
+	text-shadow: 1px 1px 0 #FFFFFF;
+	padding:0 11px 0 11px;
+	display:table;
+	height:43px;
+	font-size:20px;
+	font-family:Arial;
+	font-weight:bold;
+	border:1px solid #ececec;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-moz-border-radius:3px;
+}
+
+.large-button > .center-fix 
+{
+	text-align:center;
+	width:144px;
+	margin:13px 0 0 0;
+	float:left;
+}
+
+.large-button > img 
+{
+	float:left;
+	padding:8px 0 0 0; 
 }
 
 .medium-button:hover {
