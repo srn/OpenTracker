@@ -140,7 +140,6 @@ the RULES and FAQ before you start using {0}.
         };
     }
 
-    [AuthorizeUser]
     public class AccountInformation
     {
         /// <summary>
@@ -168,6 +167,9 @@ the RULES and FAQ before you start using {0}.
         /// </summary>
         public AccountInformation()
         {
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                HttpContext.Current.Response.Redirect("/account/login/");
+
             var id = ((FormsIdentity)HttpContext.Current.User.Identity).Ticket;
             this.UserId = Convert.ToInt32(id.UserData.Split(';')[1]);
 
