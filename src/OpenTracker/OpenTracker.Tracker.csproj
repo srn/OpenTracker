@@ -100,6 +100,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\gfx\chrome_throbber_fast_16.gif" />
+    <Content Include="Content\images\arrow-small-down-red.png" />
+    <Content Include="Content\images\arrow-small-up-green.png" />
+    <Content Include="Content\images\comment-small.gif" />
+    <Content Include="Content\images\download.png" />
+    <Content Include="Content\images\picture.png" />
     <Content Include="Content\js\jquery.notifyBar.js" />
     <Content Include="Content\js\notify.js" />
     <Content Include="Global.asax" />

@@ -89,7 +89,7 @@ namespace OpenTracker.Controllers.Account
 		{
 			AuthenticationService.SignOut();
 
-			return RedirectToAction("index", "home");
+			return RedirectToAction("login", "account");
 		}
 
 		// 

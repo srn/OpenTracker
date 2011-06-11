@@ -1,9 +1,8 @@
-/**
+ph/**
  * Header
  */
 #wrapper > header {
 	background-color: #f5f5f5;
-	background-image: url(../../svg.php?from=#f5f5f5&to=#ccc);
 	background-image: -o-linear-gradient(top, #f5f5f5, #ccc);
 	background-image: -ms-linear-gradient(top, #f5f5f5, #ccc);
 	background-image: -moz-linear-gradient(top, #f5f5f5, #ccc);
@@ -39,7 +38,6 @@
  */
 .fc-event-skin {
 	background-color: #ABCEEE;
-	background-image: url(../../svg.php?from=%23ABCEEE&to=%238AA8CA);
 	background-image: -o-linear-gradient(top, #ABCEEE, #8AA8CA);
 	background-image: -ms-linear-gradient(top, #ABCEEE, #8AA8CA);
 	background-image: -moz-linear-gradient(top, #ABCEEE, #8AA8CA);
@@ -60,7 +58,6 @@ table.display tfoot tr,
 .accordion > header,
 .portlet > header {
 	background-color: #F4F4F4;
-	background-image: url(../../svg.php?from=%23FCFCFC&to=%23F4F4F4);
 	background-image: -o-linear-gradient(top, #FCFCFC, #F4F4F4);
 	background-image: -ms-linear-gradient(top, #FCFCFC, #F4F4F4);
 	background-image: -moz-linear-gradient(top, #FCFCFC, #F4F4F4);
@@ -190,7 +187,6 @@ button,
 .paging_full_numbers span.paginate_button,
 .paging_full_numbers span.paginate_active {
 	background-color: #EEE;
-	background-image: url(../../svg.php?from=%23FEFEFE&to=%23EEE);
 	background-image: -o-linear-gradient(top, #FEFEFE, #EEE);
 	background-image: -ms-linear-gradient(top, #FEFEFE, #EEE);
 	background-image: -moz-linear-gradient(top, #FEFEFE, #EEE);
@@ -251,7 +247,6 @@ button:hover,
 .paging_full_numbers span.paginate_button:hover,
 .paging_full_numbers span.paginate_active:hover {
 	background-color: #F2F2F2;
-	background-image: url(../../svg.php?from=%23FFF&to=%23F2F2F2);
 	background-image: -o-linear-gradient(top, #FFF, #F2F2F2);
 	background-image: -ms-linear-gradient(top, #FFF, #F2F2F2);
 	background-image: -moz-linear-gradient(top, #FFF, #F2F2F2);
@@ -307,7 +302,6 @@ button:focus,
 .paging_full_numbers span.paginate_button:focus,
 .paging_full_numbers span.paginate_active:focus {
 	background-color: #EEE;
-	background-image: url(../../svg.php?from=%23FEFEFE&to=%23EEE);
 	background-image: -o-linear-gradient(top, #FEFEFE, #EEE);
 	background-image: -ms-linear-gradient(top, #FEFEFE, #EEE);
 	background-image: -moz-linear-gradient(top, #FEFEFE, #EEE);
@@ -364,7 +358,6 @@ button:active,
 .paging_full_numbers span.paginate_button:active,
 .paging_full_numbers span.paginate_active:active {
 	background-color: #EAEAEA;
-	background-image: url(../../svg.php?from=%23FAFAFA&to=%23EAEAEA);
 	background-image: -o-linear-gradient(top, #FAFAFA, #EAEAEA);
 	background-image: -ms-linear-gradient(top, #FAFAFA, #EAEAEA);
 	background-image: -moz-linear-gradient(top, #FAFAFA, #EAEAEA);

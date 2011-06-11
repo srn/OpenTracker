@@ -168,8 +168,10 @@ the RULES and FAQ before you start using {0}.
         public AccountInformation()
         {
             if (!HttpContext.Current.User.Identity.IsAuthenticated)
-                HttpContext.Current.Response.Redirect("/account/login/");
-
+            {
+                HttpContext.Current.Response.Redirect("/account/logout/");
+                return;
+            }
             var id = ((FormsIdentity)HttpContext.Current.User.Identity).Ticket;
             this.UserId = Convert.ToInt32(id.UserData.Split(';')[1]);
 
@@ -186,13 +188,12 @@ the RULES and FAQ before you start using {0}.
                 if (retrieveUser == null)
                 {
                     HttpContext.Current.Response.Redirect("/");
+                    return;
                 }
-                else
-                {
-                    Class = (int) retrieveUser.Class;
-                    Uploaded = (long) retrieveUser.Uploaded;
-                    Downloaded = (long) retrieveUser.Downloaded;
-                }
+                
+                this.Class = (int) retrieveUser.Class;
+                this.Uploaded = (long)retrieveUser.Uploaded;
+                this.Downloaded = (long)retrieveUser.Downloaded;
             }
         }
 
