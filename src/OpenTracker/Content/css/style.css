@@ -589,6 +589,8 @@ nav ul {
 	padding:0 11px 0 11px;
 	display:table;
 	height:18px;
+	min-width:38px;
+	max-width:38px;
 	font-size:10px;
 	font-family:Arial;
 	font-weight:bold; 
