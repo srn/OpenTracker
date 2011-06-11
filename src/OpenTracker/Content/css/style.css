@@ -516,7 +516,7 @@ nav ul {
 }
 
 #torrents > ul.torrent-list > li > .container > ul > li.torrent-name {
-	width:530px;
+	width:520px;
 }
 
 #torrents > ul.torrent-list > li > .container > ul > li.torrent-size {
@@ -542,6 +542,10 @@ nav ul {
    font-size:12px;
 }
 
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-name > a:hover {
+   color:#4466CC;
+}
+
 /**
  * Account
  */
@@ -561,9 +565,9 @@ nav ul {
  
  #account-wrapper > #header {
 	-moz-border-radius:3px;
-    background: #3d5f7b;
+	background: #3d5f7b;
 
-    background:-moz-linear-gradient(bottom, #3d5f7b, #5683a8);
+	background:-moz-linear-gradient(bottom, #3d5f7b, #5683a8);
 	background: -ms-linear-gradient(bottom, #3d5f7b, #5683a8); /* IE10 */
 	background: -o-linear-gradient(bottom, #3d5f7b, #5683a8); /* Opera 11.10+ */
 	background: linear-gradient(bottom, #3d5f7b, #5683a8);
@@ -589,10 +593,12 @@ nav ul {
 	padding:0 11px 0 11px;
 	display:table;
 	height:18px;
+	min-width:38px;
+	max-width:38px;
 	font-size:10px;
 	font-family:Arial;
 	font-weight:bold; 
-    background: #eae9e9;
+	background: #eae9e9;
 
 	background:-moz-linear-gradient(bottom, #eae9e9, #FFF);
 	background: -ms-linear-gradient(bottom, #eae9e9, #FFF); /* IE10 */
@@ -620,7 +626,7 @@ nav ul {
 	font-size:12px;
 	font-family:Arial;
 	font-weight:bold; 
-    background: #FFF;
+	background: #FFF;
 
 	background:-moz-linear-gradient(bottom, #FFF, #F5F5F5);
 	background: -ms-linear-gradient(bottom, #FFF, #F5F5F5); /* IE10 */
@@ -650,11 +656,11 @@ nav ul {
 }
 
 .medium-button > span {
-	line-height:32px;
+	line-height:33px;
 }
 
 .small-download {
-	margin:2px 5px 0 0;
+	margin:3px 5px 0 0;
 	float:left;
 	display:block;
 	background:url(../images/download.png) top left no-repeat;

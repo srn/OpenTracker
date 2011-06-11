@@ -2,7 +2,7 @@
 @model List<OpenTracker.Models.Tracker.TorrentModel>
 
 @{
-    ViewBag.Active = "torrents";
+	ViewBag.Active = "torrents";
 
 	Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -58,30 +58,30 @@
 		else
 		{
 			foreach (var torrent in Model)
-            {
-                var torrentName = torrent.TorrentName.AbbreviateString(63);
-                if (torrentName.Length >= 63)
-                {
-                    torrentName += "...";
-                }
+			{
+				var torrentName = torrent.TorrentName.AbbreviateString(63);
+				if (torrentName.Length >= 63)
+				{
+					torrentName += "...";
+				}
 				var size = Calculation.FormatBytes(torrent.Size);
-		        <li>
-			        <div class="container">
-				        <ul>
-					        <li class="torrent-icon"><img style="margin:0 6px 0 2px;" src="/Content/images/picture.png" alt="Placeholder" /></li>
-					        <li class="torrent-name">
-						        <a title="View Torrent" href="@Url.Action("details", "browse")/@torrent.TorrentId">@torrentName</a>
-						        <div style="display:block" class=""><a class="small-download" href="/download/@torrent.TorrentId/">DL</a><span class="small light-grey">35 minutes ago</span></div>
-					        </li>
-					        <li class="torrent-comments">@torrent.CommentCount</li>
-					        <li class="torrent-size">@size</li>
-					        <li class="torrent-snatched">@torrent.Snatches</li>
-					        <li class="torrent-seeders">@torrent.Seeders</li>
-					        <li class="torrent-leechers">@torrent.Leechers</li>
-					        <li class="torrent-uploader"><a href="#" class="small-button"><span>@torrent.Uploader.AbbreviateString(6)</span><span class="arrow"></span></a></li>
-				        </ul>
-			        </div>
-		        </li>
+				<li>
+					<div class="container">
+						<ul>
+							<li class="torrent-icon"><img style="margin:0 6px 0 2px;" src="/Content/images/picture.png" alt="Placeholder" /></li>
+							<li class="torrent-name">
+								<a title="View Torrent" href="@Url.Action("details", "browse")/@torrent.TorrentId">@torrentName</a>
+								<div style="display:block" class=""><a class="small-download" href="/download/@torrent.TorrentId/">DL</a><span class="small light-grey">@torrent.DescriptionSmall</span></div>
+							</li>
+							<li class="torrent-comments">@torrent.CommentCount</li>
+							<li class="torrent-size">@size</li>
+							<li class="torrent-snatched">@torrent.Snatches</li>
+							<li class="torrent-seeders"><img src="/Content/images/arrow-small-up-green.png" />@torrent.Seeders</li>
+							<li class="torrent-leechers"><img src="/Content/images/arrow-small-down-red.png" />@torrent.Leechers</li>
+							<li class="torrent-uploader"><a href="#" class="small-button"><span>@torrent.Uploader.AbbreviateString(6)</span><span class="arrow"></span></a></li>
+						</ul>
+					</div>
+				</li>
 			}
 		}
 	}
