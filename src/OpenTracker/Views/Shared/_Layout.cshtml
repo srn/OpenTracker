@@ -2,39 +2,7 @@
 @using System.Xml
 @using OpenTracker.Core.Account
 @using OpenTracker.Core.Common
-@{
-
-    var active = ViewBag.Active;
-    const string ACTIVE_CLASS = "current";
-    
-    if (active == "dashboard")
-	{
-        ViewBag.ActiveDashboard = ACTIVE_CLASS;
-	}
-    if (active == "torrents")
-    {
-        ViewBag.ActiveTorrents = ACTIVE_CLASS;
-    }
-    if (active == "requests")
-    {
-        ViewBag.ActiveRequests = ACTIVE_CLASS;
-    }
-    if (active == "forums")
-    {
-        ViewBag.ActiveForums = ACTIVE_CLASS;
-    }
-    if (active == "helpdesk")
-    {
-        ViewBag.ActiveHelpdesk = ACTIVE_CLASS;
-    }
-    if (active == "upload")
-    {
-        ViewBag.ActiveUpload = ACTIVE_CLASS;
-    }
-
-
-    
-}
+@using OpenTracker.Core.Common.Helpers
 <!DOCTYPE html>
 <!--[if IE 7 ]>   <html lang="en" class="ie7 lte8"> <![endif]-->
 <!--[if IE 8 ]>   <html lang="en" class="ie8 lte8"> <![endif]-->
@@ -88,23 +56,13 @@
             <nav>
                 <ul id="main-navigation" class="clearfix"> 
                     <span style="line-height:50px; color:#535353;font-size:12px; text-shadow: 1px 1px 0 #f5f5f5;">
-                    @{
-                        decimal ratio;
-                        
-                        var crntUser = new AccountInformation();
+                        @{
+                            var crntUser = new AccountInformation();
 
-                        var uploaded = crntUser.Uploaded;
-                        var downloaded = crntUser.Downloaded;
-                        if (crntUser.Downloaded == 0)
-                        {
-                            ratio = 1;
+                            var uploaded = crntUser.Uploaded;
+                            var downloaded = crntUser.Downloaded;
                         }
-                        else
-                        {
-                            ratio = (decimal)uploaded/downloaded;
-                        }
-                    }
-                        Ratio: @ratio.ToString().AbbreviateString(6).Replace(",", ".") &nbsp;
+                        Ratio: @string.Format("{0:0.000}", uploaded / downloaded).Replace(",", ".") &nbsp;
                         <img src="/Content/images/ratio-arrow-up.png" alt="" style="margin-bottom:-1px;" /> @Calculation.FormatBytes(uploaded) &nbsp;
                         <img src="/Content/images/ratio-arrow-down.png" alt="" style="margin-bottom:-1px;" /> @Calculation.FormatBytes(downloaded)
                     </span>
@@ -155,12 +113,12 @@
             <aside>
                 <nav>
                     <ul>
-                        <li class="@ViewBag.ActiveDashboard"><a href="/">Dashboard</a></li>
-                        <li class="@ViewBag.ActiveTorrents"><a href="@Url.Action("index", "browse")">Torrents</a></li>
-                        <li class="@ViewBag.ActiveRequests"><a href="@Url.Action("", "")">Requests</a></li>
-                        <li class="@ViewBag.ActiveForums"><a href="@Url.Action("index", "forum")">Forums</a></li>
-                        <li class="@ViewBag.ActiveHelpdesk"><a href="@Url.Action("", "")">Helpdesk</a></li>
-                        <li class="@ViewBag.ActiveUpload"><a href="@Url.Action("index", "upload")">Upload</a></li>
+                        @Html.MenuItem("Dashboard", "Index", "Home")
+                        @Html.MenuItem("Torrents", "Index", "browse")
+                        @Html.MenuItem("Requests", "Index", "request")
+                        @Html.MenuItem("Forums", "Index", "forum")
+                        @Html.MenuItem("Helpdesk", "Index", "helpdesk")
+                        @Html.MenuItem("Upload", "Index", "upload")
                     </ul>
                 </nav>
             </aside>
