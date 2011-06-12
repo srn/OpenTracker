@@ -61,8 +61,10 @@
 
                             var uploaded = crntUser.Uploaded;
                             var downloaded = crntUser.Downloaded;
+
+                            var ratio = downloaded == 0 ? "INF." : string.Format("{0:0.000}", uploaded/downloaded).Replace(",", ".");
                         }
-                        Ratio: @string.Format("{0:0.000}", uploaded / downloaded).Replace(",", ".") &nbsp;
+                        Ratio: @ratio &nbsp;
                         <img src="/Content/images/ratio-arrow-up.png" alt="" style="margin-bottom:-1px;" /> @Calculation.FormatBytes(uploaded) &nbsp;
                         <img src="/Content/images/ratio-arrow-down.png" alt="" style="margin-bottom:-1px;" /> @Calculation.FormatBytes(downloaded)
                     </span>
