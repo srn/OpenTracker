@@ -50,14 +50,15 @@ namespace OpenTracker.Controllers.Tracker
             }
         }
 
-        public ActionResult Details(int torrentId)
+
+        public ActionResult Details(int id)
         {
             using (var context = new OpenTrackerDbContext())
             {
                 var _torrent = (from t in context.torrents
                                     join t2 in context.categories on t.categoryid equals t2.id
                                     join t3 in context.users on t.owner equals t3.id
-                                    where t.id == torrentId
+                                    where t.id == id
                                     select new TorrentModel
                                         {
                                             TorrentId = t.id,

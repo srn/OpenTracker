@@ -24,13 +24,6 @@ namespace OpenTracker
                 new { controller = "Browse", action = "Errors" } // Parameter defaults
             );
 
-
-            routes.MapRoute(
-                "Browse/Details/1", // Route name
-                "{controller}/{action}/{torrentId}", // URL with parameters
-                new { controller = "Browse", action = "Details", id = UrlParameter.Optional } // Parameter defaults
-            );
-
             // 
             // EXAMPLE: /announce
             // EXAMPLE: /announce/252af0c913275t7d4711654b2293895f
@@ -53,15 +46,11 @@ namespace OpenTracker
                 new { controller = "Account", action = "Login", message = UrlParameter.Optional } // Parameter defaults
             );
 
-
-
-
             routes.MapRoute(
                 "DownloadTorrent", // Route name
                 "download/{torrentid}", // URL with parameters
                 new { controller = "Tracker", action = "DownloadTorrent", torrentid = @"\d" } // Parameter defaults
             );
-
 
             routes.MapRoute(
                 "Default", // Route name
