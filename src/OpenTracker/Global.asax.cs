@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Security.Principal;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using OpenTracker.Controllers;
 
 namespace OpenTracker
 {
@@ -90,6 +92,41 @@ namespace OpenTracker
             if (Context.User != null)
                 Context.User = new GenericPrincipal(Context.User.Identity, new[] { role[0] });
         }
+
+
+        protected void Application_Error()
+        {
+            var exception = Server.GetLastError();
+            var httpException = exception as HttpException;
+            Response.Clear();
+            Server.ClearError();
+            var routeData = new RouteData();
+            routeData.Values["controller"] = "Error";
+            routeData.Values["action"] = "General";
+            routeData.Values["exception"] = exception;
+            Response.StatusCode = 500;
+            if (httpException != null)
+            {
+                Response.StatusCode = httpException.GetHttpCode();
+                switch (Response.StatusCode)
+                {
+                    case 403:
+                        routeData.Values["action"] = "Http403";
+                        break;
+                    case 404:
+                        routeData.Values["action"] = "Http404";
+                        break;
+                }
+            }
+
+            // Avoid IIS7 getting in the middle
+            Response.TrySkipIisCustomErrors = true;
+            IController errorsController = new ErrorController();
+            var wrapper = new HttpContextWrapper(Context);
+            var rc = new RequestContext(wrapper, routeData);
+            errorsController.Execute(rc);
+        }
+
 
     }
 
