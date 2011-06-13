@@ -44,14 +44,27 @@
             $("#loader").hide();
             $('#login').attr("disabled", false);
             $("#login").click(function () {
-	            if (!$("#Username").val() == '') {
-		            if (!$("#Password").val() == '') {
+                if(document.login.Username.length > 0)  
+                {
+                    if (document.login.Password.length > 0) {
+			            $("#loader").show();
+			            $('#login').attr("disabled", true);
+                    }
+                }
+                else {
+                    $("#loader").hide();
+                    $('#login').attr("disabled", false);
+                }
+                /*
+	            if (!$("#Username").val() == $("#Username").empty()) {
+		            if (!$("#Password").val() == $("#Password").empty()) {
 			            $("#loader").show();
 			            $('#login').attr("disabled", true);
 		            }
 	            }
 	            else {
 	            }
+                */
             });
 
             @Html.Raw(ViewBag.Notification)
@@ -69,7 +82,7 @@
 			</div>
 			@*@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")*@
 
-			@using (Html.BeginForm())
+			@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "login", name = "login" }))
 			{
 				<div>				
 					@Html.LabelFor(m => m.Username)

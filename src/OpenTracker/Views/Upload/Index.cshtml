@@ -6,111 +6,104 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<!DOCTYPE html>
-
-<html>
-<head>
-	<title>Upload</title>
+@section jqueryload{
 
 	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Site.css")" />
 
-	<script src="@Url.Content("~/Content/js/jquery-1.4.4.min.js")" type="text/javascript"></script>
 	<script src="@Url.Content("~/Content/js/jquery.validate.min.js")" type="text/javascript"></script>
 	<script src="@Url.Content("~/Content/js/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 	<script type="text/javascript">
 
-		$(document).ready(function () {
-
-			
-			$('#imdb').hide();
-			$('#TorrentName').change(function (event) {
-
-				$.ajax({
-					type: 'POST',
-					url: '@Url.Action("Imdb", "Upload")/?title=' + $('#TorrentName').val(),
-					data: '',
-					success: function (data) {
-						var imdb = jQuery.parseJSON(data);
-
-						if (imdb.Response == "Parse Error")
-							$('#imdb').fadeOut(100);
-						else {
-							$('#imdb').fadeIn();
-							$('#imdb_poster').attr("src", imdb.Poster);
-
-							$('#imdb_title').text(imdb.Title);
-							$('#imdb_year').text(imdb.Year);
-							$('#imdb_genre').text(imdb.Genre);
-
-							$('#imdb_rating').text(imdb.Rating);
-							$('#imdb_votes').text(imdb.Votes);
-							$('#imdb_plot').text(imdb.Plot);
-
-							$('#imdb_director').text(imdb.Director);
-							$('#imdb_writer').text(imdb.Writer);
-						}
-					},
-					error: function (jqxhr, textStatus) {
-						console.log("failed with error: " + textStatus);
-					}
-				});
-			});
-
-				$('#TorrentFile').change(function (event) {
-					var ext = $('#TorrentFile').val().split('.').pop().toLowerCase();
-					if ($.inArray(ext, ['torrent']) == -1) {
-						alert('Please upload a .torrent file!');
-					}
-
-	
-				var torrentName = $('#TorrentFile').val();
-				var regex = torrentName.replace(new RegExp("(.\\d{4}.{1,})", "g"), "").replace(".", " ");
-				$.ajax({
-					type: 'POST',
-					url: '@Url.Action("Imdb", "Upload")/?title=' + regex.replace(".", " "), // extra replace check
-					data: '',
-					success: function (data) {
-						$('#TorrentName').val("");
-						var imdb = jQuery.parseJSON(data);
-						if (imdb.Response == "Parse Error") {
-							$('#imdb').fadeOut(100);
-						}
-						else {
-							$('#imdb').hide();
-							$('#imdb').fadeIn();
-							
-							$('#TorrentName').val(torrentName.replace(".torrent", ""));
-
-							if (imdb.Poster != "N/A")
-								$('#imdb_poster').attr("src", imdb.Poster);
-
-							$('#imdb_title').text(imdb.Title);
-							$('#imdb_year').text(imdb.Year);
-							$('#imdb_genre').text(imdb.Genre);
-
-							$('#imdb_rating').text(imdb.Rating);
-							$('#imdb_votes').text(imdb.Votes);
-							$('#imdb_plot').text(imdb.Plot);
-
-							$('#imdb_director').text(imdb.Director);
-							$('#imdb_writer').text(imdb.Writer);
-						}
-					},
-					error: function (jqxhr, textStatus) {
-						console.log("failed with error: " + textStatus);
-					}
-				});
-			});
+	    $(document).ready(function () {
 
 
-		});
+	        $('#imdb').hide();
+	        $('#TorrentName').change(function (event) {
+
+	            $.ajax({
+	                type: 'POST',
+	                url: '@Url.Action("Imdb", "Upload")/?title=' + $('#TorrentName').val(),
+	                data: '',
+	                success: function (data) {
+	                    var imdb = jQuery.parseJSON(data);
+
+	                    if (imdb.Response == "Parse Error")
+	                        $('#imdb').fadeOut(100);
+	                    else {
+	                        $('#imdb').fadeIn();
+	                        $('#imdb_poster').attr("src", imdb.Poster);
+
+	                        $('#imdb_title').text(imdb.Title);
+	                        $('#imdb_year').text(imdb.Year);
+	                        $('#imdb_genre').text(imdb.Genre);
+
+	                        $('#imdb_rating').text(imdb.Rating);
+	                        $('#imdb_votes').text(imdb.Votes);
+	                        $('#imdb_plot').text(imdb.Plot);
+
+	                        $('#imdb_director').text(imdb.Director);
+	                        $('#imdb_writer').text(imdb.Writer);
+	                    }
+	                },
+	                error: function (jqxhr, textStatus) {
+	                    console.log("failed with error: " + textStatus);
+	                }
+	            });
+	        });
+
+	        $('#TorrentFile').change(function (event) {
+	            var ext = $('#TorrentFile').val().split('.').pop().toLowerCase();
+	            if ($.inArray(ext, ['torrent']) == -1) {
+	                alert('Please upload a .torrent file!');
+	            }
+
+
+	            var torrentName = $('#TorrentFile').val();
+	            var regex = torrentName.replace(new RegExp("(.\\d{4}.{1,})", "g"), "").replace(".", " ");
+	            $.ajax({
+	                type: 'POST',
+	                url: '@Url.Action("Imdb", "Upload")/?title=' + regex.replace(".", " "), // extra replace check
+	                data: '',
+	                success: function (data) {
+	                    $('#TorrentName').val("");
+	                    var imdb = jQuery.parseJSON(data);
+	                    if (imdb.Response == "Parse Error") {
+	                        $('#imdb').fadeOut(100);
+	                    }
+	                    else {
+	                        $('#imdb').hide();
+	                        $('#imdb').fadeIn();
+
+	                        $('#TorrentName').val(torrentName.replace(".torrent", ""));
+
+	                        if (imdb.Poster != "N/A")
+	                            $('#imdb_poster').attr("src", imdb.Poster);
+
+	                        $('#imdb_title').text(imdb.Title);
+	                        $('#imdb_year').text(imdb.Year);
+	                        $('#imdb_genre').text(imdb.Genre);
+
+	                        $('#imdb_rating').text(imdb.Rating);
+	                        $('#imdb_votes').text(imdb.Votes);
+	                        $('#imdb_plot').text(imdb.Plot);
+
+	                        $('#imdb_director').text(imdb.Director);
+	                        $('#imdb_writer').text(imdb.Writer);
+	                    }
+	                },
+	                error: function (jqxhr, textStatus) {
+	                    console.log("failed with error: " + textStatus);
+	                }
+	            });
+	        });
+
+
+	    });
 
 	</script>
+}
 
-</head>
-<body>
 	<div>
 
 	<div id="dsa"></div>

@@ -132,22 +132,6 @@ namespace OpenTracker.Core
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<torrents> torrents
-        {
-            get
-            {
-                if ((_torrents == null))
-                {
-                    _torrents = base.CreateObjectSet<torrents>("torrents");
-                }
-                return _torrents;
-            }
-        }
-        private ObjectSet<torrents> _torrents;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<users> users
         {
             get
@@ -240,6 +224,22 @@ namespace OpenTracker.Core
             }
         }
         private ObjectSet<imdb> _imdb;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<torrents> torrents
+        {
+            get
+            {
+                if ((_torrents == null))
+                {
+                    _torrents = base.CreateObjectSet<torrents>("torrents");
+                }
+                return _torrents;
+            }
+        }
+        private ObjectSet<torrents> _torrents;
 
         #endregion
         #region AddTo Methods
@@ -274,14 +274,6 @@ namespace OpenTracker.Core
         public void AddTocomments(comments comments)
         {
             base.AddObject("comments", comments);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the torrents EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotorrents(torrents torrents)
-        {
-            base.AddObject("torrents", torrents);
         }
     
         /// <summary>
@@ -330,6 +322,14 @@ namespace OpenTracker.Core
         public void AddToimdb(imdb imdb)
         {
             base.AddObject("imdb", imdb);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the torrents EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotorrents(torrents torrents)
+        {
+            base.AddObject("torrents", torrents);
         }
 
         #endregion
@@ -1834,23 +1834,19 @@ namespace OpenTracker.Core
         /// <param name="id">Initial value of the id property.</param>
         /// <param name="categoryid">Initial value of the categoryid property.</param>
         /// <param name="info_hash">Initial value of the info_hash property.</param>
-        /// <param name="torrentname">Initial value of the torrentname property.</param>
         /// <param name="description">Initial value of the description property.</param>
-        /// <param name="description_small">Initial value of the description_small property.</param>
         /// <param name="added">Initial value of the added property.</param>
         /// <param name="size">Initial value of the size property.</param>
         /// <param name="numfiles">Initial value of the numfiles property.</param>
         /// <param name="views">Initial value of the views property.</param>
         /// <param name="snatches">Initial value of the snatches property.</param>
-        public static torrents Createtorrents(global::System.Int64 id, global::System.Int64 categoryid, global::System.String info_hash, global::System.String torrentname, global::System.String description, global::System.String description_small, global::System.Int32 added, global::System.Decimal size, global::System.Int64 numfiles, global::System.Int64 views, global::System.Int64 snatches)
+        public static torrents Createtorrents(global::System.Int64 id, global::System.Int64 categoryid, global::System.String info_hash, global::System.String description, global::System.Int32 added, global::System.Decimal size, global::System.Int64 numfiles, global::System.Int64 views, global::System.Int64 snatches)
         {
             torrents torrents = new torrents();
             torrents.id = id;
             torrents.categoryid = categoryid;
             torrents.info_hash = info_hash;
-            torrents.torrentname = torrentname;
             torrents.description = description;
-            torrents.description_small = description_small;
             torrents.added = added;
             torrents.size = size;
             torrents.numfiles = numfiles;
@@ -1940,7 +1936,7 @@ namespace OpenTracker.Core
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String torrentname
         {
@@ -1952,7 +1948,7 @@ namespace OpenTracker.Core
             {
                 OntorrentnameChanging(value);
                 ReportPropertyChanging("torrentname");
-                _torrentname = StructuralObject.SetValidValue(value, false);
+                _torrentname = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("torrentname");
                 OntorrentnameChanged();
             }
@@ -1988,7 +1984,7 @@ namespace OpenTracker.Core
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String description_small
         {
@@ -2000,7 +1996,7 @@ namespace OpenTracker.Core
             {
                 Ondescription_smallChanging(value);
                 ReportPropertyChanging("description_small");
-                _description_small = StructuralObject.SetValidValue(value, false);
+                _description_small = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("description_small");
                 Ondescription_smallChanged();
             }
