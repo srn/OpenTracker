@@ -1,62 +1,81 @@
 ﻿@using OpenTracker.Core.Common
 @model OpenTracker.Models.Tracker.TorrentModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @{
-    var torrentName = Model.TorrentName.AbbreviateString(53);
-    if (torrentName.Length >= 53)
-    {
-        torrentName += "...";
-    }
+	var torrentName = Model.TorrentName.AbbreviateString(53);
+	if (torrentName.Length >= 53)
+	{
+		torrentName += "...";
+	}
+}
+
+@section jqueryload{
+	<script src="/Content/js/jquery.elastic.source.js"></script>
+	<script language="javascript">
+		$(document).ready(function(){			
+					$('textarea').elastic();
+					$('textarea').trigger('update');
+				});	
+	</script>
 }
 
 <h1>@torrentName</h1>
 <hr />
 <div class="detail-buttons">
-    <ul>
-        <li><a href="/download/@Model.TorrentId" class="medium-button accept"><span>Download Torrent</span></a></li>
-        <li><a href="#" class="medium-button"><span>Thank Uploader</span></a></li>
-    </ul>
+	<ul>
+		<li><a href="/download/@Model.TorrentId" class="medium-button accept"><span>Download Torrent</span></a></li>
+		<li><a href="#" class="medium-button"><span>Thank Uploader</span></a></li>
+	</ul>
 </div>
 <div id="details-wrapper">
-    <div class="content-left">
-        <div class="header">
-            <span>Torrent NFO</span>
-        </div>
-        <div class="content">
-            @Html.Raw(Model.Description)
-        </div>
-    </div>
-    <div class="content-right">
-        <a href="#" class="large-button">
-            <img src="/Content/images/uploader-icon.png" />
-            <div class="center-fix">
-                <span>@Model.Uploader</span>
-            </div>
-        </a> 
-        <div class="header pull-top">
-            <span>Torrent Info</span>
-        </div>   
-        <div class="content">
-            <ul>
-                <li><span class="float-left">Size</span><span class="float-right">@Calculation.FormatBytes(@Model.Size)</span></li>
-                <li><span class="float-left">Category</span><span class="float-right">@Model.CategoryName</span></li>
-                <li><span class="float-left">Snatched</span><span class="float-right">@Model.Snatches</span></li>
-                <li><span class="float-left">Seeders</span><span class="float-right">@Model.Seeders</span></li>
-                <li><span class="float-left">Leechers</span><span class="float-right">@Model.Leechers</span></li>
-                <li><span class="float-left">Files</span><span class="float-right">@Model.FileCount</span></li>
-            </ul>
-        </div>
-         <div class="header pull-top">
-            <span>Thanks Given</span>
-        </div>   
-        <div class="content">
-            <ul>
-                <li>MrSkytte</li>
-                <li>Soerenn</li>
-            </ul>
-        </div>
-    </div>
+	<div class="content-left">
+		<div class="header">
+			<span>Torrent NFO</span>
+		</div>
+		<div class="content">
+			@Html.Raw(Model.Description)
+		</div>
+		<div class="header pull-top">
+			<span>Add Comment</span>
+		</div>   
+			<div class="content">
+				<textarea rows="1" onfocus="if(this.value == 'Enter your comment here!') { this.value = ''; }" class="textarea-large">Enter your comment here!</textarea>				
+			</div>
+			<div class="form-actions">
+			<button tabindex="2" class="submit-button"><span>Comment</span></button>
+			</div>
+	</div>
+	<div class="content-right">
+		<a href="#" class="large-button">
+			<img src="/Content/images/uploader-icon.png" />
+			<div class="center-fix">
+				<span>@Model.Uploader</span>
+			</div>
+		</a> 
+		<div class="header pull-top">
+			<span>Torrent Info</span>
+		</div>   
+		<div class="content">
+			<ul>
+				<li><span class="float-left">Size</span><span class="float-right">@Calculation.FormatBytes(@Model.Size)</span></li>
+				<li><span class="float-left">Category</span><span class="float-right">@Model.CategoryName</span></li>
+				<li><span class="float-left">Snatched</span><span class="float-right">@Model.Snatches</span></li>
+				<li><span class="float-left">Seeders</span><span class="float-right">@Model.Seeders</span></li>
+				<li><span class="float-left">Leechers</span><span class="float-right">@Model.Leechers</span></li>
+				<li><span class="float-left">Files</span><span class="float-right">@Model.FileCount</span></li>
+			</ul>
+		</div>
+		 <div class="header pull-top">
+			<span>Thanks Given</span>
+		</div>   
+		<div class="content">
+			<ul>
+				<li>MrSkytte</li>
+				<li>Soerenn</li>
+			</ul>
+		</div>
+	</div>
 </div>
