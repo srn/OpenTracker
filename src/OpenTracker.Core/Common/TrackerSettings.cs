@@ -104,5 +104,25 @@ namespace OpenTracker.Core.Common
             get { return Convert.ToInt16(GetSpecificAppSetting("LOGIN_TIMEOUT")); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static string IMGUR_API_KEY
+        {
+            get { return GetSpecificAppSetting("IMGUR_API_KEY"); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static string IMDB_DIRECTORY
+        {
+            get { return HttpContext.Current.Server.MapPath(GetSpecificAppSetting("IMDB_DIRECTORY")); }
+        }
+
+
+
     }
 }

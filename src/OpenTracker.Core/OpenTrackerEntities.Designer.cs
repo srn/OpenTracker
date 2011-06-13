@@ -224,6 +224,22 @@ namespace OpenTracker.Core
             }
         }
         private ObjectSet<forum_topic> _forum_topic;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<imdb> imdb
+        {
+            get
+            {
+                if ((_imdb == null))
+                {
+                    _imdb = base.CreateObjectSet<imdb>("imdb");
+                }
+                return _imdb;
+            }
+        }
+        private ObjectSet<imdb> _imdb;
 
         #endregion
         #region AddTo Methods
@@ -306,6 +322,14 @@ namespace OpenTracker.Core
         public void AddToforum_topic(forum_topic forum_topic)
         {
             base.AddObject("forum_topic", forum_topic);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the imdb EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToimdb(imdb imdb)
+        {
+            base.AddObject("imdb", imdb);
         }
 
         #endregion
@@ -1317,6 +1341,113 @@ namespace OpenTracker.Core
         private global::System.Int32 _added;
         partial void OnaddedChanging(global::System.Int32 value);
         partial void OnaddedChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DbContext", Name="imdb")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class imdb : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new imdb object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="imdbid">Initial value of the imdbid property.</param>
+        /// <param name="imgur">Initial value of the imgur property.</param>
+        public static imdb Createimdb(global::System.Int64 id, global::System.String imdbid, global::System.String imgur)
+        {
+            imdb imdb = new imdb();
+            imdb.id = id;
+            imdb.imdbid = imdbid;
+            imdb.imgur = imgur;
+            return imdb;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String imdbid
+        {
+            get
+            {
+                return _imdbid;
+            }
+            set
+            {
+                OnimdbidChanging(value);
+                ReportPropertyChanging("imdbid");
+                _imdbid = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("imdbid");
+                OnimdbidChanged();
+            }
+        }
+        private global::System.String _imdbid;
+        partial void OnimdbidChanging(global::System.String value);
+        partial void OnimdbidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String imgur
+        {
+            get
+            {
+                return _imgur;
+            }
+            set
+            {
+                OnimgurChanging(value);
+                ReportPropertyChanging("imgur");
+                _imgur = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("imgur");
+                OnimgurChanged();
+            }
+        }
+        private global::System.String _imgur;
+        partial void OnimgurChanging(global::System.String value);
+        partial void OnimgurChanged();
 
         #endregion
     

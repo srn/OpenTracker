@@ -12,6 +12,7 @@
           <EntitySet Name="forum_category" EntityType="woops.Store.forum_category" store:Type="Tables" Schema="opentracker" />
           <EntitySet Name="forum_posts" EntityType="woops.Store.forum_posts" store:Type="Tables" Schema="opentracker" />
           <EntitySet Name="forum_topic" EntityType="woops.Store.forum_topic" store:Type="Tables" Schema="opentracker" />
+          <EntitySet Name="imdb" EntityType="woops.Store.imdb" store:Type="Tables" Schema="opentracker" />
           <EntitySet Name="peers" EntityType="woops.Store.peers" store:Type="Tables" Schema="opentracker" />
           <EntitySet Name="torrents" EntityType="woops.Store.torrents" store:Type="Tables" Schema="opentracker" />
           <EntitySet Name="torrents_files" EntityType="woops.Store.torrents_files" store:Type="Tables" Schema="opentracker" />
@@ -78,6 +79,14 @@
           <Property Name="announcement" Type="uint" Nullable="false" />
           <Property Name="title" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="added" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="imdb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="imdbid" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="imgur" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="peers">
           <Key>
@@ -158,6 +167,7 @@
           <EntitySet Name="forum_category" EntityType="DbContext.forum_category" />
           <EntitySet Name="forum_posts" EntityType="DbContext.forum_posts" />
           <EntitySet Name="forum_topic" EntityType="DbContext.forum_topic" />
+          <EntitySet Name="imdb" EntityType="DbContext.imdb" />
         </EntityContainer>
         <EntityType Name="categories">
           <Key>
@@ -284,6 +294,14 @@
           <Property Type="Int64" Name="announcement" Nullable="false" />
           <Property Type="String" Name="title" Nullable="false" />
           <Property Type="Int32" Name="added" Nullable="false" />
+        </EntityType>
+        <EntityType Name="imdb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="imdbid" Nullable="false" />
+          <Property Type="String" Name="imgur" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -427,6 +445,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="imdb">
+            <EntityTypeMapping TypeName="DbContext.imdb">
+              <MappingFragment StoreEntitySet="imdb">
+                <ScalarProperty Name="imgur" ColumnName="imgur" />
+                <ScalarProperty Name="imdbid" ColumnName="imdbid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -458,6 +485,7 @@
         <EntityTypeShape EntityType="DbContext.forum_category" Width="1.5" PointX="4" PointY="4.75" Height="1.4033821614583317" />
         <EntityTypeShape EntityType="DbContext.forum_posts" Width="1.5" PointX="5.625" PointY="4.75" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="DbContext.forum_topic" Width="1.5" PointX="7.375" PointY="4.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="DbContext.imdb" Width="1.5" PointX="0.75" PointY="8.75" Height="1.4033821614583353" />
       </Diagram>
     </Diagrams>
   </Designer>
