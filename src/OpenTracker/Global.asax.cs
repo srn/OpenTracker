@@ -96,6 +96,7 @@ namespace OpenTracker
 
         protected void Application_Error()
         {
+#if (!DEBUG)
             var exception = Server.GetLastError();
             var httpException = exception as HttpException;
             Response.Clear();
@@ -125,6 +126,7 @@ namespace OpenTracker
             var wrapper = new HttpContextWrapper(Context);
             var rc = new RequestContext(wrapper, routeData);
             errorsController.Execute(rc);
+#endif
         }
 
 
