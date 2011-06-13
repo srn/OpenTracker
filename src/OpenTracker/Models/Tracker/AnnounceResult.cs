@@ -52,7 +52,7 @@ namespace OpenTracker.Models.Tracker
                                         port
                                     }
                               };
-            Peers.Add(NewPeer);
+            this.Peers.Add(NewPeer);
         }
 
         /// <summary>
@@ -77,6 +77,7 @@ namespace OpenTracker.Models.Tracker
                           };
             var response = context.HttpContext.Response;
             response.Write(BEncoder.BEncodeDictionary(res));
+            response.End();
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Security.Principal;
 using System.Text;
 using System.Web;
 using System.Web.Security;
@@ -18,17 +17,12 @@ namespace OpenTracker.Core.Account
         /// <summary>
         /// 
         /// </summary>
-        OpenTrackerDbContext context = new OpenTrackerDbContext();
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="username"></param>
         /// <param name="passhash"></param>
         /// <returns></returns>
         public int ValidateUser(string username, string passhash)
         {
-            using (context)
+            using (var context = new OpenTrackerDbContext())
             {
                 var retrieveTempUser = (from t in context.users
                                         where t.username == username && t.activated == 1
@@ -57,41 +51,47 @@ namespace OpenTracker.Core.Account
             if (String.IsNullOrEmpty(email))
                 throw new ArgumentException("Value cannot be null or empty.", "email");
 
-            var checkUsernameAlreadyExist = (from _accounts in context.users
-                                             where _accounts.username == userName
-                                             select _accounts).Take(1).FirstOrDefault();
-
-            if (checkUsernameAlreadyExist != null)
-                return AccountCreateStatus.DuplicateUserName;
-
-            var activateSecret = AccountValidation.MD5(string.Format(password));
-            // creates the new user
-            var newUser = new users
-                              {
-                                  username = userName,
-                                  passhash = password,
-                                  email = email,
-                                  passkey = AccountValidation.MD5(password),
-                                  activatesecret = activateSecret
-                              };
-            context.AddTousers(newUser);
-            context.SaveChanges();
-
-            var client = new SmtpClient("smtp.gmail.com", 587)
-                             {
-                                 Credentials = new NetworkCredential("myopentracker@gmail.com", "lol123123"),
-                                 EnableSsl = true
-                             };
-            using (var msg = new MailMessage())
+            using (var context = new OpenTrackerDbContext())
             {
-                var BASE_URL = TrackerSettings.BASE_URL
-                    .Replace("http://", string.Empty)
-                    .Replace("https://", string.Empty);
-                msg.From = new MailAddress("no-reply@open-tracker.org");
-                msg.Subject = string.Format("{0} user registration confirmation‏", BASE_URL);
+                var checkUsernameAlreadyExist = (from u in context.users
+                                                 where u.username == userName
+                                                 select u).Count();
+                if (checkUsernameAlreadyExist != 0)
+                    return AccountCreateStatus.DuplicateUserName;
 
-                var bewlder = new StringBuilder();
-                bewlder.AppendFormat(
+                var checkEmailAlreadyExist = (from u in context.users
+                                              where u.email == email
+                                              select u).Count();
+                if (checkEmailAlreadyExist != 0)
+                    return AccountCreateStatus.DuplicateEmail;
+
+                var activateSecret = AccountValidation.MD5(string.Format(password));
+                var newUser = new users
+                {
+                    username = userName,
+                    passhash = password,
+                    email = email,
+                    passkey = AccountValidation.MD5(password),
+                    activatesecret = activateSecret
+                };
+                context.AddTousers(newUser);
+                context.SaveChanges();
+
+                var client = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    Credentials = new NetworkCredential("myopentracker@gmail.com", "lol123123"),
+                    EnableSsl = true
+                };
+                using (var msg = new MailMessage())
+                {
+                    var BASE_URL = TrackerSettings.BASE_URL
+                        .Replace("http://", string.Empty)
+                        .Replace("https://", string.Empty);
+                    msg.From = new MailAddress("no-reply@open-tracker.org");
+                    msg.Subject = string.Format("{0} user registration confirmation‏", BASE_URL);
+
+                    var bewlder = new StringBuilder();
+                    bewlder.AppendFormat(
                     @"
 You have requested a new user account on {0} and you have
 specified this address ({1}) as user contact.
@@ -106,19 +106,19 @@ http://{0}/account/activate/{3}/
 After you do this, you will be able to use your new account. If you fail to
 do this, you account will be deleted within a few days. We urge you to read
 the RULES and FAQ before you start using {0}.
-",
-                    BASE_URL,
-                    email,
-                    HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"],
-                    activateSecret
-                );
-                msg.Body = bewlder.ToString();
+                    ",
+                        BASE_URL,
+                        email,
+                        HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"],
+                        activateSecret
+                    );
+                    msg.Body = bewlder.ToString();
 
-                msg.To.Add(new MailAddress(email));
-                client.Send(msg);
+                    msg.To.Add(new MailAddress(email));
+                    client.Send(msg);
 
-
-                return AccountCreateStatus.Success;
+                    return AccountCreateStatus.Success;
+                }
             }
         }
 
@@ -178,20 +178,20 @@ the RULES and FAQ before you start using {0}.
             using (var context = new OpenTrackerDbContext())
             {
                 var retrieveUser = (from u in context.users
-                                        where u.id == UserId
-                                        select new
-                                        {
-                                            Class = u.@class,
-                                            Uploaded = u.uploaded,
-                                            Downloaded = u.downloaded
-                                        }).Take(1).FirstOrDefault();
+                                    where u.id == UserId
+                                    select new
+                                    {
+                                        Class = u.@class,
+                                        Uploaded = u.uploaded,
+                                        Downloaded = u.downloaded
+                                    }).Take(1).FirstOrDefault();
                 if (retrieveUser == null)
                 {
                     HttpContext.Current.Response.Redirect("/");
                     return;
                 }
                 
-                this.Class = (int) retrieveUser.Class;
+                this.Class = (int)retrieveUser.Class;
                 this.Uploaded = (long)retrieveUser.Uploaded;
                 this.Downloaded = (long)retrieveUser.Downloaded;
             }

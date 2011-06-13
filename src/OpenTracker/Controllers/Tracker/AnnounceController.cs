@@ -108,8 +108,8 @@ namespace OpenTracker.Controllers.Tracker
 				using (var context = new OpenTrackerDbContext())
 				{
 					var crntUser = (from u in context.users
-									 where u.passkey == announceModel.Passkey
-										select u).Take(1).FirstOrDefault();
+									where u.passkey == announceModel.Passkey
+									select u).Take(1).FirstOrDefault();
 					if (crntUser == null)
 						return new BTErrorResult(string.Format("Unknown passkey. Please re-download the torrent from {0}.",
 							TrackerSettings.BASE_URL));
