@@ -113,9 +113,9 @@
           <Property Name="id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="categoryid" Type="uint" Nullable="false" />
           <Property Name="info_hash" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="torrentname" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="torrentname" Type="varchar" MaxLength="255" />
           <Property Name="description" Type="text" Nullable="false" />
-          <Property Name="description_small" Type="text" Nullable="false" />
+          <Property Name="description_small" Type="text" />
           <Property Name="added" Type="int" Nullable="false" />
           <Property Name="size" Type="ubigint" Nullable="false" />
           <Property Name="numfiles" Type="uint" Nullable="false" />
@@ -161,13 +161,13 @@
           <EntitySet Name="torrents_files" EntityType="DbContext.torrents_files" />
           <EntitySet Name="peers" EntityType="DbContext.peers" />
           <EntitySet Name="comments" EntityType="DbContext.comments" />
-          <EntitySet Name="torrents" EntityType="DbContext.torrents" />
           <EntitySet Name="users" EntityType="DbContext.users" />
           <EntitySet Name="forum" EntityType="DbContext.forum" />
           <EntitySet Name="forum_category" EntityType="DbContext.forum_category" />
           <EntitySet Name="forum_posts" EntityType="DbContext.forum_posts" />
           <EntitySet Name="forum_topic" EntityType="DbContext.forum_topic" />
           <EntitySet Name="imdb" EntityType="DbContext.imdb" />
+          <EntitySet Name="torrents" EntityType="DbContext.torrents" />
         </EntityContainer>
         <EntityType Name="categories">
           <Key>
@@ -217,27 +217,6 @@
           <Property Type="String" Name="original_text" Nullable="false" />
           <Property Type="Int64" Name="editedby" Nullable="false" />
           <Property Type="Int32" Name="editedate" Nullable="false" />
-        </EntityType>
-        <EntityType Name="torrents">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="categoryid" Nullable="false" />
-          <Property Type="String" Name="info_hash" Nullable="false" />
-          <Property Type="String" Name="torrentname" Nullable="false" />
-          <Property Type="String" Name="description" Nullable="false" />
-          <Property Type="String" Name="description_small" Nullable="false" />
-          <Property Type="Int32" Name="added" Nullable="false" />
-          <Property Type="Decimal" Name="size" Nullable="false" />
-          <Property Type="Int64" Name="numfiles" Nullable="false" />
-          <Property Type="Int64" Name="views" Nullable="false" />
-          <Property Type="Int64" Name="snatches" Nullable="false" />
-          <Property Type="Int32" Name="last_action" />
-          <Property Type="String" Name="visible" />
-          <Property Type="String" Name="banned" />
-          <Property Type="Int64" Name="owner" />
-          <Property Type="String" Name="client_created_by" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -303,6 +282,27 @@
           <Property Type="String" Name="imdbid" Nullable="false" />
           <Property Type="String" Name="imgur" Nullable="false" />
         </EntityType>
+        <EntityType Name="torrents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="categoryid" Nullable="false" />
+          <Property Type="String" Name="info_hash" Nullable="false" />
+          <Property Type="String" Name="torrentname" />
+          <Property Type="String" Name="description" Nullable="false" />
+          <Property Type="String" Name="description_small" />
+          <Property Type="Int32" Name="added" Nullable="false" />
+          <Property Type="Decimal" Name="size" Nullable="false" />
+          <Property Type="Int64" Name="numfiles" Nullable="false" />
+          <Property Type="Int64" Name="views" Nullable="false" />
+          <Property Type="Int64" Name="snatches" Nullable="false" />
+          <Property Type="Int32" Name="last_action" />
+          <Property Type="String" Name="visible" />
+          <Property Type="String" Name="banned" />
+          <Property Type="Int64" Name="owner" />
+          <Property Type="String" Name="client_created_by" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -358,28 +358,6 @@
                 <ScalarProperty Name="added" ColumnName="added" />
                 <ScalarProperty Name="torrentid" ColumnName="torrentid" />
                 <ScalarProperty Name="userid" ColumnName="userid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="torrents">
-            <EntityTypeMapping TypeName="DbContext.torrents">
-              <MappingFragment StoreEntitySet="torrents">
-                <ScalarProperty Name="client_created_by" ColumnName="client_created_by" />
-                <ScalarProperty Name="owner" ColumnName="owner" />
-                <ScalarProperty Name="banned" ColumnName="banned" />
-                <ScalarProperty Name="visible" ColumnName="visible" />
-                <ScalarProperty Name="last_action" ColumnName="last_action" />
-                <ScalarProperty Name="snatches" ColumnName="snatches" />
-                <ScalarProperty Name="views" ColumnName="views" />
-                <ScalarProperty Name="numfiles" ColumnName="numfiles" />
-                <ScalarProperty Name="size" ColumnName="size" />
-                <ScalarProperty Name="added" ColumnName="added" />
-                <ScalarProperty Name="description_small" ColumnName="description_small" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="torrentname" ColumnName="torrentname" />
-                <ScalarProperty Name="info_hash" ColumnName="info_hash" />
-                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -454,6 +432,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="torrents">
+            <EntityTypeMapping TypeName="DbContext.torrents">
+              <MappingFragment StoreEntitySet="torrents">
+                <ScalarProperty Name="client_created_by" ColumnName="client_created_by" />
+                <ScalarProperty Name="owner" ColumnName="owner" />
+                <ScalarProperty Name="banned" ColumnName="banned" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="last_action" ColumnName="last_action" />
+                <ScalarProperty Name="snatches" ColumnName="snatches" />
+                <ScalarProperty Name="views" ColumnName="views" />
+                <ScalarProperty Name="numfiles" ColumnName="numfiles" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="added" ColumnName="added" />
+                <ScalarProperty Name="description_small" ColumnName="description_small" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="torrentname" ColumnName="torrentname" />
+                <ScalarProperty Name="info_hash" ColumnName="info_hash" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -479,13 +479,13 @@
         <EntityTypeShape EntityType="DbContext.torrents_files" Width="1.5" PointX="5.875" PointY="0.5" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="DbContext.peers" Width="1.5" PointX="7.625" PointY="0.5" Height="3.5186979166666665" />
         <EntityTypeShape EntityType="DbContext.comments" Width="1.5" PointX="0.75" PointY="4.75" Height="2.5571907552083317" />
-        <EntityTypeShape EntityType="DbContext.torrents" Width="1.5" PointX="4.125" PointY="0.5" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="DbContext.users" Width="1.5" PointX="0.75" PointY="0.5" Height="3.1340950520833317" />
         <EntityTypeShape EntityType="DbContext.forum" Width="1.5" PointX="2.375" PointY="4.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="DbContext.forum_category" Width="1.5" PointX="4" PointY="4.75" Height="1.4033821614583317" />
         <EntityTypeShape EntityType="DbContext.forum_posts" Width="1.5" PointX="5.625" PointY="4.75" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="DbContext.forum_topic" Width="1.5" PointX="7.375" PointY="4.75" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="DbContext.imdb" Width="1.5" PointX="0.75" PointY="8.75" Height="1.4033821614583353" />
+        <EntityTypeShape EntityType="DbContext.torrents" Width="1.5" PointX="4.25" PointY="0.5" Height="4.0956022135416674" />
       </Diagram>
     </Diagrams>
   </Designer>

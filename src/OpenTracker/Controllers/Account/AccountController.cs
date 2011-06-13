@@ -154,7 +154,7 @@ namespace OpenTracker.Controllers.Account
 										where u.activatesecret == hash
 										select u).Take(1).FirstOrDefault();
 				if (checkActivation == null)
-					return RedirectToAction("login", "account", new { message = "activationfail" });
+                    return RedirectToAction("login", "account", new { message = "activationfail" });
 				if (checkActivation.activated == 1)
 					return RedirectToAction("login", "account", new { message = "activateexist" });
 
