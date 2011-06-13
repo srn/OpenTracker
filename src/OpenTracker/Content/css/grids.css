@@ -708,6 +708,11 @@
 	float:right;
 }
 
+.float-middle
+{
+	margin:0 auto;
+}
+
 
 
 /* Clear Floated Elements

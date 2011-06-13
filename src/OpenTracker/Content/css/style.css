@@ -1,6 +1,10 @@
+
 * {
 	padding: 0;
 	margin: 0;
+	outline: none; }
+    :focus {outline:none;}
+    ::-moz-focus-inner {border:0;}
 }
 html, body {
 	height: 100%;
@@ -440,7 +444,8 @@ nav ul {
 
 #details-wrapper
 {
-	overflow:auto;
+    position:relative;
+    overflow:auto;
 	padding:15px 0 0 0;
 	width:100%;
 }
@@ -466,7 +471,6 @@ nav ul {
 {
 	float:left;
 	width:670px;
-	clear:both;
 }
 
 #details-wrapper > .content-right 
@@ -490,7 +494,7 @@ nav ul {
 
 #details-wrapper .content 
 {
-    overflow:auto;
+	overflow:auto;
 	font-size:12px;
 	padding:8px 10px 8px 10px;
 	border-bottom-right-radius:3px;
@@ -500,20 +504,25 @@ nav ul {
 	background:#FDFDFD;
 }
 
+#details-wrapper .content img 
+{
+    max-width:647px;
+}
+
 #details-wrapper .content ul 
 {
-    color:#595959;
-    font-size:11px;
-    list-style:none;
-    margin:0;
-    padding:0;
+	color:#595959;
+	font-size:11px;
+	list-style:none;
+	margin:0;
+	padding:0;
 }
 
 #details-wrapper .content ul li
 {
-    padding-bottom:1px;
-    overflow:auto;
-    border-bottom:1px dotted #cdcdcd;
+	padding-bottom:1px;
+	overflow:auto;
+	border-bottom:1px dotted #cdcdcd;
 }
 
 #details-wrapper .content > p
@@ -681,11 +690,17 @@ nav ul {
 	font-size:14px;
  }
 
+.form-actions 
+{
+    padding:5px 3px 3px 0;
+    text-align: right;
+}
+
 /**
  * Buttons
  */
  
- .small-button {
+ .user-button {
 	text-decoration:none;   
 	color:#000;
 	text-shadow: 1px 1px 0 #FFFFFF;
@@ -715,12 +730,69 @@ nav ul {
 	text-align:center;
  }
  
-.medium-button {
+.small-button 
+{
+    border:1px solid #ccc;
+    padding:5px;
+    height:20px;
+    background:-moz-linear-gradient(bottom, #fff, #f5f5f5);
+	background: -ms-linear-gradient(bottom, #fff, #f5f5f5); /* IE10 */
+	background: -o-linear-gradient(bottom, #fff, #f5f5f5); /* Opera 11.10+ */
+	background: linear-gradient(bottom, #fff, #f5f5f5);
+	background: -webkit-gradient(linear, left bottom, left top, from(#fff), to(#f5f5f5));
+	background: -webkit-linear-gradient(bottom, #fff, #f5f5f5); /* Chrome 10+, Saf5.1+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f5f5f5');
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-moz-border-radius:3px;
+}
+
+
+.submit-button
+{
+    outline:none;
+    cursor:pointer;
+    white-space: nowrap;
 	text-decoration:none;   
 	color:#999;
 	text-shadow: 1px 1px 0 #FFFFFF;
 	padding:0 11px 0 11px;
-	display:table;
+	height:35px;
+	font-size:12px;
+	font-family:Arial;
+	font-weight:bold; 
+	background: #FFF;
+	background: -moz-linear-gradient(-90deg, #FFFFFF, #E1E1E1) repeat scroll 0 0 transparent;
+	border:1px solid #d3d3d3;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	overflow: visible;
+	position:relative;
+	-moz-border-radius:3px;
+}
+
+.submit-button:hover 
+{
+    border:1px solid #5b90bd;
+    text-shadow: -1px -1px 0 RGBA(0, 0, 0, 0.3);
+    color:#FFF;
+    background: -moz-linear-gradient(-90deg, #5aa0da, #4a779d) repeat scroll 0 0 transparent;
+}
+
+ submit-button:active 
+ {
+     background: -moz-linear-gradient(90deg, #5aa0da, #4a779d) repeat scroll 0 0 transparent;
+ }
+
+ 
+.medium-button 
+{
+    display:table;
+    white-space: nowrap;
+	text-decoration:none;   
+	color:#999;
+	text-shadow: 1px 1px 0 #FFFFFF;
+	padding:0 11px 0 11px;
 	height:33px;
 	font-size:12px;
 	font-family:Arial;
@@ -731,8 +803,7 @@ nav ul {
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	-moz-border-radius:3px;
-}
-
+} 
 .large-button 
 {
 	width:196px;
@@ -778,9 +849,11 @@ nav ul {
 	background:url(../images/button_press.png) repeat-x;
 }
 
-.medium-button > span {
-	line-height:33px;
+.medium-button span 
+{
+    line-height:33px;
 }
+
 
 .small-download {
 	margin:3px 5px 0 0;
@@ -866,9 +939,26 @@ nav ul {
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	-moz-border-radius:3px;
-	background: -webkit-gradient(linear, left bottom, left top, from(#FFF), to(#F5F5F5));
 	background:-moz-linear-gradient(bottom, #FFF, #F5F5F5);
+	background: -ms-linear-gradient(bottom, #FFF, #F5F5F5); /* IE10 */
+	background: -o-linear-gradient(bottom, #FFF, #F5F5F5); /* Opera 11.10+ */
+	background: linear-gradient(bottom, #FFF, #F5F5F5);
+	background: -webkit-gradient(linear, left bottom, left top, from(#FFF), to(#F5F5F5));
+	background: -webkit-linear-gradient(bottom, #FFF, #F5F5F5); /* Chrome 10+, Saf5.1+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF', endColorstr='#F5F5F5');
 }
+
+.textarea-large 
+{
+    border:none;
+    font-size:12px;
+    font-family:Verdana,Helvetica,Arial,sans-serif;
+    padding:3px;
+    max-width:627px;
+    min-width:627px;
+}
+
+
 
  /**
  * Text Formats
