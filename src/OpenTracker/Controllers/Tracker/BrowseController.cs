@@ -58,6 +58,7 @@ namespace OpenTracker.Controllers.Tracker
                 var _torrent = (from t in context.torrents
                                     join t2 in context.categories on t.categoryid equals t2.id
                                     join t3 in context.users on t.owner equals t3.id
+                                    join t4 in context.peers on t.id equals t4.torrentid into peer
                                     where t.id == id
                                     select new TorrentModel
                                         {
@@ -71,6 +72,9 @@ namespace OpenTracker.Controllers.Tracker
                                                FileCount = t.numfiles,
 
                                                CategoryName = t2.name,
+
+                                               Seeders = peer.Count(count => count.left == 0),
+                                               Leechers = peer.Count(count => count.left > 0),
 
                                                Uploader = t3.username
                                         }).Take(1).FirstOrDefault();
