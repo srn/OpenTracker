@@ -44,27 +44,15 @@
             $("#loader").hide();
             $('#login').attr("disabled", false);
             $("#login").click(function () {
-                if(document.login.Username.length > 0)  
+                if(document.forms["login"].Username.value != "" && document.forms["login"].Password.value != "")  
                 {
-                    if (document.login.Password.length > 0) {
-			            $("#loader").show();
-			            $('#login').attr("disabled", true);
-                    }
+			        $("#loader").show();
+			        $('#login').attr("disabled", true);
                 }
                 else {
                     $("#loader").hide();
                     $('#login').attr("disabled", false);
                 }
-                /*
-	            if (!$("#Username").val() == $("#Username").empty()) {
-		            if (!$("#Password").val() == $("#Password").empty()) {
-			            $("#loader").show();
-			            $('#login').attr("disabled", true);
-		            }
-	            }
-	            else {
-	            }
-                */
             });
 
             @Html.Raw(ViewBag.Notification)
@@ -72,7 +60,6 @@
 	</script>
 </head>
 <body>
-
 
 
 		<div id="account-wrapper">

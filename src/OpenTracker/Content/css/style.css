@@ -357,7 +357,6 @@ nav ul {
 }
 
 #wrapper > section > aside > nav > ul li.current {
-	background: url(../images/black-20percent.png) repeat 0 0;
 	background: rgba(0,0,0,0.1);
 	border-color: #AAA;
 	-moz-box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1), 0px 1px 0px rgba(255,255,255,0.5);
@@ -392,7 +391,6 @@ nav ul {
 }
 
 #wrapper > section > section {
-	background: url(../images/white-70percent.png) repeat 0 0;
 	background: rgba(255,255,255,0.7);
 	border-top: 1px solid #C6C9CE;
 	border-right: 1px solid #C6C9CE;
