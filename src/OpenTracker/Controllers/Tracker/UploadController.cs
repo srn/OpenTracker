@@ -145,6 +145,7 @@ namespace OpenTracker.Controllers.Tracker
         [AuthorizeUser]
         public string Imdb(string title)
         {
+            title = title.Replace(@"C:\fakepath\", string.Empty);
             using (var client = new WebClient().OpenRead(string.Format("http://www.imdbapi.com/?i=&t={0}", title)))
             {
                 if (client == null)
