@@ -111,6 +111,7 @@
     <Content Include="Content\images\large-button-grad.png" />
     <Content Include="Content\images\picture.png" />
     <Content Include="Content\images\uploader-icon.png" />
+    <Content Include="Content\js\jquery.elastic.source.js" />
     <Content Include="Content\js\jquery.notifyBar.js" />
     <Content Include="Content\js\notify.js" />
     <Content Include="Global.asax" />

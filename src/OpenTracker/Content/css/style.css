@@ -661,9 +661,9 @@ nav ul {
 	background:#f5f5f5; 
 	width:500px;
 	border:1px solid #ccc;
-		-moz-border-radius:3px;
+	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
-	border-radius:3px;;
+	border-radius:3px;
 	padding:15px;
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
 	top: 20%;
@@ -679,7 +679,7 @@ nav ul {
 	background: linear-gradient(bottom, #3d5f7b, #5683a8);
 	background: -webkit-gradient(linear, left bottom, left top, from(#3d5f7b), to(#5683a8));
 	background: -webkit-linear-gradient(bottom, #3d5f7b, #5683a8); /* Chrome 10+, Saf5.1+ */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5683a8', endColorstr='#3d5f7b');
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5683A8', endColorstr='#3D5F7B');
 	padding:10px;
 	color:#FFF; 
 	margin:0 0 10px 0;
@@ -750,7 +750,7 @@ nav ul {
 
 .submit-button
 {
-	outline:none;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 	cursor:pointer;
 	white-space: nowrap;
 	text-decoration:none;   
@@ -767,22 +767,20 @@ nav ul {
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	overflow: visible;
-	position:relative;
 	-moz-border-radius:3px;
 	border-radius:3px;
 }
 
 .submit-button:hover 
 {
-	border:1px solid #5b90bd;
+	border:1px solid #598ab4;
 	text-shadow: -1px -1px 0 RGBA(0, 0, 0, 0.3);
 	color:#FFF;
 	background: -moz-linear-gradient(-90deg, #5aa0da, #4a779d) repeat scroll 0 0 transparent;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5aa0da', endColorstr='#4a779d');
-	border-radius:3px;
 }
 
- submit-button:active 
+ .submit-button:active 
  {
 	 background: -moz-linear-gradient(90deg, #5aa0da, #4a779d) repeat scroll 0 0 transparent;
  }
@@ -958,8 +956,8 @@ nav ul {
 	font-size:12px;
 	font-family:Verdana,Helvetica,Arial,sans-serif;
 	padding:3px;
-	max-width:627px;
-	min-width:627px;
+	max-width:642px;
+	min-width:642px;
 }
 
 
