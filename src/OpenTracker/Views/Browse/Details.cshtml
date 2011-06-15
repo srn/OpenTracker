@@ -14,7 +14,7 @@
 
 @section jqueryload{
 	<script src="/Content/js/jquery.elastic.source.js"></script>
-	<script language="javascript">
+	<script type="text/javascript">
 		$(document).ready(function(){			
 					$('textarea').elastic();
 					$('textarea').trigger('update');
@@ -38,9 +38,10 @@
 		<div class="content">
 			@Html.Raw(Model.TorrentModel.Description)
 		</div>
+		<hr />
 		<div class="header pull-top">
 			<span>Add Comment</span>
-            <div class="form-actions">Comments are parsed with Markdown</div>
+			<div class="form-actions">Comments are parsed with Markdown</div>
 		</div>   
 			<div class="content">
 				<textarea cols="20" rows="1" onfocus="if(this.value == 'Enter your comment here!') { this.value = ''; }" class="textarea-large">Enter your comment here!</textarea>				
@@ -48,21 +49,19 @@
 			<div class="form-actions">
 			<button tabindex="2" class="submit-button"><span>Comment</span></button>
 			</div>
-		    
-	        <hr />
-            <h2>Showing 12 comments</h2>
+			<h2>Showing 12 comments</h2>
 			@foreach (var comments in Model.CommentModel) 
 			{
-                <div id="comment-@comments.CommentId" class="comment">
-				    <div class="header">
-                        <div class="author">
-                            <span class="avatar"><img src="/Content/images/profile-image.png" /></span>
-                            <span class="author">@comments.CommentAuthor</span> Commented
-                        </div>
-                        <div class="form-actions">About an hour ago</div>
-                    </div>
-				    <div class="content">@comments.CommentContent</div>	
-                </div>		
+				<div id="comment-@comments.CommentId" class="comment">
+					<div class="header">
+						<div class="author">
+							<span class="avatar"><img src="/Content/images/profile-image.png" /></span>
+							<span class="author"><a href="#">@comments.CommentAuthor</a></span> Commented
+						</div>
+						<div class="form-actions">About an hour ago</div>
+					</div>
+					<div class="content">@Html.Raw(comments.CommentContent)</div>	
+				</div>		
 			}
 		
 	</div>

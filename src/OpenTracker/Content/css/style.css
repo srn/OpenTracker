@@ -477,8 +477,8 @@ nav ul {
 
 #details-wrapper .header 
 {
-    height:18px;
-    overflow:hidden;
+	height:18px;
+	overflow:hidden;
 	background:-moz-linear-gradient(bottom, #F5F5F5, #FFF);
 	background: -ms-linear-gradient(bottom, #F5F5F5, #FFF); /* IE10 */
 	background: -o-linear-gradient(bottom, #F5F5F5, #FFF); /* Opera 11.10+ */
@@ -505,10 +505,14 @@ nav ul {
 
 #details-wrapper > .content-left > .comment 
 {
-    overflow:auto;
-    margin:15px 0 0 0;
+	overflow:auto;
+	margin:15px 0 0 0;
 }
 
+#details-wrapper > .content-left > .comment > .header > .author 
+{
+	float:left;
+}
 
 #details-wrapper .content img 
 {
@@ -539,14 +543,14 @@ nav ul {
 
 #details-wrapper .header > span
 {
-    float:left;
+	float:left;
 	text-shadow: 1px 1px 0 #FFFFFF;
 	font-size:13px;
 	font-weight:bold;
 	color:#999;
 }
 
-#details-wrapper .header > .author > span.author
+#details-wrapper .header > .author > span.author a
 {
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
 	font-size:11px;
@@ -554,27 +558,32 @@ nav ul {
 	color:#000;
 }
 
+#details-wrapper .header > .author > span.author a:hover 
+{
+	color:#4466da;
+}
+
 #details-wrapper .header > .author > span.avatar img
 {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #C8C8C8;
-    display: inline-block;
-    font-size: 1px;
-    line-height: 1px;
-    margin-right: 2px;
-    margin-top: -1px;
-    padding: 1px;
-    vertical-align: middle;
-    width:18px;
-    height:18px;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #C8C8C8;
+	display: inline-block;
+	font-size: 1px;
+	line-height: 1px;
+	margin-right: 2px;
+	margin-top: -1px;
+	padding: 1px;
+	vertical-align: middle;
+	width:18px;
+	height:18px;
 }
 
 #details-wrapper .header > .form-actions 
 {
-    color: #666666;
-    font-size: 11px;
-    float:right;
-    padding:0 9px 0 0;
+	color: #666666;
+	font-size: 11px;
+	float:right;
+	padding:0 9px 0 0;
 }
 
 #wrapper > section > section > #content > .result {
@@ -670,7 +679,10 @@ nav ul {
 	text-align:center;
 }
 
-#torrents > ul.torrent-list > li > .container > ul > li.torrent-snatched, #torrents > ul.torrent-list > li > .container > ul > li.torrent-seeders, #torrents > ul.torrent-list > li > .container > ul > li.torrent-leechers, #torrents > ul.torrent-list > li > .container > ul > li.torrent-comments {
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-snatched, 
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-seeders, 
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-leechers, 
+#torrents > ul.torrent-list > li > .container > ul > li.torrent-comments {
 	padding:9px 0 0 0;
 	width:40px;
 	text-align:center;
@@ -740,6 +752,29 @@ nav ul {
  * Buttons
  */
  
+ .header-button 
+ {
+	background: -moz-linear-gradient(center top , #F4F4F4, #ECECEC) repeat scroll 0 0 transparent;
+	border: 1px solid #D4D4D4;
+	border-radius: 3px 3px 3px 3px;
+	color: #333333;
+	cursor: pointer;
+	display: inline-block;
+	font-family: helvetica,arial,freesans,clean,sans-serif;
+	overflow: visible;
+	position: relative;
+	text-shadow: 1px 1px 0 #FFFFFF;
+	white-space: nowrap;
+ }
+ 
+ .header-button > span 
+ {
+	display: block;
+	height: 18px;
+	line-height: 19px;
+	padding: 0 9px 0 7px;
+ }
+ 
  .user-button {
 	text-decoration:none;   
 	color:#000;
@@ -799,6 +834,11 @@ nav ul {
 	font-size:12px;
 	font-family:Arial;
 	font-weight:bold; 
+	background: -ms-linear-gradient(top, #fff, #E1E1E1); /* IE10 */
+	background: -o-linear-gradient(top, #fff, #E1E1E1); /* Opera 11.10+ */
+	background: linear-gradient(top, #fff, #E1E1E1);
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
+	background: -webkit-linear-gradient(top, #fff, #E1E1E1); /* Chrome 10+, Saf5.1+ */
 	background: -moz-linear-gradient(-90deg, #FFFFFF, #E1E1E1) repeat scroll 0 0 transparent;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#E1E1E1');
 	border:1px solid #d3d3d3;
@@ -814,6 +854,11 @@ nav ul {
 	border:1px solid #598ab4;
 	text-shadow: -1px -1px 0 RGBA(0, 0, 0, 0.3);
 	color:#FFF;
+	background: -ms-linear-gradient(top, #5aa0da, #4a779d); /* IE10 */
+	background: -o-linear-gradient(top, #5aa0da, #4a779d); /* Opera 11.10+ */
+	background: linear-gradient(top, #5aa0da, #4a779d);
+	background: -webkit-gradient(linear, left top, left bottom, from(#5aa0da), to(#4a779d));
+	background: -webkit-linear-gradient(top, #5aa0da, #4a779d); /* Chrome 10+, Saf5.1+ */
 	background: -moz-linear-gradient(-90deg, #5aa0da, #4a779d) repeat scroll 0 0 transparent;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5aa0da', endColorstr='#4a779d');
 }
@@ -825,7 +870,7 @@ nav ul {
  
  .submit-button > span 
  {
-    line-height: 35px;
+	line-height: 30px;
  }
 
  
@@ -995,6 +1040,7 @@ nav ul {
 
 .textarea-large 
 {
+    resize:none;
 	border:none;
 	font-size:12px;
 	font-family:Verdana,Helvetica,Arial,sans-serif;
