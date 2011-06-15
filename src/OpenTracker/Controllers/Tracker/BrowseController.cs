@@ -62,7 +62,7 @@ namespace OpenTracker.Controllers.Tracker
                                     where t.id == id
                                     select new TorrentModel
                                         {
-                                            TorrentId = t.id,
+                                               TorrentId = t.id,
                                                InfoHash = t.info_hash,
                                                TorrentName = t.torrentname,
                                                Description = t.description,
@@ -78,7 +78,20 @@ namespace OpenTracker.Controllers.Tracker
 
                                                Uploader = t3.username
                                         }).Take(1).FirstOrDefault();
-                return View(_torrent);
+
+                var comments = (from c in context.comments
+                                join u in context.users on c.userid equals u.id
+                                where c.torrentid == id
+                                select new CommentModel
+                                    {
+                                        CommentId = c.id,
+                                        CommentAuthor = u.username,
+                                        CommentContent = c.comment
+
+                                    }).ToList();
+
+
+                return View(new BrowseModel {TorrentModel = _torrent, CommentModel = comments });
             }
         }
 

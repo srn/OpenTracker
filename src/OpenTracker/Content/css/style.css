@@ -477,6 +477,8 @@ nav ul {
 
 #details-wrapper .header 
 {
+    height:18px;
+    overflow:hidden;
 	background:-moz-linear-gradient(bottom, #F5F5F5, #FFF);
 	background: -ms-linear-gradient(bottom, #F5F5F5, #FFF); /* IE10 */
 	background: -o-linear-gradient(bottom, #F5F5F5, #FFF); /* Opera 11.10+ */
@@ -484,8 +486,9 @@ nav ul {
 	background: -webkit-gradient(linear, left bottom, left top, from(#F5F5F5), to(#FFF));
 	background: -webkit-linear-gradient(bottom, #F5F5F5, #FFF); /* Chrome 10+, Saf5.1+ */
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#F5F5F5');
-	padding:5px;
+	padding:5px 0 4px 7px;
 	border:1px solid #efefef;
+	color:#666666;
 }
 
 #details-wrapper .content 
@@ -499,6 +502,13 @@ nav ul {
 	box-shadow:inset 0 0 4px rgba(0, 0, 0, 0.2);
 	background:#FDFDFD;
 }
+
+#details-wrapper > .content-left > .comment 
+{
+    overflow:auto;
+    margin:15px 0 0 0;
+}
+
 
 #details-wrapper .content img 
 {
@@ -529,12 +539,43 @@ nav ul {
 
 #details-wrapper .header > span
 {
+    float:left;
 	text-shadow: 1px 1px 0 #FFFFFF;
 	font-size:13px;
 	font-weight:bold;
 	color:#999;
 }
 
+#details-wrapper .header > .author > span.author
+{
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+	font-size:11px;
+	font-weight:bold;
+	color:#000;
+}
+
+#details-wrapper .header > .author > span.avatar img
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C8C8C8;
+    display: inline-block;
+    font-size: 1px;
+    line-height: 1px;
+    margin-right: 2px;
+    margin-top: -1px;
+    padding: 1px;
+    vertical-align: middle;
+    width:18px;
+    height:18px;
+}
+
+#details-wrapper .header > .form-actions 
+{
+    color: #666666;
+    font-size: 11px;
+    float:right;
+    padding:0 9px 0 0;
+}
 
 #wrapper > section > section > #content > .result {
 	position:relative; 
@@ -755,7 +796,6 @@ nav ul {
 	color:#999;
 	text-shadow: 1px 1px 0 #FFFFFF;
 	padding:0 11px 0 11px;
-	height:35px;
 	font-size:12px;
 	font-family:Arial;
 	font-weight:bold; 
@@ -781,6 +821,11 @@ nav ul {
  .submit-button:active 
  {
 	 background: -moz-linear-gradient(90deg, #5aa0da, #4a779d) repeat scroll 0 0 transparent;
+ }
+ 
+ .submit-button > span 
+ {
+    line-height: 35px;
  }
 
  
