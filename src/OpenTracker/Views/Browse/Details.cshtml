@@ -1,11 +1,11 @@
 ﻿@using OpenTracker.Core.Common
-@model OpenTracker.Models.Tracker.TorrentModel
+@model OpenTracker.Models.Tracker.BrowseModel
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @{
-	var torrentName = Model.TorrentName.AbbreviateString(53);
+	var torrentName = Model.TorrentModel.TorrentName.AbbreviateString(53);
 	if (torrentName.Length >= 53)
 	{
 		torrentName += "...";
@@ -26,7 +26,7 @@
 <hr />
 <div class="detail-buttons">
 	<ul>
-		<li><a href="/download/@Model.TorrentId" class="medium-button accept"><span>Download Torrent</span></a></li>
+		<li><a href="/download/@Model.TorrentModel.TorrentId" class="medium-button accept"><span>Download Torrent</span></a></li>
 		<li><a href="#" class="medium-button"><span>Thank Uploader</span></a></li>
 	</ul>
 </div>
@@ -36,23 +36,41 @@
 			<span>Torrent NFO</span>
 		</div>
 		<div class="content">
-			@Html.Raw(Model.Description)
+			@Html.Raw(Model.TorrentModel.Description)
 		</div>
 		<div class="header pull-top">
 			<span>Add Comment</span>
+            <div class="form-actions">Comments are parsed with Markdown</div>
 		</div>   
 			<div class="content">
-				<textarea rows="1" onfocus="if(this.value == 'Enter your comment here!') { this.value = ''; }" class="textarea-large">Enter your comment here!</textarea>				
+				<textarea cols="20" rows="1" onfocus="if(this.value == 'Enter your comment here!') { this.value = ''; }" class="textarea-large">Enter your comment here!</textarea>				
 			</div>
 			<div class="form-actions">
 			<button tabindex="2" class="submit-button"><span>Comment</span></button>
 			</div>
+		    
+	        <hr />
+            <h2>Showing 12 comments</h2>
+			@foreach (var comments in Model.CommentModel) 
+			{
+                <div id="comment-@comments.CommentId" class="comment">
+				    <div class="header">
+                        <div class="author">
+                            <span class="avatar"><img src="/Content/images/profile-image.png" /></span>
+                            <span class="author">@comments.CommentAuthor</span> Commented
+                        </div>
+                        <div class="form-actions">About an hour ago</div>
+                    </div>
+				    <div class="content">@comments.CommentContent</div>	
+                </div>		
+			}
+		
 	</div>
 	<div class="content-right">
 		<a href="#" class="large-button">
 			<img src="/Content/images/uploader-icon.png" />
 			<div class="center-fix">
-				<span>@Model.Uploader</span>
+				<span>@Model.TorrentModel.Uploader</span>
 			</div>
 		</a> 
 		<div class="header pull-top">
@@ -60,12 +78,12 @@
 		</div>   
 		<div class="content">
 			<ul>
-				<li><span class="float-left">Size</span><span class="float-right">@Calculation.FormatBytes(@Model.Size)</span></li>
-				<li><span class="float-left">Category</span><span class="float-right">@Model.CategoryName</span></li>
-				<li><span class="float-left">Snatched</span><span class="float-right">@Model.Snatches</span></li>
-				<li><span class="float-left">Seeders</span><span class="float-right">@Model.Seeders</span></li>
-				<li><span class="float-left">Leechers</span><span class="float-right">@Model.Leechers</span></li>
-				<li><span class="float-left">Files</span><span class="float-right">@Model.FileCount</span></li>
+				<li><span class="float-left">Size</span><span class="float-right">@Calculation.FormatBytes(@Model.TorrentModel.Size)</span></li>
+				<li><span class="float-left">Category</span><span class="float-right">@Model.TorrentModel.CategoryName</span></li>
+				<li><span class="float-left">Snatched</span><span class="float-right">@Model.TorrentModel.Snatches</span></li>
+				<li><span class="float-left">Seeders</span><span class="float-right">@Model.TorrentModel.Seeders</span></li>
+				<li><span class="float-left">Leechers</span><span class="float-right">@Model.TorrentModel.Leechers</span></li>
+				<li><span class="float-left">Files</span><span class="float-right">@Model.TorrentModel.FileCount</span></li>
 			</ul>
 		</div>
 		 <div class="header pull-top">

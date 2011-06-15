@@ -1,9 +1,10 @@
-﻿namespace OpenTracker.Models.Tracker
+﻿using System.Collections.Generic;
+namespace OpenTracker.Models.Tracker
 {
     public class BrowseModel
     {
-        // public List<TorrentModel> Torrents { get; set; }
-
+        public TorrentModel TorrentModel { get; set; }
+        public List<CommentModel> CommentModel { get; set; }
     }
 
     public class TorrentModel
@@ -27,5 +28,12 @@
 
         public int Seeders { get; set; }
         public int Leechers { get; set; }
+    }
+
+    public class CommentModel
+    {
+        public long CommentId { get; set; }
+        public string CommentAuthor { get; set; }
+        public string CommentContent { get; set; }
     }
 }
