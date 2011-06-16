@@ -33,30 +33,30 @@
 
 	<script type="text/javascript">
 
-        $(document).ready(function () {
+		$(document).ready(function () {
 
-            // auto-focus
-            if ($("#Username").val() != '')
-	            $("#Password").focus();
-            else
-	            $("#Username").focus();
-		    
-            $("#loader").hide();
-            $('#login').attr("disabled", false);
-            $("#login").click(function () {
-                if(document.forms["login"].Username.value != "" && document.forms["login"].Password.value != "")  
-                {
-			        $("#loader").show();
-			        $('#login').attr("disabled", true);
-                }
-                else {
-                    $("#loader").hide();
-                    $('#login').attr("disabled", false);
-                }
-            });
+			// auto-focus
+			if ($("#Username").val() != '')
+				$("#Password").focus();
+			else
+				$("#Username").focus();
+			
+			$("#loader").hide();
+			$('#login').attr("disabled", false);
+			$("#login").click(function () {
+				if(document.forms["login"].Username.value != "" && document.forms["login"].Password.value != "")  
+				{
+					$("#loader").show();
+					$('#login').attr("disabled", true);
+				}
+				else {
+					$("#loader").hide();
+					$('#login').attr("disabled", false);
+				}
+			});
 
-            @Html.Raw(ViewBag.Notification)
-        });
+			@Html.Raw(ViewBag.Notification)
+		});
 	</script>
 </head>
 <body>
@@ -64,7 +64,7 @@
 
 		<div id="account-wrapper">
 			<div id="header">
-                <div style="float:right;"><a href="@Url.Action("register", "account")" style="color:#fff;text-decoration: underline;font-size:11px;">Register</a></div>
+				<div style="float:right;"><a href="@Url.Action("register", "account")" style="color:#fff;text-decoration: underline;font-size:11px;">Register</a></div>
 				Login
 			</div>
 			@*@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")*@
@@ -82,20 +82,19 @@
 					@Html.PasswordFor(m => m.Password, new { @class = "input-medium" }) <br/>
 					@*Html.ValidationMessageFor(m => m.Password)*@
 
-					<br/><br /><br />
-
-					@Html.CheckBoxFor(m => m.RememberMe) 
-					@Html.LabelFor(m => m.RememberMe)
-
-
-					<div style="margin:15px;"></div>
-
-					<button class="medium-button" id="login" type="submit" style="float:left;">
+					<br/><br />
+					<div class="form-actions">
+                        <div style="float:left;">
+					        @Html.CheckBoxFor(m => m.RememberMe) 
+					        @Html.LabelFor(m => m.RememberMe)
+                        </div>
+						<button class="submit-button" id="login" type="submit" style="float:right">					
 						<span>Log In</span>
-					</button>
-					<div id="loader" style="float:left;margin-top:7px;margin-left:5px;">
+					    </button>
+                        <div id="loader" style="float:right;margin-top:7px;margin-left:5px;">
 						<img src="/Content/gfx/chrome_throbber_fast_16.gif" alt="" style="margin-bottom:-5px;" /> Authenticating.. &nbsp;
-					</div>
+					    </div>
+                    </div>
 				</div>
 			}
 		</div>

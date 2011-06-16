@@ -41,7 +41,7 @@
 
 		$(document).ready(function () {
 
-            $("#Username").focus();
+			$("#Username").focus();
 			// eye-candy, ofcourse.. trololololo
 			$("#loader").hide();
 			$("#register").click(function () {
@@ -91,13 +91,13 @@
 					@Html.LabelFor(m => m.ConfirmPassword)
 					@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-medium" })
 					<br/><br/><br />
-					<div style="margin:15px;"></div>
-
-					<button class="medium-button" id="login" type="submit" style="float:left;">
+					<div class="form-actions">
+					<button class="submit-button" id="login" type="submit" style="float:right;">
 						<span>Register</span>
 					</button>
-					<div id="loader" style="float:left;margin-top:7px;margin-left:5px;">
+					<div id="loader" style="float:right;margin-top:7px;margin-left:5px;">
 						<img src="/Content/gfx/chrome_throbber_fast_16.gif" alt="" style="margin-bottom:-5px;" /> Requesting.. &nbsp;
+					</div>
 					</div>
 				</div>
 			}
